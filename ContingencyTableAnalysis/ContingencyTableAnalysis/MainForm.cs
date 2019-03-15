@@ -15,7 +15,7 @@ namespace ContingencyTableAnalysis
         QAValues[] QAValues = {
             new QAValues { Labels = StaticValues.ConnectionAnalysisLabels , Parameters = StaticValues.ConnectionAnalysisParameters},
             new QAValues { Labels = StaticValues.DifferencesAnalysisLabels , Parameters = StaticValues.DifferencesAnalysisParameters},
-            new QAValues { Labels = StaticValues.RiskAnalysisLabels , Parameters = StaticValues.RiskAnalysisLabels},
+            new QAValues { Labels = StaticValues.RiskAnalysisLabels , Parameters = StaticValues.RiskAnalysisParameters},
             new QAValues { Labels = StaticValues.DiagnosAnalysisLabels , Parameters = StaticValues.DiagnosAnalysisParameters},
             new QAValues { Labels = StaticValues.HealAnalysisLabels , Parameters = StaticValues.HealAnalysisParameters}
 

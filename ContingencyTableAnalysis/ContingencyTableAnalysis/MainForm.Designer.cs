@@ -241,7 +241,6 @@
             this.tabPage1.Controls.Add(this.ucQuickAnalysis1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(847, 546);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Анализ связи";
@@ -250,10 +249,10 @@
             // ucQuickAnalysis1
             // 
             this.ucQuickAnalysis1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucQuickAnalysis1.Location = new System.Drawing.Point(3, 3);
+            this.ucQuickAnalysis1.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis1.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis1.Name = "ucQuickAnalysis1";
-            this.ucQuickAnalysis1.Size = new System.Drawing.Size(841, 540);
+            this.ucQuickAnalysis1.Size = new System.Drawing.Size(847, 546);
             this.ucQuickAnalysis1.TabIndex = 0;
             // 
             // tabPage2
@@ -261,7 +260,6 @@
             this.tabPage2.Controls.Add(this.ucQuickAnalysis2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(847, 546);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Анализ различий";
@@ -322,10 +320,10 @@
             // ucQuickAnalysis2
             // 
             this.ucQuickAnalysis2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucQuickAnalysis2.Location = new System.Drawing.Point(3, 3);
+            this.ucQuickAnalysis2.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis2.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis2.Name = "ucQuickAnalysis2";
-            this.ucQuickAnalysis2.Size = new System.Drawing.Size(841, 540);
+            this.ucQuickAnalysis2.Size = new System.Drawing.Size(847, 546);
             this.ucQuickAnalysis2.TabIndex = 0;
             // 
             // ucQuickAnalysis3
