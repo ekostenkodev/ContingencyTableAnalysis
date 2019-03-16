@@ -50,15 +50,15 @@
             this.PanelQuickAnalysis = new System.Windows.Forms.Panel();
             this.tabControlQA = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ucQuickAnalysis1 = new ContingencyTableAnalysis.ucQuickAnalysis();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.ucQuickAnalysis4 = new ContingencyTableAnalysis.ucQuickAnalysis();
-            this.ucQuickAnalysis5 = new ContingencyTableAnalysis.ucQuickAnalysis();
+            this.ucQuickAnalysis1 = new ContingencyTableAnalysis.ucQuickAnalysis();
             this.ucQuickAnalysis2 = new ContingencyTableAnalysis.ucQuickAnalysis();
             this.ucQuickAnalysis3 = new ContingencyTableAnalysis.ucQuickAnalysis();
+            this.ucQuickAnalysis4 = new ContingencyTableAnalysis.ucQuickAnalysis();
+            this.ucQuickAnalysis5 = new ContingencyTableAnalysis.ucQuickAnalysis();
             this.menuStrip1.SuspendLayout();
             this.PanelQuickAnalysis.SuspendLayout();
             this.tabControlQA.SuspendLayout();
@@ -217,7 +217,7 @@
             this.PanelQuickAnalysis.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelQuickAnalysis.Location = new System.Drawing.Point(0, 28);
             this.PanelQuickAnalysis.Name = "PanelQuickAnalysis";
-            this.PanelQuickAnalysis.Size = new System.Drawing.Size(855, 575);
+            this.PanelQuickAnalysis.Size = new System.Drawing.Size(855, 571);
             this.PanelQuickAnalysis.TabIndex = 1;
             // 
             // tabControlQA
@@ -232,7 +232,7 @@
             this.tabControlQA.Margin = new System.Windows.Forms.Padding(0);
             this.tabControlQA.Name = "tabControlQA";
             this.tabControlQA.SelectedIndex = 0;
-            this.tabControlQA.Size = new System.Drawing.Size(855, 575);
+            this.tabControlQA.Size = new System.Drawing.Size(855, 571);
             this.tabControlQA.TabIndex = 0;
             // 
             // tabPage1
@@ -241,10 +241,54 @@
             this.tabPage1.Controls.Add(this.ucQuickAnalysis1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(847, 546);
+            this.tabPage1.Size = new System.Drawing.Size(847, 542);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Анализ связи";
             this.tabPage1.Enter += new System.EventHandler(this.tabPageEnter);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage2.Controls.Add(this.ucQuickAnalysis2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(847, 542);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Анализ различий";
+            this.tabPage2.Enter += new System.EventHandler(this.tabPageEnter);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage3.Controls.Add(this.ucQuickAnalysis3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(847, 542);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Анализ факторов риска";
+            this.tabPage3.Enter += new System.EventHandler(this.tabPageEnter);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage4.Controls.Add(this.ucQuickAnalysis4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(847, 542);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Анализ диагностических методов";
+            this.tabPage4.Enter += new System.EventHandler(this.tabPageEnter);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage5.Controls.Add(this.ucQuickAnalysis5);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(847, 542);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Анализ методов лечения";
+            this.tabPage5.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis1
             // 
@@ -252,70 +296,8 @@
             this.ucQuickAnalysis1.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis1.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis1.Name = "ucQuickAnalysis1";
-            this.ucQuickAnalysis1.Size = new System.Drawing.Size(847, 546);
+            this.ucQuickAnalysis1.Size = new System.Drawing.Size(847, 542);
             this.ucQuickAnalysis1.TabIndex = 0;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ucQuickAnalysis2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(847, 546);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Анализ различий";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Enter += new System.EventHandler(this.tabPageEnter);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.ucQuickAnalysis3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(847, 546);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Анализ факторов риска";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Enter += new System.EventHandler(this.tabPageEnter);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.ucQuickAnalysis4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(847, 546);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Анализ диагностических методов";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            this.tabPage4.Enter += new System.EventHandler(this.tabPageEnter);
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.ucQuickAnalysis5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(847, 546);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Анализ методов лечения";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            this.tabPage5.Enter += new System.EventHandler(this.tabPageEnter);
-            // 
-            // ucQuickAnalysis4
-            // 
-            this.ucQuickAnalysis4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucQuickAnalysis4.Location = new System.Drawing.Point(0, 0);
-            this.ucQuickAnalysis4.Margin = new System.Windows.Forms.Padding(0);
-            this.ucQuickAnalysis4.Name = "ucQuickAnalysis4";
-            this.ucQuickAnalysis4.Size = new System.Drawing.Size(847, 546);
-            this.ucQuickAnalysis4.TabIndex = 0;
-            // 
-            // ucQuickAnalysis5
-            // 
-            this.ucQuickAnalysis5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucQuickAnalysis5.Location = new System.Drawing.Point(0, 0);
-            this.ucQuickAnalysis5.Margin = new System.Windows.Forms.Padding(0);
-            this.ucQuickAnalysis5.Name = "ucQuickAnalysis5";
-            this.ucQuickAnalysis5.Size = new System.Drawing.Size(847, 546);
-            this.ucQuickAnalysis5.TabIndex = 0;
             // 
             // ucQuickAnalysis2
             // 
@@ -323,7 +305,7 @@
             this.ucQuickAnalysis2.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis2.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis2.Name = "ucQuickAnalysis2";
-            this.ucQuickAnalysis2.Size = new System.Drawing.Size(847, 546);
+            this.ucQuickAnalysis2.Size = new System.Drawing.Size(847, 542);
             this.ucQuickAnalysis2.TabIndex = 0;
             // 
             // ucQuickAnalysis3
@@ -332,14 +314,32 @@
             this.ucQuickAnalysis3.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis3.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis3.Name = "ucQuickAnalysis3";
-            this.ucQuickAnalysis3.Size = new System.Drawing.Size(847, 546);
+            this.ucQuickAnalysis3.Size = new System.Drawing.Size(847, 542);
             this.ucQuickAnalysis3.TabIndex = 0;
+            // 
+            // ucQuickAnalysis4
+            // 
+            this.ucQuickAnalysis4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucQuickAnalysis4.Location = new System.Drawing.Point(0, 0);
+            this.ucQuickAnalysis4.Margin = new System.Windows.Forms.Padding(0);
+            this.ucQuickAnalysis4.Name = "ucQuickAnalysis4";
+            this.ucQuickAnalysis4.Size = new System.Drawing.Size(847, 542);
+            this.ucQuickAnalysis4.TabIndex = 0;
+            // 
+            // ucQuickAnalysis5
+            // 
+            this.ucQuickAnalysis5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucQuickAnalysis5.Location = new System.Drawing.Point(0, 0);
+            this.ucQuickAnalysis5.Margin = new System.Windows.Forms.Padding(0);
+            this.ucQuickAnalysis5.Name = "ucQuickAnalysis5";
+            this.ucQuickAnalysis5.Size = new System.Drawing.Size(847, 542);
+            this.ucQuickAnalysis5.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 603);
+            this.ClientSize = new System.Drawing.Size(855, 599);
             this.Controls.Add(this.PanelQuickAnalysis);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -387,11 +387,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private ucQuickAnalysis ucQuickAnalysis1;
         private ucQuickAnalysis ucQuickAnalysis4;
         private ucQuickAnalysis ucQuickAnalysis5;
         private ucQuickAnalysis ucQuickAnalysis2;
         private ucQuickAnalysis ucQuickAnalysis3;
+        private ucQuickAnalysis ucQuickAnalysis1;
     }
 }
 

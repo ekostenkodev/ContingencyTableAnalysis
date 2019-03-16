@@ -12,18 +12,19 @@ namespace ContingencyTableAnalysis
 {
     public partial class MainForm : Form
     {
-        QAValues[] QAValues = {
-            new QAValues { Labels = StaticValues.ConnectionAnalysisLabels , Parameters = StaticValues.ConnectionAnalysisParameters},
-            new QAValues { Labels = StaticValues.DifferencesAnalysisLabels , Parameters = StaticValues.DifferencesAnalysisParameters},
-            new QAValues { Labels = StaticValues.RiskAnalysisLabels , Parameters = StaticValues.RiskAnalysisParameters},
-            new QAValues { Labels = StaticValues.DiagnosAnalysisLabels , Parameters = StaticValues.DiagnosAnalysisParameters},
-            new QAValues { Labels = StaticValues.HealAnalysisLabels , Parameters = StaticValues.HealAnalysisParameters}
+        QAStrings[] QAValues = {
+            new QAStrings { Labels = StaticQAStrings.ConnectionAnalysisLabels , Parameters = StaticQAStrings.ConnectionAnalysisParameters},
+            new QAStrings { Labels = StaticQAStrings.DifferencesAnalysisLabels , Parameters = StaticQAStrings.DifferencesAnalysisParameters},
+            new QAStrings { Labels = StaticQAStrings.RiskAnalysisLabels , Parameters = StaticQAStrings.RiskAnalysisParameters},
+            new QAStrings { Labels = StaticQAStrings.DiagnosAnalysisLabels , Parameters = StaticQAStrings.DiagnosAnalysisParameters},
+            new QAStrings { Labels = StaticQAStrings.HealAnalysisLabels , Parameters = StaticQAStrings.HealAnalysisParameters}
 
         };
         
         public MainForm()
         {
             InitializeComponent();
+            
         }
 
         private void быстрыйАнализToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,10 +44,8 @@ namespace ContingencyTableAnalysis
             int index = tabControlQA.SelectedIndex;
             ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetValues(QAValues[index]);
         }
-        
-    }
-    public class QA
-    {
+
 
     }
+
 }

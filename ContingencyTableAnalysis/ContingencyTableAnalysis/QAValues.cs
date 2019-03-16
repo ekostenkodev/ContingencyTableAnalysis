@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ContingencyTableAnalysis
 {
-    public struct QAValues
+    public struct QAStrings
     {
         public string[] Labels;
         public string[] Parameters;
     }
 
-    static class StaticValues
+    static class StaticQAStrings
     {
         public static string[] ConnectionAnalysisParameters =
         {

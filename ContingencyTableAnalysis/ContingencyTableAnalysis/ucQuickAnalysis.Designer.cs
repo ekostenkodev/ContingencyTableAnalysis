@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbD = new System.Windows.Forms.TextBox();
-            this.tbC = new System.Windows.Forms.TextBox();
-            this.tbB = new System.Windows.Forms.TextBox();
+            this.tbD = new ContingencyTableAnalysis.InputDataTextBox();
+            this.tbC = new ContingencyTableAnalysis.InputDataTextBox();
+            this.tbB = new ContingencyTableAnalysis.InputDataTextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label01 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,8 +49,8 @@
             this.labelBD = new System.Windows.Forms.Label();
             this.labelCD = new System.Windows.Forms.Label();
             this.labelABCD = new System.Windows.Forms.Label();
-            this.tbA = new System.Windows.Forms.TextBox();
             this.labelAB = new System.Windows.Forms.Label();
+            this.tbA = new ContingencyTableAnalysis.InputDataTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ParametersCheckBox = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -89,8 +89,8 @@
             this.tableLayoutPanel1.Controls.Add(this.labelBD, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelCD, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelABCD, 4, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tbA, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelAB, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbA, 2, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -104,36 +104,48 @@
             // 
             // tbD
             // 
-            this.tbD.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbD.Location = new System.Drawing.Point(519, 146);
-            this.tbD.Margin = new System.Windows.Forms.Padding(0);
+            this.tbD.Location = new System.Drawing.Point(510, 146);
+            this.tbD.Margin = new System.Windows.Forms.Padding(5);
             this.tbD.Name = "tbD";
-            this.tbD.Size = new System.Drawing.Size(139, 30);
-            this.tbD.TabIndex = 16;
+            this.tbD.Size = new System.Drawing.Size(157, 30);
+            this.tbD.TabIndex = 20;
+            this.tbD.Text = "0";
             this.tbD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbD.Click += new System.EventHandler(this.tbClearClick);
+            this.tbD.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbD.Leave += new System.EventHandler(this.tbLeave);
             // 
             // tbC
             // 
-            this.tbC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbC.Location = new System.Drawing.Point(351, 146);
-            this.tbC.Margin = new System.Windows.Forms.Padding(0);
+            this.tbC.Location = new System.Drawing.Point(342, 146);
+            this.tbC.Margin = new System.Windows.Forms.Padding(5);
             this.tbC.Name = "tbC";
-            this.tbC.Size = new System.Drawing.Size(139, 30);
-            this.tbC.TabIndex = 15;
+            this.tbC.Size = new System.Drawing.Size(157, 30);
+            this.tbC.TabIndex = 19;
+            this.tbC.Text = "0";
             this.tbC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbC.Click += new System.EventHandler(this.tbClearClick);
+            this.tbC.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbC.Leave += new System.EventHandler(this.tbLeave);
             // 
             // tbB
             // 
-            this.tbB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbB.Location = new System.Drawing.Point(519, 100);
-            this.tbB.Margin = new System.Windows.Forms.Padding(0);
+            this.tbB.Location = new System.Drawing.Point(510, 100);
+            this.tbB.Margin = new System.Windows.Forms.Padding(5);
             this.tbB.Name = "tbB";
-            this.tbB.Size = new System.Drawing.Size(139, 30);
-            this.tbB.TabIndex = 14;
+            this.tbB.Size = new System.Drawing.Size(157, 30);
+            this.tbB.TabIndex = 18;
+            this.tbB.Text = "0";
             this.tbB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbB.Click += new System.EventHandler(this.tbClearClick);
+            this.tbB.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbB.Leave += new System.EventHandler(this.tbLeave);
             // 
             // tableLayoutPanel4
             // 
@@ -303,68 +315,72 @@
             // 
             this.labelAC.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelAC.AutoSize = true;
-            this.labelAC.Location = new System.Drawing.Point(397, 200);
+            this.labelAC.Location = new System.Drawing.Point(412, 200);
             this.labelAC.Name = "labelAC";
-            this.labelAC.Size = new System.Drawing.Size(46, 17);
+            this.labelAC.Size = new System.Drawing.Size(16, 17);
             this.labelAC.TabIndex = 8;
-            this.labelAC.Text = "label1";
+            this.labelAC.Text = "0";
             // 
             // labelBD
             // 
             this.labelBD.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelBD.AutoSize = true;
-            this.labelBD.Location = new System.Drawing.Point(565, 200);
+            this.labelBD.Location = new System.Drawing.Point(580, 200);
             this.labelBD.Name = "labelBD";
-            this.labelBD.Size = new System.Drawing.Size(46, 17);
+            this.labelBD.Size = new System.Drawing.Size(16, 17);
             this.labelBD.TabIndex = 9;
-            this.labelBD.Text = "label1";
+            this.labelBD.Text = "0";
             // 
             // labelCD
             // 
             this.labelCD.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCD.AutoSize = true;
-            this.labelCD.Location = new System.Drawing.Point(734, 153);
+            this.labelCD.Location = new System.Drawing.Point(749, 153);
             this.labelCD.Name = "labelCD";
-            this.labelCD.Size = new System.Drawing.Size(46, 17);
+            this.labelCD.Size = new System.Drawing.Size(16, 17);
             this.labelCD.TabIndex = 11;
-            this.labelCD.Text = "label1";
+            this.labelCD.Text = "0";
             // 
             // labelABCD
             // 
             this.labelABCD.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelABCD.AutoSize = true;
-            this.labelABCD.Location = new System.Drawing.Point(734, 200);
+            this.labelABCD.Location = new System.Drawing.Point(749, 200);
             this.labelABCD.Name = "labelABCD";
-            this.labelABCD.Size = new System.Drawing.Size(46, 17);
+            this.labelABCD.Size = new System.Drawing.Size(16, 17);
             this.labelABCD.TabIndex = 12;
-            this.labelABCD.Text = "label1";
-            // 
-            // tbA
-            // 
-            this.tbA.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbA.Location = new System.Drawing.Point(351, 100);
-            this.tbA.Margin = new System.Windows.Forms.Padding(0);
-            this.tbA.Name = "tbA";
-            this.tbA.Size = new System.Drawing.Size(139, 30);
-            this.tbA.TabIndex = 13;
-            this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelABCD.Text = "0";
             // 
             // labelAB
             // 
             this.labelAB.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelAB.AutoSize = true;
-            this.labelAB.Location = new System.Drawing.Point(734, 107);
+            this.labelAB.Location = new System.Drawing.Point(749, 107);
             this.labelAB.Name = "labelAB";
-            this.labelAB.Size = new System.Drawing.Size(46, 17);
+            this.labelAB.Size = new System.Drawing.Size(16, 17);
             this.labelAB.TabIndex = 10;
-            this.labelAB.Text = "label1";
+            this.labelAB.Text = "0";
+            // 
+            // tbA
+            // 
+            this.tbA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbA.Location = new System.Drawing.Point(342, 100);
+            this.tbA.Margin = new System.Windows.Forms.Padding(5);
+            this.tbA.Name = "tbA";
+            this.tbA.Size = new System.Drawing.Size(157, 30);
+            this.tbA.TabIndex = 17;
+            this.tbA.Text = "0";
+            this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbA.Click += new System.EventHandler(this.tbClearClick);
+            this.tbA.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbA.Leave += new System.EventHandler(this.tbLeave);
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Location = new System.Drawing.Point(3, 6);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(208, 17);
             this.label7.TabIndex = 2;
@@ -376,9 +392,9 @@
             this.ParametersCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ParametersCheckBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ParametersCheckBox.FormattingEnabled = true;
-            this.ParametersCheckBox.Location = new System.Drawing.Point(6, 20);
+            this.ParametersCheckBox.Location = new System.Drawing.Point(10, 37);
             this.ParametersCheckBox.Name = "ParametersCheckBox";
-            this.ParametersCheckBox.Size = new System.Drawing.Size(221, 208);
+            this.ParametersCheckBox.Size = new System.Drawing.Size(816, 259);
             this.ParametersCheckBox.TabIndex = 1;
             // 
             // panel1
@@ -388,7 +404,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(3, 235);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 240);
+            this.panel1.Size = new System.Drawing.Size(836, 337);
             this.panel1.TabIndex = 3;
             // 
             // ucQuickAnalysis
@@ -399,7 +415,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucQuickAnalysis";
-            this.Size = new System.Drawing.Size(842, 476);
+            this.Size = new System.Drawing.Size(842, 575);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -431,18 +447,18 @@
         private System.Windows.Forms.Label labelAB;
         private System.Windows.Forms.Label labelCD;
         private System.Windows.Forms.Label labelABCD;
-        private System.Windows.Forms.TextBox tbA;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.TextBox tbD;
-        private System.Windows.Forms.TextBox tbC;
-        private System.Windows.Forms.TextBox tbB;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckedListBox ParametersCheckBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private InputDataTextBox tbD;
+        private InputDataTextBox tbC;
+        private InputDataTextBox tbB;
+        private InputDataTextBox tbA;
     }
 }
