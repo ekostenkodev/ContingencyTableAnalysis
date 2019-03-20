@@ -48,6 +48,8 @@ namespace ContingencyTableAnalysis
             textBoxes[1, 0] = tbC;
             textBoxes[1, 1] = tbD;
 
+            string[] s = 
+
 
 
         }
