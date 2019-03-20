@@ -10,19 +10,15 @@ using System.Windows.Forms;
 
 namespace ContingencyTableAnalysis
 {
-    public partial class ucQuickAnalysis : UserControl
+    public partial class ucQuickAnalysis : MetroFramework.Controls.MetroUserControl
     {
         private Label[] labelRows;
         private Label[] labelColumns;
         private TextBox[,] textBoxes = new TextBox[2,2];
 
         private void changeRows(int index) => labelRows[index].Text = (Int32.Parse(textBoxes[index, 0].Text) + Int32.Parse(textBoxes[index, 1].Text)).ToString();
-        private void changeColumns(int index)
-        {
-            int a = Int32.Parse(textBoxes[0, index].Text);
-            int b = Int32.Parse(textBoxes[1, index].Text);
-            labelColumns[index].Text = ( a+ b).ToString();
-        }
+        private void changeColumns(int index) => labelColumns[index].Text = (Int32.Parse(textBoxes[0, index].Text) + Int32.Parse(textBoxes[1, index].Text)).ToString();
+
         public void UpdateLabels(int row, int column)
         {
             changeColumns(column);

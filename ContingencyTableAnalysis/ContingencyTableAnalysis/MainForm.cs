@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ContingencyTableAnalysis
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         QAStrings[] QAValues = {
             new QAStrings { Labels = StaticQAStrings.ConnectionAnalysisLabels , Parameters = StaticQAStrings.ConnectionAnalysisParameters},
@@ -45,7 +45,15 @@ namespace ContingencyTableAnalysis
             ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetValues(QAValues[index]);
         }
 
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            ((MetroFramework.Forms.MetroForm)this).Style++;
+        }
     }
 
 }
