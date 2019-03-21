@@ -47,11 +47,8 @@ namespace ContingencyTableAnalysis
             textBoxes[0, 1] = tbB;
             textBoxes[1, 0] = tbC;
             textBoxes[1, 1] = tbD;
-
-            string[] s = 
-
-
-
+            
+            
         }
 
 
@@ -65,7 +62,14 @@ namespace ContingencyTableAnalysis
             label5.Text = values.Labels[4];
             label6.Text = values.Labels[5];
 
-            ((ListBox)ParametersCheckBox).DataSource = values.Parameters;
+
+            ParametersCheckBox.Items.Clear();
+
+
+            foreach (var item in values.Parameters)
+            {
+                ParametersCheckBox.Items.Add(item);
+            }
 
         }
 

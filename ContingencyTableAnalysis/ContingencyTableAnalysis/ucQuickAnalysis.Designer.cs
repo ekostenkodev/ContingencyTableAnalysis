@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "",
-            "",
-            ""}, -1);
             this.tbD = new ContingencyTableAnalysis.InputDataTextBox();
             this.tbC = new ContingencyTableAnalysis.InputDataTextBox();
             this.tbB = new ContingencyTableAnalysis.InputDataTextBox();
@@ -50,9 +45,6 @@
             this.labelCD = new System.Windows.Forms.Label();
             this.labelABCD = new System.Windows.Forms.Label();
             this.labelAB = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.ParametersCheckBox = new System.Windows.Forms.CheckedListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -71,12 +63,8 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.listBox2 = new MetroFramework.Controls.MetroListView();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
-            this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.panel1.SuspendLayout();
+            this.ParametersCheckBox = new MetroFramework.Controls.MetroListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel7.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -312,39 +300,6 @@
             this.labelAB.Text = "0";
             this.labelAB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 6);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(208, 17);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Рассчитываемые параметры :";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ParametersCheckBox
-            // 
-            this.ParametersCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.ParametersCheckBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ParametersCheckBox.FormattingEnabled = true;
-            this.ParametersCheckBox.Location = new System.Drawing.Point(11, 37);
-            this.ParametersCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ParametersCheckBox.Name = "ParametersCheckBox";
-            this.ParametersCheckBox.Size = new System.Drawing.Size(816, 242);
-            this.ParametersCheckBox.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.ParametersCheckBox);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(32, 417);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(836, 337);
-            this.panel1.TabIndex = 3;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
@@ -529,70 +484,34 @@
             this.panel19.Size = new System.Drawing.Size(156, 144);
             this.panel19.TabIndex = 28;
             // 
-            // listBox2
+            // ParametersCheckBox
             // 
-            this.listBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.listBox2.FullRowSelect = true;
-            this.listBox2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listBox2.Location = new System.Drawing.Point(874, 113);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.OwnerDraw = true;
-            this.listBox2.Size = new System.Drawing.Size(193, 97);
-            this.listBox2.TabIndex = 29;
-            this.listBox2.UseCompatibleStateImageBehavior = false;
-            this.listBox2.UseSelectable = true;
-            this.listBox2.View = System.Windows.Forms.View.List;
+            this.ParametersCheckBox.CheckBoxes = true;
+            this.ParametersCheckBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.ParametersCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ParametersCheckBox.FullRowSelect = true;
+            this.ParametersCheckBox.Location = new System.Drawing.Point(826, 8);
+            this.ParametersCheckBox.Name = "ParametersCheckBox";
+            this.ParametersCheckBox.OwnerDraw = true;
+            this.ParametersCheckBox.Size = new System.Drawing.Size(660, 370);
+            this.ParametersCheckBox.Style = MetroFramework.MetroColorStyle.Red;
+            this.ParametersCheckBox.TabIndex = 29;
+            this.ParametersCheckBox.UseCompatibleStateImageBehavior = false;
+            this.ParametersCheckBox.UseSelectable = true;
+            this.ParametersCheckBox.View = System.Windows.Forms.View.Details;
             // 
-            // listBox1
+            // columnHeader1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(874, 233);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 84);
-            this.listBox1.TabIndex = 30;
-            // 
-            // metroComboBox1
-            // 
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 24;
-            this.metroComboBox1.Location = new System.Drawing.Point(1196, 159);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(121, 30);
-            this.metroComboBox1.TabIndex = 31;
-            this.metroComboBox1.UseSelectable = true;
-            // 
-            // metroCheckBox1
-            // 
-            this.metroCheckBox1.AutoSize = true;
-            this.metroCheckBox1.Location = new System.Drawing.Point(1107, 250);
-            this.metroCheckBox1.Name = "metroCheckBox1";
-            this.metroCheckBox1.Size = new System.Drawing.Size(121, 17);
-            this.metroCheckBox1.TabIndex = 32;
-            this.metroCheckBox1.Text = "metroCheckBox1";
-            this.metroCheckBox1.UseSelectable = true;
-            // 
-            // metroRadioButton1
-            // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(1182, 325);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(137, 17);
-            this.metroRadioButton1.TabIndex = 33;
-            this.metroRadioButton1.Text = "metroRadioButton1";
-            this.metroRadioButton1.UseSelectable = true;
+            this.columnHeader1.Text = "Рассчитываемые параметры";
+            this.columnHeader1.Width = 500;
             // 
             // ucQuickAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
-            this.Controls.Add(this.metroRadioButton1);
-            this.Controls.Add(this.metroCheckBox1);
-            this.Controls.Add(this.metroComboBox1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.ParametersCheckBox);
             this.Controls.Add(this.panel19);
             this.Controls.Add(this.panel18);
             this.Controls.Add(this.panel17);
@@ -611,12 +530,9 @@
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucQuickAnalysis";
             this.Size = new System.Drawing.Size(1852, 800);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -639,7 +555,6 @@
             this.panel18.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -656,9 +571,6 @@
         private System.Windows.Forms.Label labelAB;
         private System.Windows.Forms.Label labelCD;
         private System.Windows.Forms.Label labelABCD;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckedListBox ParametersCheckBox;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private InputDataTextBox tbD;
         private InputDataTextBox tbC;
@@ -682,10 +594,7 @@
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel19;
-        private MetroFramework.Controls.MetroListView listBox2;
-        private System.Windows.Forms.ListBox listBox1;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
-        private MetroFramework.Controls.MetroCheckBox metroCheckBox1;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
+        private MetroFramework.Controls.MetroListView ParametersCheckBox;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

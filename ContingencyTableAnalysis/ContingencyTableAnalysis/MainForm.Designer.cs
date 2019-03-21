@@ -62,7 +62,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(20, 74);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1420, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1498, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,7 +85,7 @@
             this.PanelQuickAnalysis.Location = new System.Drawing.Point(20, 102);
             this.PanelQuickAnalysis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PanelQuickAnalysis.Name = "PanelQuickAnalysis";
-            this.PanelQuickAnalysis.Size = new System.Drawing.Size(1420, 447);
+            this.PanelQuickAnalysis.Size = new System.Drawing.Size(1498, 563);
             this.PanelQuickAnalysis.TabIndex = 1;
             // 
             // tabControlQA
@@ -100,7 +100,7 @@
             this.tabControlQA.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlQA.Name = "tabControlQA";
             this.tabControlQA.SelectedIndex = 0;
-            this.tabControlQA.Size = new System.Drawing.Size(1420, 447);
+            this.tabControlQA.Size = new System.Drawing.Size(1498, 563);
             this.tabControlQA.Style = MetroFramework.MetroColorStyle.Red;
             this.tabControlQA.TabIndex = 0;
             this.tabControlQA.UseSelectable = true;
@@ -111,13 +111,14 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1412, 405);
+            this.tabPage1.Size = new System.Drawing.Size(1490, 521);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Анализ связи";
             this.tabPage1.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis1
             // 
+            this.ucQuickAnalysis1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
             this.ucQuickAnalysis1.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis1.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis1.Name = "ucQuickAnalysis1";
@@ -131,13 +132,14 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1013, 405);
+            this.tabPage2.Size = new System.Drawing.Size(1412, 405);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Анализ различий";
             this.tabPage2.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis2
             // 
+            this.ucQuickAnalysis2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
             this.ucQuickAnalysis2.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis2.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis2.Name = "ucQuickAnalysis2";
@@ -151,13 +153,14 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 38);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1013, 405);
+            this.tabPage3.Size = new System.Drawing.Size(1412, 405);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Анализ факторов риска";
             this.tabPage3.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis3
             // 
+            this.ucQuickAnalysis3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
             this.ucQuickAnalysis3.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis3.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis3.Name = "ucQuickAnalysis3";
@@ -171,13 +174,14 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 38);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1013, 405);
+            this.tabPage4.Size = new System.Drawing.Size(1412, 405);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Анализ диагностических методов";
             this.tabPage4.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis4
             // 
+            this.ucQuickAnalysis4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
             this.ucQuickAnalysis4.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis4.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis4.Name = "ucQuickAnalysis4";
@@ -191,13 +195,14 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 38);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1013, 405);
+            this.tabPage5.Size = new System.Drawing.Size(1412, 405);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Анализ методов лечения";
             this.tabPage5.Enter += new System.EventHandler(this.tabPageEnter);
             // 
             // ucQuickAnalysis5
             // 
+            this.ucQuickAnalysis5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
             this.ucQuickAnalysis5.Location = new System.Drawing.Point(0, 0);
             this.ucQuickAnalysis5.Margin = new System.Windows.Forms.Padding(0);
             this.ucQuickAnalysis5.Name = "ucQuickAnalysis5";
@@ -209,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1460, 569);
+            this.ClientSize = new System.Drawing.Size(1538, 685);
             this.Controls.Add(this.PanelQuickAnalysis);
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
