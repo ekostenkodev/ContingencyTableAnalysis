@@ -39,7 +39,6 @@ namespace ContingencyTableAnalysis
         public ucQuickAnalysis()
         {
             InitializeComponent();
-
             labelRows = new[] { labelAB, labelCD };
             labelColumns = new[] { labelAC, labelBD };
 
@@ -125,6 +124,36 @@ namespace ContingencyTableAnalysis
             {
                 textBox.Text = "0";
             }
+        }
+
+        private void ucQuickAnalysis_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel15_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

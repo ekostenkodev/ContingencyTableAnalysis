@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,25 @@ namespace ContingencyTableAnalysis
 {
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
-        QAStrings[] QAValues = {
-            new QAStrings { Labels = StaticQAStrings.ConnectionAnalysisLabels , Parameters = StaticQAStrings.ConnectionAnalysisParameters},
-            new QAStrings { Labels = StaticQAStrings.DifferencesAnalysisLabels , Parameters = StaticQAStrings.DifferencesAnalysisParameters},
-            new QAStrings { Labels = StaticQAStrings.RiskAnalysisLabels , Parameters = StaticQAStrings.RiskAnalysisParameters},
-            new QAStrings { Labels = StaticQAStrings.DiagnosAnalysisLabels , Parameters = StaticQAStrings.DiagnosAnalysisParameters},
-            new QAStrings { Labels = StaticQAStrings.HealAnalysisLabels , Parameters = StaticQAStrings.HealAnalysisParameters}
 
-        };
-        
+
+        QAStrings[] QAStrings = new QAStrings[5];
+        string[][] analysisLabels;
+        public List<string>[] parameters;
+
+
         public MainForm()
         {
             InitializeComponent();
+            analysisLabels = DBHelper.GetAnalysisLabels();
+            parameters = DBHelper.GetAnalysisParameters();
+
+            for (int i = 0; i < QAStrings.Length; i++)
+            {
+                QAStrings[i].Labels = analysisLabels[i];
+                QAStrings[i].Parameters = parameters[i];
+
+            }
             
         }
 
@@ -42,8 +50,11 @@ namespace ContingencyTableAnalysis
         private void tabPageEnter(object sender, EventArgs e)
         {
             int index = tabControlQA.SelectedIndex;
-            ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetValues(QAValues[index]);
+            ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetValues(QAStrings[index]);
+            
         }
+
+        
 
         private void tabPage2_Click(object sender, EventArgs e)
         {

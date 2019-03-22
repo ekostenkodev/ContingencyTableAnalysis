@@ -9,7 +9,7 @@ namespace ContingencyTableAnalysis
     public struct QAStrings
     {
         public string[] Labels;
-        public string[] Parameters;
+        public List<string> Parameters;
     }
 
     static class StaticQAStrings
