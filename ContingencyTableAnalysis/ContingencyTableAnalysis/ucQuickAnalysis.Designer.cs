@@ -44,9 +44,13 @@
             this.ParametersCheckBox = new MetroFramework.Controls.MetroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbA = new ContingencyTableAnalysis.InputDataTextBox();
             this.panel20 = new System.Windows.Forms.Panel();
+            this.tbB = new ContingencyTableAnalysis.InputDataTextBox();
             this.panel21 = new System.Windows.Forms.Panel();
+            this.tbC = new ContingencyTableAnalysis.InputDataTextBox();
             this.panel22 = new System.Windows.Forms.Panel();
+            this.tbD = new ContingencyTableAnalysis.InputDataTextBox();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
@@ -61,10 +65,6 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tbD = new ContingencyTableAnalysis.InputDataTextBox();
-            this.tbC = new ContingencyTableAnalysis.InputDataTextBox();
-            this.tbB = new ContingencyTableAnalysis.InputDataTextBox();
-            this.tbA = new ContingencyTableAnalysis.InputDataTextBox();
             this.panel1.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -278,6 +278,21 @@
             this.panel1.Size = new System.Drawing.Size(176, 78);
             this.panel1.TabIndex = 30;
             // 
+            // tbA
+            // 
+            this.tbA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbA.Location = new System.Drawing.Point(5, 20);
+            this.tbA.Margin = new System.Windows.Forms.Padding(5);
+            this.tbA.Name = "tbA";
+            this.tbA.Size = new System.Drawing.Size(166, 36);
+            this.tbA.TabIndex = 17;
+            this.tbA.Text = "0";
+            this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbA.Click += new System.EventHandler(this.tbClearClick);
+            this.tbA.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbA.Leave += new System.EventHandler(this.tbLeave);
+            // 
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(54)))), ((int)(((byte)(101)))));
@@ -288,6 +303,21 @@
             this.panel20.Padding = new System.Windows.Forms.Padding(5, 20, 5, 20);
             this.panel20.Size = new System.Drawing.Size(176, 78);
             this.panel20.TabIndex = 31;
+            // 
+            // tbB
+            // 
+            this.tbB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbB.Location = new System.Drawing.Point(5, 20);
+            this.tbB.Margin = new System.Windows.Forms.Padding(5);
+            this.tbB.Name = "tbB";
+            this.tbB.Size = new System.Drawing.Size(166, 36);
+            this.tbB.TabIndex = 18;
+            this.tbB.Text = "0";
+            this.tbB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbB.Click += new System.EventHandler(this.tbClearClick);
+            this.tbB.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbB.Leave += new System.EventHandler(this.tbLeave);
             // 
             // panel21
             // 
@@ -300,6 +330,21 @@
             this.panel21.Size = new System.Drawing.Size(176, 78);
             this.panel21.TabIndex = 32;
             // 
+            // tbC
+            // 
+            this.tbC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbC.Location = new System.Drawing.Point(5, 20);
+            this.tbC.Margin = new System.Windows.Forms.Padding(5);
+            this.tbC.Name = "tbC";
+            this.tbC.Size = new System.Drawing.Size(166, 36);
+            this.tbC.TabIndex = 19;
+            this.tbC.Text = "0";
+            this.tbC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbC.Click += new System.EventHandler(this.tbClearClick);
+            this.tbC.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbC.Leave += new System.EventHandler(this.tbLeave);
+            // 
             // panel22
             // 
             this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(54)))), ((int)(((byte)(101)))));
@@ -310,6 +355,21 @@
             this.panel22.Padding = new System.Windows.Forms.Padding(5, 20, 5, 20);
             this.panel22.Size = new System.Drawing.Size(176, 78);
             this.panel22.TabIndex = 33;
+            // 
+            // tbD
+            // 
+            this.tbD.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbD.Location = new System.Drawing.Point(5, 20);
+            this.tbD.Margin = new System.Windows.Forms.Padding(5);
+            this.tbD.Name = "tbD";
+            this.tbD.Size = new System.Drawing.Size(166, 36);
+            this.tbD.TabIndex = 20;
+            this.tbD.Text = "0";
+            this.tbD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbD.Click += new System.EventHandler(this.tbClearClick);
+            this.tbD.TextChanged += new System.EventHandler(this.TextBoxChanged);
+            this.tbD.Leave += new System.EventHandler(this.tbLeave);
             // 
             // panel23
             // 
@@ -462,66 +522,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.panel2.Size = new System.Drawing.Size(358, 162);
             this.panel2.TabIndex = 44;
-            // 
-            // tbD
-            // 
-            this.tbD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbD.Location = new System.Drawing.Point(5, 20);
-            this.tbD.Margin = new System.Windows.Forms.Padding(5);
-            this.tbD.Name = "tbD";
-            this.tbD.Size = new System.Drawing.Size(166, 36);
-            this.tbD.TabIndex = 20;
-            this.tbD.Text = "0";
-            this.tbD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbD.Click += new System.EventHandler(this.tbClearClick);
-            this.tbD.TextChanged += new System.EventHandler(this.TextBoxChanged);
-            this.tbD.Leave += new System.EventHandler(this.tbLeave);
-            // 
-            // tbC
-            // 
-            this.tbC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbC.Location = new System.Drawing.Point(5, 20);
-            this.tbC.Margin = new System.Windows.Forms.Padding(5);
-            this.tbC.Name = "tbC";
-            this.tbC.Size = new System.Drawing.Size(166, 36);
-            this.tbC.TabIndex = 19;
-            this.tbC.Text = "0";
-            this.tbC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbC.Click += new System.EventHandler(this.tbClearClick);
-            this.tbC.TextChanged += new System.EventHandler(this.TextBoxChanged);
-            this.tbC.Leave += new System.EventHandler(this.tbLeave);
-            // 
-            // tbB
-            // 
-            this.tbB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbB.Location = new System.Drawing.Point(5, 20);
-            this.tbB.Margin = new System.Windows.Forms.Padding(5);
-            this.tbB.Name = "tbB";
-            this.tbB.Size = new System.Drawing.Size(166, 36);
-            this.tbB.TabIndex = 18;
-            this.tbB.Text = "0";
-            this.tbB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbB.Click += new System.EventHandler(this.tbClearClick);
-            this.tbB.TextChanged += new System.EventHandler(this.TextBoxChanged);
-            this.tbB.Leave += new System.EventHandler(this.tbLeave);
-            // 
-            // tbA
-            // 
-            this.tbA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbA.Location = new System.Drawing.Point(5, 20);
-            this.tbA.Margin = new System.Windows.Forms.Padding(5);
-            this.tbA.Name = "tbA";
-            this.tbA.Size = new System.Drawing.Size(166, 36);
-            this.tbA.TabIndex = 17;
-            this.tbA.Text = "0";
-            this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbA.Click += new System.EventHandler(this.tbClearClick);
-            this.tbA.TextChanged += new System.EventHandler(this.TextBoxChanged);
-            this.tbA.Leave += new System.EventHandler(this.tbLeave);
             // 
             // ucQuickAnalysis
             // 
