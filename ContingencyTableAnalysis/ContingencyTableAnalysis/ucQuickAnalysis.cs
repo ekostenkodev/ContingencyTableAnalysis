@@ -129,6 +129,7 @@ namespace ContingencyTableAnalysis
             {
                 
                 Console.WriteLine(item.Text);
+
                 
             }
         }
