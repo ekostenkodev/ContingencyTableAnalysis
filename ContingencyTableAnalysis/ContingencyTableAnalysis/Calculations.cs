@@ -21,6 +21,7 @@ namespace ContingencyTableAnalysis
 
                 var parameterInfo = DBHelper.GetParameterInfo(parameterName); // Arguments, Expression 
 
+
                 var argumentString = parameterInfo.Item1;
                 var arguments = getArguments(argumentString, userArguments);
                 var functions = parameterInfo.Item2.Split('|');// на случай, если параметр имеет 2 выражения
