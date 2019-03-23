@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MathParser.org-mXparser, Version=4.3.3.0, Culture=neutral, PublicKeyToken=0fbab7add73ed6e2, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathParser.org-mXparser.4.3.3\lib\net472\MathParser.org-mXparser.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -70,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalysisDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnalysisDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Calculations.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -110,6 +119,17 @@
     <EmbeddedResource Include="ucQuickAnalysis.resx">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="AnalysisDBDataSet.xsc">
+      <DependentUpon>AnalysisDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AnalysisDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AnalysisDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AnalysisDBDataSet.xss">
+      <DependentUpon>AnalysisDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

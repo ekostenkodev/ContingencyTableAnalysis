@@ -10,12 +10,9 @@ namespace ContingencyTableAnalysis
 {
     class DBHelper
     {
-        static string connectionString =
-                "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-                "AttachDbFilename=C:\\Users\\Admin\\Source\\Repos\\ekostenkodev\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\AnalysisDB.mdf;" +
-                "Integrated Security=True";
-
+        static string connectionString = Properties.Settings.Default.AnalysisDBConnectionString;
         
+
         public static string[][] GetAnalysisLabels()
         {
             SqlConnection conn;
@@ -112,6 +109,42 @@ namespace ContingencyTableAnalysis
 
             return parameters;
 
+        }
+        public static Tuple<string,string> GetParameterInfo(string parameterName)
+        {
+            SqlConnection conn;
+
+            conn = new SqlConnection();
+            conn.ConnectionString = connectionString;
+            conn.Open();
+            string sql = "Select Arguments, Expression from Parameters WHERE Name LIKE N\'" + parameterName + "\'";
+            Console.WriteLine(sql + "!!!!!!!!!!!!!!!!!!!!!");
+            // Создать объект Command.
+            SqlCommand cmd = new SqlCommand();
+
+            // Сочетать Command с Connection.
+            cmd.Connection = conn;
+            cmd.CommandText = sql;
+
+            string arguments = null, expression = null;
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        arguments =     reader.GetString(0);
+                        expression =    reader.GetString(1);
+                        Console.WriteLine(arguments + "!!!!!!!!!!!!!!!!!!!!!!!" + expression + "---");
+
+                    }
+                }
+            }
+            conn.Close();
+
+            return new Tuple<string, string>(arguments, expression);
         }
     }
 }

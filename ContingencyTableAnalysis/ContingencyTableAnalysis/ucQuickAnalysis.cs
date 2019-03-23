@@ -125,13 +125,27 @@ namespace ContingencyTableAnalysis
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            List<string> checkedParameters = new List<string>();
             foreach (ListViewItem item in ParametersCheckBox.CheckedItems) 
             {
-                
-                Console.WriteLine(item.Text);
-
-                
+                checkedParameters.Add(item.Text);
             }
+
+            double[] userArguments = new[] { tbA, tbB, tbC, tbD }
+                                .Select(tb => Double.Parse(tb.Text))
+                                .ToArray();
+
+            var calculations = Calculations.GetCalculations(checkedParameters, userArguments);
+            foreach (var item in calculations)
+            {
+                string result = "";
+                foreach (var results in item.Value)
+                {
+                    result += results.ToString() + " ";
+                }
+                Console.WriteLine(item.Key + " = " + result);
+            }
+            
         }
     }
 
