@@ -87,6 +87,7 @@ namespace ContingencyTableAnalysis
                         break;
                     case "Za":
                         //todo argument = new Argument();
+
                         break;
                     case "RR":
                         argument = new Argument("RR", a * (c + d) / c * (a + b));
