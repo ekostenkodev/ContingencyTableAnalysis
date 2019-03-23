@@ -16,6 +16,22 @@ namespace ContingencyTableAnalysis
         private Label[] labelColumns;
         private TextBox[,] textBoxes = new TextBox[2,2];
 
+        
+
+        public ucQuickAnalysis()
+        {
+            InitializeComponent();
+            labelRows = new[] { labelAB, labelCD };
+            labelColumns = new[] { labelAC, labelBD };
+
+            textBoxes[0, 0] = tbA;
+            textBoxes[0, 1] = tbB;
+            textBoxes[1, 0] = tbC;
+            textBoxes[1, 1] = tbD;
+            
+            
+        }
+
         private void changeRows(int index) => labelRows[index].Text = (Int32.Parse(textBoxes[index, 0].Text) + Int32.Parse(textBoxes[index, 1].Text)).ToString();
         private void changeColumns(int index) => labelColumns[index].Text = (Int32.Parse(textBoxes[0, index].Text) + Int32.Parse(textBoxes[1, index].Text)).ToString();
 
@@ -36,22 +52,7 @@ namespace ContingencyTableAnalysis
 
         }
 
-        public ucQuickAnalysis()
-        {
-            InitializeComponent();
-            labelRows = new[] { labelAB, labelCD };
-            labelColumns = new[] { labelAC, labelBD };
-
-            textBoxes[0, 0] = tbA;
-            textBoxes[0, 1] = tbB;
-            textBoxes[1, 0] = tbC;
-            textBoxes[1, 1] = tbD;
-            
-            
-        }
-
-
-        public void SetValues(QAStrings values)
+        public void SetStrings(QAStrings values)
         {
 
             label1.Text = values.Labels[0];
@@ -74,10 +75,6 @@ namespace ContingencyTableAnalysis
 
         
 
-        private void tbA_TextChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine("1");
-        }
         private void TextBoxChanged(object sender, EventArgs e)
         {
             InputDataTextBox textBox = (InputDataTextBox)sender;
@@ -126,34 +123,14 @@ namespace ContingencyTableAnalysis
             }
         }
 
-        private void ucQuickAnalysis_Load(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel11_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel15_Paint(object sender, PaintEventArgs e)
-        {
-
+            foreach (ListViewItem item in ParametersCheckBox.CheckedItems) 
+            {
+                
+                Console.WriteLine(item.Text);
+                
+            }
         }
     }
 

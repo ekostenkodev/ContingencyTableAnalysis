@@ -80,6 +80,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QAStrings.cs" />
+    <Compile Include="ucQuickTabPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucQuickTabPanel.Designer.cs">
+      <DependentUpon>ucQuickTabPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucQuickAnalysis.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ucQuickTabPanel.resx">
+      <DependentUpon>ucQuickTabPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucQuickAnalysis.resx">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
     </EmbeddedResource>

@@ -65,6 +65,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnStart = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -247,15 +248,16 @@
             // 
             // ParametersCheckBox
             // 
+            this.ParametersCheckBox.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.ParametersCheckBox.CheckBoxes = true;
             this.ParametersCheckBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.ParametersCheckBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ParametersCheckBox.FullRowSelect = true;
-            this.ParametersCheckBox.Location = new System.Drawing.Point(914, 5);
+            this.ParametersCheckBox.Location = new System.Drawing.Point(5, 425);
             this.ParametersCheckBox.Name = "ParametersCheckBox";
             this.ParametersCheckBox.OwnerDraw = true;
-            this.ParametersCheckBox.Size = new System.Drawing.Size(467, 414);
+            this.ParametersCheckBox.Size = new System.Drawing.Size(540, 172);
             this.ParametersCheckBox.Style = MetroFramework.MetroColorStyle.Red;
             this.ParametersCheckBox.TabIndex = 29;
             this.ParametersCheckBox.UseCompatibleStateImageBehavior = false;
@@ -265,7 +267,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Рассчитываемые параметры";
-            this.columnHeader1.Width = 500;
+            this.columnHeader1.Width = 400;
             // 
             // panel1
             // 
@@ -523,11 +525,23 @@
             this.panel2.Size = new System.Drawing.Size(358, 162);
             this.panel2.TabIndex = 44;
             // 
+            // btnStart
+            // 
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnStart.Location = new System.Drawing.Point(551, 425);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(358, 109);
+            this.btnStart.TabIndex = 45;
+            this.btnStart.Text = "Старт";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // ucQuickAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel8);
@@ -549,8 +563,7 @@
             this.Controls.Add(this.ParametersCheckBox);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucQuickAnalysis";
-            this.Size = new System.Drawing.Size(1852, 800);
-            this.Load += new System.EventHandler(this.ucQuickAnalysis_Load);
+            this.Size = new System.Drawing.Size(927, 693);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel20.ResumeLayout(false);
@@ -614,5 +627,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnStart;
     }
 }

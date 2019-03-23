@@ -15,55 +15,96 @@ namespace ContingencyTableAnalysis
     {
 
 
-        QAStrings[] QAStrings = new QAStrings[5];
-        string[][] analysisLabels;
-        public List<string>[] parameters;
-
+        List<Panel> panels = new List<Panel>();
 
         public MainForm()
         {
             InitializeComponent();
-            analysisLabels = DBHelper.GetAnalysisLabels();
-            parameters = DBHelper.GetAnalysisParameters();
 
-            for (int i = 0; i < QAStrings.Length; i++)
-            {
-                QAStrings[i].Labels = analysisLabels[i];
-                QAStrings[i].Parameters = parameters[i];
+            panels.Add(PanelQuickAnalysis);
 
-            }
-            
+            panels.ForEach(item => item.Hide());
+
+
         }
 
         private void быстрыйАнализToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panels.ForEach(item => item.Hide());
+
+            PanelQuickAnalysis.Show();
+            PanelQuickAnalysis.BringToFront();
 
         }
 
-        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        private void создатьНаборДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-
-
-        private void tabPageEnter(object sender, EventArgs e)
-        {
-            int index = tabControlQA.SelectedIndex;
-            ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetValues(QAStrings[index]);
-            
-        }
-
-        
-
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void открытьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        private void сохранитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ((MetroFramework.Forms.MetroForm)this).Style++;
+
+        }
+
+        private void сохранитьДанныеКакToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void закрытьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void анализСвязиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void анализРазличийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void анализФакторовРискаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void анализДиагностическихМетодовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void анализМетодовЛеченияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void оПрограммеToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

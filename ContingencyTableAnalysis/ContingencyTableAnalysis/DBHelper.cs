@@ -94,7 +94,6 @@ namespace ContingencyTableAnalysis
 
             cmd.Connection = conn;
             cmd.CommandText = sql;
-            Console.WriteLine("Hello");
 
             using (DbDataReader reader = cmd.ExecuteReader())
             {
