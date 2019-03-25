@@ -75,46 +75,58 @@
   <ItemGroup>
     <Compile Include="Calculations.cs" />
     <Compile Include="DBHelper.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QAStrings.cs" />
-    <Compile Include="ResultForm.cs">
+    <Compile Include="poco\QAStrings.cs" />
+    <Compile Include="Forms\ResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResultForm.Designer.cs">
+    <Compile Include="Forms\ResultForm.Designer.cs">
       <DependentUpon>ResultForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs">
+    <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucDataCreation.cs">
+    <Compile Include="User controls\ucDataCreation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucDataCreation.Designer.cs">
+    <Compile Include="User controls\ucDataCreation.Designer.cs">
       <DependentUpon>ucDataCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucQuickTabPanel.cs">
+    <Compile Include="User controls\ucMenuBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucQuickTabPanel.Designer.cs">
+    <Compile Include="User controls\ucMenuBar.Designer.cs">
+      <DependentUpon>ucMenuBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\ucQuickTabPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User controls\ucQuickTabPanel.Designer.cs">
       <DependentUpon>ucQuickTabPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucQuickAnalysis.cs">
+    <Compile Include="User controls\ucQuickAnalysis.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucQuickAnalysis.Designer.cs">
+    <Compile Include="User controls\ucQuickAnalysis.Designer.cs">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainForm.resx">
+    <Compile Include="User controls\ucTagConversion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User controls\ucTagConversion.Designer.cs">
+      <DependentUpon>ucTagConversion.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,20 +139,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ResultForm.resx">
+    <EmbeddedResource Include="Forms\ResultForm.resx">
       <DependentUpon>ResultForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucDataCreation.resx">
+    <EmbeddedResource Include="User controls\ucDataCreation.resx">
       <DependentUpon>ucDataCreation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucQuickTabPanel.resx">
+    <EmbeddedResource Include="User controls\ucMenuBar.resx">
+      <DependentUpon>ucMenuBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User controls\ucQuickTabPanel.resx">
       <DependentUpon>ucQuickTabPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucQuickAnalysis.resx">
+    <EmbeddedResource Include="User controls\ucQuickAnalysis.resx">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User controls\ucTagConversion.resx">
+      <DependentUpon>ucTagConversion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -164,6 +182,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AnalysisDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Collapse Arrow_20px.png" />
+    <None Include="Resources\Expand Arrow_20px.png" />
     <None Include="Resources\save-icon.png" />
   </ItemGroup>
   <ItemGroup>
