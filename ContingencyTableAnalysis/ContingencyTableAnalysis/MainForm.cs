@@ -27,6 +27,9 @@ namespace ContingencyTableAnalysis
             panels.ForEach(item => item.Hide());
 
 
+
+
+
         }
 
         private void быстрыйАнализToolStripMenuItem_Click(object sender, EventArgs e)

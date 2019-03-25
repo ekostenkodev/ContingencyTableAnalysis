@@ -33,7 +33,7 @@ namespace ContingencyTableAnalysis
                     string functionString = "f(" + argumentString + ") = " + function;
                     double result = new Function(functionString).calculate(arguments.ToArray());
 
-                    parameterResults.Add(result);
+                    parameterResults.Add(Math.Round(result,3));
                 }
 
                 
@@ -66,6 +66,7 @@ namespace ContingencyTableAnalysis
             double b = userArguments[1];
             double c = userArguments[2];
             double d = userArguments[3];
+            
 
             foreach (var arg in argumentsString.Split(','))
             {
@@ -103,7 +104,7 @@ namespace ContingencyTableAnalysis
                         argument = new Argument("OR", a * d / b * c);
                         break;
                     case "Za":
-                        // todo argument = new Argument("Za", );
+                        argument = new Argument("Za", 0.1584);
 
                         break;
                     case "RR":
@@ -128,10 +129,10 @@ namespace ContingencyTableAnalysis
                         argument = new Argument("Ac", (a + d) / (a + b + c + d) * 100);
                         break;
                     case "PVplus":
-                        argument = new Argument("PVplus", a / a + b * 100);
+                        argument = new Argument("PVplus", a / (a + b) * 100);
                         break;
                     case "PVminus":
-                        argument = new Argument("PVminus", c / c + d * 100);
+                        argument = new Argument("PVminus", c / (c + d) * 100);
                         break;
                     case "LRplus":
                         argument = new Argument("LRplus", (a / (a + c)) / (b / (b + d)));

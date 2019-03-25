@@ -134,7 +134,17 @@ namespace ContingencyTableAnalysis
             double[] userArguments = new[] { tbA, tbB, tbC, tbD }
                                 .Select(tb => Double.Parse(tb.Text))
                                 .ToArray();
+            double a = userArguments[0];
+            double b = userArguments[1];
+            double c = userArguments[2];
+            double d = userArguments[3];
 
+            // double[] Za = { 0.1584 , 0.3249 , 0.5095 , 0.7265 , 1.0000  ,1.3764,  1.9626 , 3.0777 !!!!!!!!! ,6.3138 , 12.7062 ,31.8205, 63.657 , 127.32,  318.31 , 636.62 };
+            double[] Za = { 0.1421 ,  0.2887 , 0.4447 , 0.6172  ,0.8165,  1.0607 , 1.3862  ,1.8856 , 2.9200 , 4.3027 , 6.9646 , 9.9248 , 14.089 , 22.327 , 31.599 };
+            foreach (var item in Za)
+            {
+                Console.WriteLine(item +"   =   "+Math.Sqrt((a / (a + c) * 100 * c / (a + c) * 100) / (a + c) ));
+            }
             var calculations = Calculations.GetCalculations(checkedParameters, userArguments);
             foreach (var item in calculations)
             {
@@ -145,7 +155,10 @@ namespace ContingencyTableAnalysis
                 }
                 Console.WriteLine(item.Key + " = " + result);
             }
-            
+
+            ResultForm resultForm = new ResultForm(calculations);
+            resultForm.ShowDialog();
+
         }
     }
 
