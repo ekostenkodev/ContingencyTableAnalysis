@@ -19,6 +19,8 @@ namespace ContingencyTableAnalysis
             {
                 List<double> parameterResults = new List<double>();
 
+                
+
                 var parameterInfo = DBHelper.GetParameterInfo(parameterName); // Arguments, Expression 
 
 
@@ -37,6 +39,20 @@ namespace ContingencyTableAnalysis
                 
 
                 calculations.Add(parameterName, parameterResults);
+            }
+
+            if(calculations.Keys.Contains("NNH (ЧПЭН) для исследований по типу «случай-контроль»"))
+            {
+                List<double> temp = calculations.First(e => e.Key.Equals("")).Value;
+
+                if (getArguments("OR",userArguments)[0].getArgumentValue() > 1)
+                {
+                    temp.Remove(0);
+                }
+                else
+                {
+                    temp.Remove(1);
+                }
             }
 
             return calculations;
@@ -87,7 +103,7 @@ namespace ContingencyTableAnalysis
                         argument = new Argument("OR", a * d / b * c);
                         break;
                     case "Za":
-                        //todo argument = new Argument();
+                        // todo argument = new Argument("Za", );
 
                         break;
                     case "RR":
@@ -100,7 +116,7 @@ namespace ContingencyTableAnalysis
                         argument = new Argument("ARn", c / (c + d) * 100);
                         break;
                     case "AtR":
-                        argument = new Argument("ARn", (a / (a + b) - c / (c + d)) * 100); // todo ???
+                        argument = new Argument("ARn", (a / (a + b) - c / (c + d)) * 100); 
                         break;
                     case "Se":
                         argument = new Argument("Se", a / (a + c) * 100);
@@ -111,17 +127,17 @@ namespace ContingencyTableAnalysis
                     case "Ac":
                         argument = new Argument("Ac", (a + d) / (a + b + c + d) * 100);
                         break;
-                    case "+PV":
-                        argument = new Argument("+PV", a / a + b * 100);
+                    case "PVplus":
+                        argument = new Argument("PVplus", a / a + b * 100);
                         break;
-                    case "-PV":
-                        argument = new Argument("-PV", c / c + d * 100);
+                    case "PVminus":
+                        argument = new Argument("PVminus", c / c + d * 100);
                         break;
-                    case "LR+":
-                        argument = new Argument("LR+", (a / (a + c)) / (b / (b + d)));
+                    case "LRplus":
+                        argument = new Argument("LRplus", (a / (a + c)) / (b / (b + d)));
                         break;
-                    case "LR-":
-                        argument = new Argument("LR-", (c / (a + c)) / (d / (b + d)));
+                    case "LRminus":
+                        argument = new Argument("LRminus", (c / (a + c)) / (d / (b + d)));
                         break;
                     case "ARR":
                         argument = new Argument("ARR", (c / (a + c) - d / (b + d)) * 100);

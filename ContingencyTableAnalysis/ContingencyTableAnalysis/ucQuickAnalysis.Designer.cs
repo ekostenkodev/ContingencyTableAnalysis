@@ -66,6 +66,7 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnStart = new System.Windows.Forms.Button();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.panel1.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel21.SuspendLayout();
@@ -560,19 +561,29 @@
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnStart.Location = new System.Drawing.Point(413, 345);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(0);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(268, 89);
+            this.btnStart.Size = new System.Drawing.Size(269, 89);
             this.btnStart.TabIndex = 45;
             this.btnStart.Text = "Старт";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // metroProgressBar1
+            // 
+            this.metroProgressBar1.Location = new System.Drawing.Point(413, 443);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.Size = new System.Drawing.Size(269, 32);
+            this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroProgressBar1.TabIndex = 46;
+            this.metroProgressBar1.Visible = false;
             // 
             // ucQuickAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(68)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel9);
@@ -660,5 +671,6 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnStart;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
     }
 }

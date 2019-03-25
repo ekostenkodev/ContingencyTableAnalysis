@@ -10,7 +10,7 @@ namespace ContingencyTableAnalysis
 {
     class DBHelper
     {
-        static string connectionString = Properties.Settings.Default.AnalysisDBConnectionString;
+        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Егор\\Source\\Repos\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\AnalysisDB.mdf;Integrated Security=True";// = Properties.Settings.Default.AnalysisDBConnectionString;
         
 
         public static string[][] GetAnalysisLabels()

@@ -152,6 +152,8 @@ namespace ContingencyTableAnalysis
     public class InputDataTextBox : TextBox
     {
         public string LastState;
+        public double MaxValue;
+        public double MinValue;
 
     }
 
