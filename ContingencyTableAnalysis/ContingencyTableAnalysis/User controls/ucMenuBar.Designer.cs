@@ -90,6 +90,7 @@
             this.mb_File_Exit.TabIndex = 8;
             this.mb_File_Exit.Text = "Выход";
             this.mb_File_Exit.UseVisualStyleBackColor = false;
+            this.mb_File_Exit.Click += new System.EventHandler(this.mb_File_Exit_Click);
             // 
             // mb_File_CloseData
             // 
@@ -105,6 +106,7 @@
             this.mb_File_CloseData.TabIndex = 7;
             this.mb_File_CloseData.Text = "Закрыть данные";
             this.mb_File_CloseData.UseVisualStyleBackColor = false;
+            this.mb_File_CloseData.Click += new System.EventHandler(this.mb_File_CloseData_Click);
             // 
             // mb_File_SaveDataAs
             // 
@@ -120,6 +122,7 @@
             this.mb_File_SaveDataAs.TabIndex = 6;
             this.mb_File_SaveDataAs.Text = "Сохранить данные как...";
             this.mb_File_SaveDataAs.UseVisualStyleBackColor = false;
+            this.mb_File_SaveDataAs.Click += new System.EventHandler(this.mb_File_SaveDataAs_Click);
             // 
             // mb_File_SaveData
             // 
@@ -135,6 +138,7 @@
             this.mb_File_SaveData.TabIndex = 5;
             this.mb_File_SaveData.Text = "Сохранить данные";
             this.mb_File_SaveData.UseVisualStyleBackColor = false;
+            this.mb_File_SaveData.Click += new System.EventHandler(this.mb_File_SaveData_Click);
             // 
             // mb_File_OpenData
             // 
@@ -150,6 +154,7 @@
             this.mb_File_OpenData.TabIndex = 4;
             this.mb_File_OpenData.Text = "Открыть данные";
             this.mb_File_OpenData.UseVisualStyleBackColor = false;
+            this.mb_File_OpenData.Click += new System.EventHandler(this.mb_File_OpenData_Click);
             // 
             // mb_File_CreateData
             // 
@@ -165,6 +170,7 @@
             this.mb_File_CreateData.TabIndex = 3;
             this.mb_File_CreateData.Text = "Создать набор данных";
             this.mb_File_CreateData.UseVisualStyleBackColor = false;
+            this.mb_File_CreateData.Click += new System.EventHandler(this.mb_File_CreateData_Click);
             // 
             // mb_File_QuickAnalysis
             // 
@@ -180,6 +186,7 @@
             this.mb_File_QuickAnalysis.TabIndex = 2;
             this.mb_File_QuickAnalysis.Text = "Быстрый анализ";
             this.mb_File_QuickAnalysis.UseVisualStyleBackColor = false;
+            this.mb_File_QuickAnalysis.Click += new System.EventHandler(this.mb_File_QuickAnalysis_Click);
             // 
             // mb_File
             // 
@@ -234,6 +241,7 @@
             this.mb_Analysis_5.TabIndex = 6;
             this.mb_Analysis_5.Text = "Анализ методов лечения";
             this.mb_Analysis_5.UseVisualStyleBackColor = false;
+            this.mb_Analysis_5.Click += new System.EventHandler(this.mb_Analysis_5_Click);
             // 
             // mb_Analysis_4
             // 
@@ -249,6 +257,7 @@
             this.mb_Analysis_4.TabIndex = 5;
             this.mb_Analysis_4.Text = "Анализ диагностических методов";
             this.mb_Analysis_4.UseVisualStyleBackColor = false;
+            this.mb_Analysis_4.Click += new System.EventHandler(this.mb_Analysis_4_Click);
             // 
             // mb_Analysis_3
             // 
@@ -264,6 +273,7 @@
             this.mb_Analysis_3.TabIndex = 4;
             this.mb_Analysis_3.Text = "Анализ факторов риска";
             this.mb_Analysis_3.UseVisualStyleBackColor = false;
+            this.mb_Analysis_3.Click += new System.EventHandler(this.mb_Analysis_3_Click);
             // 
             // mb_Analysis_2
             // 
@@ -279,6 +289,7 @@
             this.mb_Analysis_2.TabIndex = 3;
             this.mb_Analysis_2.Text = "Анализ различий";
             this.mb_Analysis_2.UseVisualStyleBackColor = false;
+            this.mb_Analysis_2.Click += new System.EventHandler(this.mb_Analysis_2_Click);
             // 
             // mb_Analysis_1
             // 
@@ -294,6 +305,7 @@
             this.mb_Analysis_1.TabIndex = 2;
             this.mb_Analysis_1.Text = "Анализ связи";
             this.mb_Analysis_1.UseVisualStyleBackColor = false;
+            this.mb_Analysis_1.Click += new System.EventHandler(this.mb_Analysis_1_Click);
             // 
             // mb_Analysis
             // 
@@ -340,6 +352,7 @@
             this.mb_About_Info.TabIndex = 3;
             this.mb_About_Info.Text = "О программе";
             this.mb_About_Info.UseVisualStyleBackColor = false;
+            this.mb_About_Info.Click += new System.EventHandler(this.mb_About_Info_Click);
             // 
             // mb_About_Reference
             // 
@@ -355,6 +368,7 @@
             this.mb_About_Reference.TabIndex = 2;
             this.mb_About_Reference.Text = "Справка";
             this.mb_About_Reference.UseVisualStyleBackColor = false;
+            this.mb_About_Reference.Click += new System.EventHandler(this.mb_About_Reference_Click);
             // 
             // mb_About
             // 
@@ -401,6 +415,7 @@
             this.mb_Settings.Text = "Настройки";
             this.mb_Settings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.mb_Settings.UseVisualStyleBackColor = false;
+            this.mb_Settings.Click += new System.EventHandler(this.mb_Settings_Click);
             // 
             // ucMenuBar
             // 
