@@ -34,18 +34,22 @@
             this.ucDataCreation1 = new ContingencyTableAnalysis.ucDataCreation();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.ucMenuBar1 = new ContingencyTableAnalysis.User_controls.ucMenuBar();
+            this.PanelAnalysis = new System.Windows.Forms.Panel();
+            this.ucMarkConversion1 = new ContingencyTableAnalysis.User_controls.ucMarkConversion();
             this.PanelQuickAnalysis.SuspendLayout();
             this.PanelDataCreation.SuspendLayout();
             this.MenuPanel.SuspendLayout();
+            this.PanelAnalysis.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelQuickAnalysis
             // 
             this.PanelQuickAnalysis.Controls.Add(this.ucQuickTabPanel);
-            this.PanelQuickAnalysis.Location = new System.Drawing.Point(227, 102);
+            this.PanelQuickAnalysis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelQuickAnalysis.Location = new System.Drawing.Point(220, 74);
             this.PanelQuickAnalysis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PanelQuickAnalysis.Name = "PanelQuickAnalysis";
-            this.PanelQuickAnalysis.Size = new System.Drawing.Size(1019, 740);
+            this.PanelQuickAnalysis.Size = new System.Drawing.Size(1025, 770);
             this.PanelQuickAnalysis.TabIndex = 1;
             // 
             // ucQuickTabPanel
@@ -55,7 +59,7 @@
             this.ucQuickTabPanel.Location = new System.Drawing.Point(0, 0);
             this.ucQuickTabPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ucQuickTabPanel.Name = "ucQuickTabPanel";
-            this.ucQuickTabPanel.Size = new System.Drawing.Size(1019, 740);
+            this.ucQuickTabPanel.Size = new System.Drawing.Size(1025, 770);
             this.ucQuickTabPanel.TabIndex = 0;
             // 
             // PanelDataCreation
@@ -98,14 +102,33 @@
             this.ucMenuBar1.Size = new System.Drawing.Size(200, 770);
             this.ucMenuBar1.TabIndex = 0;
             // 
+            // PanelAnalysis
+            // 
+            this.PanelAnalysis.Controls.Add(this.ucMarkConversion1);
+            this.PanelAnalysis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelAnalysis.Location = new System.Drawing.Point(220, 74);
+            this.PanelAnalysis.Name = "PanelAnalysis";
+            this.PanelAnalysis.Size = new System.Drawing.Size(1025, 770);
+            this.PanelAnalysis.TabIndex = 4;
+            // 
+            // ucMarkConversion1
+            // 
+            this.ucMarkConversion1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMarkConversion1.Location = new System.Drawing.Point(0, 0);
+            this.ucMarkConversion1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucMarkConversion1.Name = "ucMarkConversion1";
+            this.ucMarkConversion1.Size = new System.Drawing.Size(1025, 770);
+            this.ucMarkConversion1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1265, 864);
+            this.Controls.Add(this.PanelQuickAnalysis);
+            this.Controls.Add(this.PanelAnalysis);
             this.Controls.Add(this.PanelDataCreation);
             this.Controls.Add(this.MenuPanel);
-            this.Controls.Add(this.PanelQuickAnalysis);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
@@ -116,6 +139,7 @@
             this.PanelQuickAnalysis.ResumeLayout(false);
             this.PanelDataCreation.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
+            this.PanelAnalysis.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -127,6 +151,8 @@
         private System.Windows.Forms.Panel MenuPanel;
         public System.Windows.Forms.Panel PanelQuickAnalysis;
         public System.Windows.Forms.Panel PanelDataCreation;
+        public System.Windows.Forms.Panel PanelAnalysis;
+        private User_controls.ucMarkConversion ucMarkConversion1;
     }
 }
 

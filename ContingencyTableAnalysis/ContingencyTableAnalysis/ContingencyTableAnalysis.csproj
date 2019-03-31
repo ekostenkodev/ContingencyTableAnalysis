@@ -126,11 +126,11 @@
     <Compile Include="User controls\ucQuickAnalysis.Designer.cs">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
     </Compile>
-    <Compile Include="User controls\ucTagConversion.cs">
+    <Compile Include="User controls\ucMarkConversion.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User controls\ucTagConversion.Designer.cs">
-      <DependentUpon>ucTagConversion.cs</DependentUpon>
+    <Compile Include="User controls\ucMarkConversion.Designer.cs">
+      <DependentUpon>ucMarkConversion.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\ChangeColumnNameForm.resx">
       <DependentUpon>ChangeColumnNameForm.cs</DependentUpon>
@@ -166,8 +166,8 @@
     <EmbeddedResource Include="User controls\ucQuickAnalysis.resx">
       <DependentUpon>ucQuickAnalysis.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User controls\ucTagConversion.resx">
-      <DependentUpon>ucTagConversion.cs</DependentUpon>
+    <EmbeddedResource Include="User controls\ucMarkConversion.resx">
+      <DependentUpon>ucMarkConversion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

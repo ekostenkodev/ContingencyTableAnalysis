@@ -33,5 +33,10 @@ namespace ContingencyTableAnalysis
         {
             this.Close();
         }
+
+        private void SaveResultBtn_Click(object sender, EventArgs e)
+        {
+            //todo сделать сохранение результатов
+        }
     }
 }

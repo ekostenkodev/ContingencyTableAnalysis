@@ -12,11 +12,15 @@ namespace ContingencyTableAnalysis
 {
     public partial class ucQuickTabPanel : UserControl
     {
+        /// <summary>
+        /// TabControl содержащий 5 панелей с быстрым анализом
+        /// </summary>
 
         QAStrings[] QAStrings = new QAStrings[5];
 
         public ucQuickTabPanel()
         {
+
             InitializeComponent();
 
             var analysisLabels = DBHelper.GetAnalysisLabels();
@@ -28,14 +32,19 @@ namespace ContingencyTableAnalysis
                 QAStrings[i].Parameters = parameters[i];
             }
 
-            tabControlQA.SelectTab(1);//todo может, лучше начинать с 0
+            tabControlQA.SelectTab(1); //todo если начинать с 0, то лейблы не обновляются -> надо исправить
             
         }
 
+        
+
         private void tabPageEnter(object sender, EventArgs e)
         {
+            ///установка строковых значений для панели быстрого анализа на tabPage 
+            
             int index = tabControlQA.SelectedIndex;
-            ((TabPage)sender).Controls.OfType<ucQuickAnalysis>().First().SetStrings(QAStrings[index]);
+            TabPage page = (TabPage)sender;
+            page.Controls.OfType<ucQuickAnalysis>().First().SetQAStrings(QAStrings[index]); 
         }
 
 

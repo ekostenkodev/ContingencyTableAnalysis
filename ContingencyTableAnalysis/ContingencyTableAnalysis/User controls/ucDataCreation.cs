@@ -18,14 +18,12 @@ namespace ContingencyTableAnalysis
         {
             InitializeComponent();
 
-
         }
 
 
         private void dc_addColumn_Click(object sender, EventArgs e)
         {
-            GridColumnWithMark column = new GridColumnWithMark();
-            column.HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1);
+            GridColumnWithMark column = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1) };
             DataCreationGrid.Columns.Add(column);
         }
 
@@ -33,17 +31,19 @@ namespace ContingencyTableAnalysis
         {
             if (e.Button == MouseButtons.Right)
             {
+                if (e.ColumnIndex < 0) // нужно, ибо при нажатии на левую колонку GridView вызывается этот метод, где e.ColumnIndex == -1
+                    return;
+                
                 MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
                 ShowContextMenuColumn((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex], e.Location);
-
+                
             }
         }
 
         public void ShowContextMenuColumn(GridColumnWithMark column, Point mouseLocation)
         {
-            //todo при возможности переписать
+            //todo при возможности переписать, много ненужных переменных
             ContextMenu _contextMenu = new ContextMenu();
-
 
             MenuItem columnChangeName = new MenuItem("Переименовать признак");
             MenuItem columnChangeMark = new MenuItem("Вид признака");
@@ -63,8 +63,6 @@ namespace ContingencyTableAnalysis
                 radio_2.Checked = true;
             }
 
-            
-
             EventHandler radioChangeMethod = new EventHandler((sender, e) => {
                 
                 if (sender.Equals(radio_1))
@@ -81,17 +79,16 @@ namespace ContingencyTableAnalysis
                 }
                 
             });
-
-            radio_1.Click += new EventHandler(radioChangeMethod);
-            radio_2.Click += new EventHandler(radioChangeMethod);
-
             EventHandler nameChangeMethod = new EventHandler((sender, e) => {
                 ChangeColumnNameForm form = new ChangeColumnNameForm(column.HeaderText);
-                form.ShowDialog();
-                column.HeaderText = form.ColumnNameTextBox.Text;
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    column.HeaderText = form.ColumnNameTextBox.Text;
+                }
+
             });
             EventHandler deleteColumnMethod = new EventHandler((sender, e) => {
-                DialogResult dialogResult = MessageBox.Show("Вы уверенны?", "Удаление признака", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Вы уверены?", "Удаление признака", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     column.DataGridView.Columns.Remove(column);
@@ -102,14 +99,16 @@ namespace ContingencyTableAnalysis
                 }
             });
 
-            columnChangeName.Click += new EventHandler(nameChangeMethod);
-            columnDelete.Click += new EventHandler(deleteColumnMethod);
+            columnChangeName.Click += nameChangeMethod;
+            columnDelete.Click += deleteColumnMethod;
+            radio_1.Click += radioChangeMethod;
+            radio_2.Click += radioChangeMethod;
 
-            columnChangeMark.MenuItems.Add(radio_1);
-            columnChangeMark.MenuItems.Add(radio_2);
             _contextMenu.MenuItems.Add(columnChangeName);
             _contextMenu.MenuItems.Add(columnChangeMark);
             _contextMenu.MenuItems.Add(columnDelete);
+            columnChangeMark.MenuItems.Add(radio_1);
+            columnChangeMark.MenuItems.Add(radio_2);
 
             _contextMenu.Show(column.DataGridView, mouseLocation);
 

@@ -52,7 +52,7 @@ namespace ContingencyTableAnalysis
 
         }
 
-        public void SetStrings(QAStrings values)
+        public void SetQAStrings(QAStrings values)
         {
 
             label1.Text = values.Labels[0];

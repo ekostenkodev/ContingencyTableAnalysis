@@ -28,7 +28,17 @@ namespace ContingencyTableAnalysis.User_controls
             panels.Add(AnalysisPanel, mb_Analysis);
             panels.Add(AboutPanel, mb_About);
 
+            mb_Analysis_1.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 0); };
+            mb_Analysis_2.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 1); };
+            mb_Analysis_3.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 2); };
+            mb_Analysis_4.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 3); };
+            mb_Analysis_5.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 4); };
+        }
 
+        public void SetAnalysisPanel(object sender, EventArgs e, int index)
+        {
+            ShowPanel(_mainForm.PanelAnalysis);
+            _mainForm.PanelAnalysis.Controls.OfType<ucMarkConversion>().First().SetMarkPanel(index,_mainForm);
         }
 
         private void SlideTimer_Tick(object sender, EventArgs e)
@@ -59,7 +69,6 @@ namespace ContingencyTableAnalysis.User_controls
                 }
             }
         }
-
         private void SlideMenuBtn_Click(object sender, EventArgs e)
         {
             var button = panels.First(b => b.Value.Equals(sender));
@@ -67,21 +76,27 @@ namespace ContingencyTableAnalysis.User_controls
             SlideTimer.Start();
         }
 
+        private void ShowPanel(Panel panel)
+        {
+            _mainForm.panels.ForEach(item => item.Hide());
+            panel.Show();
+            panel.BringToFront();
+        }
+
         private void mb_File_QuickAnalysis_Click(object sender, EventArgs e)
         {            
-            _mainForm.panels.ForEach(item => item.Hide());
 
-            _mainForm.PanelQuickAnalysis.Show();
-            _mainForm.PanelQuickAnalysis.BringToFront();
+            ShowPanel(_mainForm.PanelQuickAnalysis);
+
         }
 
         private void mb_File_CreateData_Click(object sender, EventArgs e)
         {
-            _mainForm.panels.ForEach(item => item.Hide());
 
-            _mainForm.PanelDataCreation.Show();
-            _mainForm.PanelDataCreation.BringToFront();
+            ShowPanel(_mainForm.PanelDataCreation);
         }
+
+
 
         private void mb_File_OpenData_Click(object sender, EventArgs e)
         {
@@ -116,35 +131,7 @@ namespace ContingencyTableAnalysis.User_controls
             //todo
         }
 
-        private void mb_Analysis_1_Click(object sender, EventArgs e)
-        {
-            NotReady();
-            //todo
-        }
-
-        private void mb_Analysis_2_Click(object sender, EventArgs e)
-        {
-            NotReady();
-            //todo
-        }
-
-        private void mb_Analysis_3_Click(object sender, EventArgs e)
-        {
-            NotReady();
-            //todo
-        }
-
-        private void mb_Analysis_4_Click(object sender, EventArgs e)
-        {
-            NotReady();
-            //todo
-        }
-
-        private void mb_Analysis_5_Click(object sender, EventArgs e)
-        {
-            NotReady();
-            //todo
-        }
+        
 
         private void mb_File_CloseData_Click(object sender, EventArgs e)
         {
