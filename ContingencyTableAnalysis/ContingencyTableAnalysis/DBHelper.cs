@@ -10,8 +10,9 @@ namespace ContingencyTableAnalysis
 {
     class DBHelper
     {
-        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Егор\\Source\\Repos\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\AnalysisDB.mdf;Integrated Security=True";// = Properties.Settings.Default.AnalysisDBConnectionString;
+        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Admin\\source\\repos\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\AnalysisDB.mdf;Integrated Security=True;Connect Timeout=30";
         
+
 
         public static string[][] GetAnalysisLabels()
         {
@@ -117,7 +118,7 @@ namespace ContingencyTableAnalysis
             conn = new SqlConnection();
             conn.ConnectionString = connectionString;
             conn.Open();
-            string sql = "Select Arguments, Expression from Parameters WHERE Name LIKE N\'" + parameterName + "\'";
+            string sql = "Select Arguments, Expression from Parameters WHERE Name LIKE N\'" + parameterName + "\' OR Abbreviation LIKE N\'" + parameterName + "\' ";
             Console.WriteLine(sql + "!!!!!!!!!!!!!!!!!!!!!");
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand();

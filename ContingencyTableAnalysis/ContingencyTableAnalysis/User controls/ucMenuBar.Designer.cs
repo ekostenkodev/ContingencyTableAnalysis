@@ -70,10 +70,11 @@
             this.FilePanel.Controls.Add(this.mb_File);
             this.FilePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.FilePanel.Location = new System.Drawing.Point(0, 0);
-            this.FilePanel.MaximumSize = new System.Drawing.Size(150, 335);
-            this.FilePanel.MinimumSize = new System.Drawing.Size(150, 43);
+            this.FilePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FilePanel.MaximumSize = new System.Drawing.Size(200, 412);
+            this.FilePanel.MinimumSize = new System.Drawing.Size(200, 53);
             this.FilePanel.Name = "FilePanel";
-            this.FilePanel.Size = new System.Drawing.Size(150, 43);
+            this.FilePanel.Size = new System.Drawing.Size(200, 53);
             this.FilePanel.TabIndex = 1;
             // 
             // mb_File_Exit
@@ -84,9 +85,10 @@
             this.mb_File_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_Exit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_Exit.Location = new System.Drawing.Point(0, 295);
+            this.mb_File_Exit.Location = new System.Drawing.Point(0, 363);
+            this.mb_File_Exit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_Exit.Name = "mb_File_Exit";
-            this.mb_File_Exit.Size = new System.Drawing.Size(150, 40);
+            this.mb_File_Exit.Size = new System.Drawing.Size(200, 49);
             this.mb_File_Exit.TabIndex = 8;
             this.mb_File_Exit.Text = "Выход";
             this.mb_File_Exit.UseVisualStyleBackColor = false;
@@ -100,9 +102,10 @@
             this.mb_File_CloseData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_CloseData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_CloseData.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_CloseData.Location = new System.Drawing.Point(0, 255);
+            this.mb_File_CloseData.Location = new System.Drawing.Point(0, 314);
+            this.mb_File_CloseData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_CloseData.Name = "mb_File_CloseData";
-            this.mb_File_CloseData.Size = new System.Drawing.Size(150, 40);
+            this.mb_File_CloseData.Size = new System.Drawing.Size(200, 49);
             this.mb_File_CloseData.TabIndex = 7;
             this.mb_File_CloseData.Text = "Закрыть данные";
             this.mb_File_CloseData.UseVisualStyleBackColor = false;
@@ -116,9 +119,10 @@
             this.mb_File_SaveDataAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_SaveDataAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_SaveDataAs.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_SaveDataAs.Location = new System.Drawing.Point(0, 209);
+            this.mb_File_SaveDataAs.Location = new System.Drawing.Point(0, 257);
+            this.mb_File_SaveDataAs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_SaveDataAs.Name = "mb_File_SaveDataAs";
-            this.mb_File_SaveDataAs.Size = new System.Drawing.Size(150, 46);
+            this.mb_File_SaveDataAs.Size = new System.Drawing.Size(200, 57);
             this.mb_File_SaveDataAs.TabIndex = 6;
             this.mb_File_SaveDataAs.Text = "Сохранить данные как...";
             this.mb_File_SaveDataAs.UseVisualStyleBackColor = false;
@@ -132,9 +136,10 @@
             this.mb_File_SaveData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_SaveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_SaveData.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_SaveData.Location = new System.Drawing.Point(0, 169);
+            this.mb_File_SaveData.Location = new System.Drawing.Point(0, 208);
+            this.mb_File_SaveData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_SaveData.Name = "mb_File_SaveData";
-            this.mb_File_SaveData.Size = new System.Drawing.Size(150, 40);
+            this.mb_File_SaveData.Size = new System.Drawing.Size(200, 49);
             this.mb_File_SaveData.TabIndex = 5;
             this.mb_File_SaveData.Text = "Сохранить данные";
             this.mb_File_SaveData.UseVisualStyleBackColor = false;
@@ -148,9 +153,10 @@
             this.mb_File_OpenData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_OpenData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_OpenData.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_OpenData.Location = new System.Drawing.Point(0, 129);
+            this.mb_File_OpenData.Location = new System.Drawing.Point(0, 159);
+            this.mb_File_OpenData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_OpenData.Name = "mb_File_OpenData";
-            this.mb_File_OpenData.Size = new System.Drawing.Size(150, 40);
+            this.mb_File_OpenData.Size = new System.Drawing.Size(200, 49);
             this.mb_File_OpenData.TabIndex = 4;
             this.mb_File_OpenData.Text = "Открыть данные";
             this.mb_File_OpenData.UseVisualStyleBackColor = false;
@@ -164,9 +170,10 @@
             this.mb_File_CreateData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_CreateData.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_CreateData.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_CreateData.Location = new System.Drawing.Point(0, 83);
+            this.mb_File_CreateData.Location = new System.Drawing.Point(0, 102);
+            this.mb_File_CreateData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_CreateData.Name = "mb_File_CreateData";
-            this.mb_File_CreateData.Size = new System.Drawing.Size(150, 46);
+            this.mb_File_CreateData.Size = new System.Drawing.Size(200, 57);
             this.mb_File_CreateData.TabIndex = 3;
             this.mb_File_CreateData.Text = "Создать набор данных";
             this.mb_File_CreateData.UseVisualStyleBackColor = false;
@@ -180,9 +187,10 @@
             this.mb_File_QuickAnalysis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_File_QuickAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_File_QuickAnalysis.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_File_QuickAnalysis.Location = new System.Drawing.Point(0, 43);
+            this.mb_File_QuickAnalysis.Location = new System.Drawing.Point(0, 53);
+            this.mb_File_QuickAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File_QuickAnalysis.Name = "mb_File_QuickAnalysis";
-            this.mb_File_QuickAnalysis.Size = new System.Drawing.Size(150, 40);
+            this.mb_File_QuickAnalysis.Size = new System.Drawing.Size(200, 49);
             this.mb_File_QuickAnalysis.TabIndex = 2;
             this.mb_File_QuickAnalysis.Text = "Быстрый анализ";
             this.mb_File_QuickAnalysis.UseVisualStyleBackColor = false;
@@ -198,8 +206,9 @@
             this.mb_File.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.mb_File.Image = global::ContingencyTableAnalysis.Properties.Resources.Expand_Arrow_20px;
             this.mb_File.Location = new System.Drawing.Point(0, 0);
+            this.mb_File.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_File.Name = "mb_File";
-            this.mb_File.Size = new System.Drawing.Size(150, 43);
+            this.mb_File.Size = new System.Drawing.Size(200, 53);
             this.mb_File.TabIndex = 1;
             this.mb_File.Text = "Файл";
             this.mb_File.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -220,11 +229,12 @@
             this.AnalysisPanel.Controls.Add(this.mb_Analysis_1);
             this.AnalysisPanel.Controls.Add(this.mb_Analysis);
             this.AnalysisPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AnalysisPanel.Location = new System.Drawing.Point(0, 43);
-            this.AnalysisPanel.MaximumSize = new System.Drawing.Size(150, 279);
-            this.AnalysisPanel.MinimumSize = new System.Drawing.Size(150, 43);
+            this.AnalysisPanel.Location = new System.Drawing.Point(0, 53);
+            this.AnalysisPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AnalysisPanel.MaximumSize = new System.Drawing.Size(200, 343);
+            this.AnalysisPanel.MinimumSize = new System.Drawing.Size(200, 53);
             this.AnalysisPanel.Name = "AnalysisPanel";
-            this.AnalysisPanel.Size = new System.Drawing.Size(150, 43);
+            this.AnalysisPanel.Size = new System.Drawing.Size(200, 53);
             this.AnalysisPanel.TabIndex = 2;
             // 
             // mb_Analysis_5
@@ -235,9 +245,10 @@
             this.mb_Analysis_5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Analysis_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Analysis_5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Analysis_5.Location = new System.Drawing.Point(0, 233);
+            this.mb_Analysis_5.Location = new System.Drawing.Point(0, 287);
+            this.mb_Analysis_5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis_5.Name = "mb_Analysis_5";
-            this.mb_Analysis_5.Size = new System.Drawing.Size(150, 46);
+            this.mb_Analysis_5.Size = new System.Drawing.Size(200, 57);
             this.mb_Analysis_5.TabIndex = 6;
             this.mb_Analysis_5.Text = "Анализ методов лечения";
             this.mb_Analysis_5.UseVisualStyleBackColor = false;
@@ -251,9 +262,10 @@
             this.mb_Analysis_4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Analysis_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Analysis_4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Analysis_4.Location = new System.Drawing.Point(0, 169);
+            this.mb_Analysis_4.Location = new System.Drawing.Point(0, 208);
+            this.mb_Analysis_4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis_4.Name = "mb_Analysis_4";
-            this.mb_Analysis_4.Size = new System.Drawing.Size(150, 64);
+            this.mb_Analysis_4.Size = new System.Drawing.Size(200, 79);
             this.mb_Analysis_4.TabIndex = 5;
             this.mb_Analysis_4.Text = "Анализ диагностических методов";
             this.mb_Analysis_4.UseVisualStyleBackColor = false;
@@ -267,9 +279,10 @@
             this.mb_Analysis_3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Analysis_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Analysis_3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Analysis_3.Location = new System.Drawing.Point(0, 123);
+            this.mb_Analysis_3.Location = new System.Drawing.Point(0, 151);
+            this.mb_Analysis_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis_3.Name = "mb_Analysis_3";
-            this.mb_Analysis_3.Size = new System.Drawing.Size(150, 46);
+            this.mb_Analysis_3.Size = new System.Drawing.Size(200, 57);
             this.mb_Analysis_3.TabIndex = 4;
             this.mb_Analysis_3.Text = "Анализ факторов риска";
             this.mb_Analysis_3.UseVisualStyleBackColor = false;
@@ -283,9 +296,10 @@
             this.mb_Analysis_2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Analysis_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Analysis_2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Analysis_2.Location = new System.Drawing.Point(0, 83);
+            this.mb_Analysis_2.Location = new System.Drawing.Point(0, 102);
+            this.mb_Analysis_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis_2.Name = "mb_Analysis_2";
-            this.mb_Analysis_2.Size = new System.Drawing.Size(150, 40);
+            this.mb_Analysis_2.Size = new System.Drawing.Size(200, 49);
             this.mb_Analysis_2.TabIndex = 3;
             this.mb_Analysis_2.Text = "Анализ различий";
             this.mb_Analysis_2.UseVisualStyleBackColor = false;
@@ -299,9 +313,10 @@
             this.mb_Analysis_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Analysis_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Analysis_1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Analysis_1.Location = new System.Drawing.Point(0, 43);
+            this.mb_Analysis_1.Location = new System.Drawing.Point(0, 53);
+            this.mb_Analysis_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis_1.Name = "mb_Analysis_1";
-            this.mb_Analysis_1.Size = new System.Drawing.Size(150, 40);
+            this.mb_Analysis_1.Size = new System.Drawing.Size(200, 49);
             this.mb_Analysis_1.TabIndex = 2;
             this.mb_Analysis_1.Text = "Анализ связи";
             this.mb_Analysis_1.UseVisualStyleBackColor = false;
@@ -317,8 +332,9 @@
             this.mb_Analysis.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.mb_Analysis.Image = global::ContingencyTableAnalysis.Properties.Resources.Expand_Arrow_20px;
             this.mb_Analysis.Location = new System.Drawing.Point(0, 0);
+            this.mb_Analysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Analysis.Name = "mb_Analysis";
-            this.mb_Analysis.Size = new System.Drawing.Size(150, 43);
+            this.mb_Analysis.Size = new System.Drawing.Size(200, 53);
             this.mb_Analysis.TabIndex = 1;
             this.mb_Analysis.Text = "Анализ";
             this.mb_Analysis.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -331,11 +347,12 @@
             this.AboutPanel.Controls.Add(this.mb_About_Reference);
             this.AboutPanel.Controls.Add(this.mb_About);
             this.AboutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AboutPanel.Location = new System.Drawing.Point(0, 129);
-            this.AboutPanel.MaximumSize = new System.Drawing.Size(150, 123);
-            this.AboutPanel.MinimumSize = new System.Drawing.Size(150, 43);
+            this.AboutPanel.Location = new System.Drawing.Point(0, 159);
+            this.AboutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AboutPanel.MaximumSize = new System.Drawing.Size(200, 151);
+            this.AboutPanel.MinimumSize = new System.Drawing.Size(200, 53);
             this.AboutPanel.Name = "AboutPanel";
-            this.AboutPanel.Size = new System.Drawing.Size(150, 43);
+            this.AboutPanel.Size = new System.Drawing.Size(200, 53);
             this.AboutPanel.TabIndex = 3;
             // 
             // mb_About_Info
@@ -346,9 +363,10 @@
             this.mb_About_Info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_About_Info.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_About_Info.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_About_Info.Location = new System.Drawing.Point(0, 83);
+            this.mb_About_Info.Location = new System.Drawing.Point(0, 102);
+            this.mb_About_Info.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_About_Info.Name = "mb_About_Info";
-            this.mb_About_Info.Size = new System.Drawing.Size(150, 40);
+            this.mb_About_Info.Size = new System.Drawing.Size(200, 49);
             this.mb_About_Info.TabIndex = 3;
             this.mb_About_Info.Text = "О программе";
             this.mb_About_Info.UseVisualStyleBackColor = false;
@@ -362,9 +380,10 @@
             this.mb_About_Reference.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_About_Reference.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_About_Reference.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_About_Reference.Location = new System.Drawing.Point(0, 43);
+            this.mb_About_Reference.Location = new System.Drawing.Point(0, 53);
+            this.mb_About_Reference.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_About_Reference.Name = "mb_About_Reference";
-            this.mb_About_Reference.Size = new System.Drawing.Size(150, 40);
+            this.mb_About_Reference.Size = new System.Drawing.Size(200, 49);
             this.mb_About_Reference.TabIndex = 2;
             this.mb_About_Reference.Text = "Справка";
             this.mb_About_Reference.UseVisualStyleBackColor = false;
@@ -380,8 +399,9 @@
             this.mb_About.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.mb_About.Image = global::ContingencyTableAnalysis.Properties.Resources.Expand_Arrow_20px;
             this.mb_About.Location = new System.Drawing.Point(0, 0);
+            this.mb_About.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_About.Name = "mb_About";
-            this.mb_About.Size = new System.Drawing.Size(150, 43);
+            this.mb_About.Size = new System.Drawing.Size(200, 53);
             this.mb_About.TabIndex = 1;
             this.mb_About.Text = "О программе";
             this.mb_About.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -396,8 +416,9 @@
             this.MenuPanel.Controls.Add(this.FilePanel);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(150, 540);
+            this.MenuPanel.Size = new System.Drawing.Size(200, 665);
             this.MenuPanel.TabIndex = 4;
             // 
             // mb_Settings
@@ -408,9 +429,10 @@
             this.mb_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mb_Settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mb_Settings.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mb_Settings.Location = new System.Drawing.Point(0, 86);
+            this.mb_Settings.Location = new System.Drawing.Point(0, 106);
+            this.mb_Settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mb_Settings.Name = "mb_Settings";
-            this.mb_Settings.Size = new System.Drawing.Size(150, 43);
+            this.mb_Settings.Size = new System.Drawing.Size(200, 53);
             this.mb_Settings.TabIndex = 4;
             this.mb_Settings.Text = "Настройки";
             this.mb_Settings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -419,12 +441,13 @@
             // 
             // ucMenuBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(14)))), ((int)(((byte)(53)))));
             this.Controls.Add(this.MenuPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucMenuBar";
-            this.Size = new System.Drawing.Size(150, 540);
+            this.Size = new System.Drawing.Size(200, 665);
             this.FilePanel.ResumeLayout(false);
             this.AnalysisPanel.ResumeLayout(false);
             this.AboutPanel.ResumeLayout(false);
