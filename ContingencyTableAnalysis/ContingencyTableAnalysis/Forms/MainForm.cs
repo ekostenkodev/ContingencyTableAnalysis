@@ -14,7 +14,7 @@ namespace ContingencyTableAnalysis
     public partial class MainForm : MetroFramework.Forms.MetroForm
     {
 
-        public DataGridView Data;
+        //public DataGridView Data;
         public List<Panel> panels = new List<Panel>();
 
         public MainForm()
@@ -27,7 +27,7 @@ namespace ContingencyTableAnalysis
 
             panels.ForEach(item => item.Hide());
 
-            Data = PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
+           // Data = PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
 
         }
 

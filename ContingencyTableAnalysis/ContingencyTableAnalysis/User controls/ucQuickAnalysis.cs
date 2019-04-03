@@ -14,7 +14,7 @@ namespace ContingencyTableAnalysis
     {
         private Label[] labelRows;
         private Label[] labelColumns;
-        private TextBox[,] textBoxes = new TextBox[2,2];
+        private InputDataTextBox[,] textBoxes = new InputDataTextBox[2,2];
 
         
 
@@ -32,8 +32,8 @@ namespace ContingencyTableAnalysis
             
         }
 
-        private void changeRows(int index) => labelRows[index].Text = (Int32.Parse(textBoxes[index, 0].Text) + Int32.Parse(textBoxes[index, 1].Text)).ToString();
-        private void changeColumns(int index) => labelColumns[index].Text = (Int32.Parse(textBoxes[0, index].Text) + Int32.Parse(textBoxes[1, index].Text)).ToString();
+        private void changeRows(int index) => labelRows[index].Text =((int) (textBoxes[index, 0].Value + textBoxes[index, 1].Value)).ToString();
+        private void changeColumns(int index) => labelColumns[index].Text = ((int)(textBoxes[0, index].Value + textBoxes[1, index].Value)).ToString();
 
         public void UpdateLabels(int row, int column)
         {
@@ -46,7 +46,7 @@ namespace ContingencyTableAnalysis
             int sum = 0;
             foreach (var item in textBoxes)
             {
-                sum += int.Parse(item.Text);
+                sum += (int)item.Value;// todo int?
             }
             labelABCD.Text = sum.ToString();
 
@@ -78,40 +78,23 @@ namespace ContingencyTableAnalysis
         private void TextBoxChanged(object sender, EventArgs e)
         {
             InputDataTextBox textBox = (InputDataTextBox)sender;
-            if (Int32.TryParse(textBox.Text,out int value))
+           
+            for (int row = 0; row < textBoxes.GetLength(0); row++)
             {
-                for (int row = 0; row < textBoxes.GetLength(0); row++)
+                for (int column = 0; column < textBoxes.GetLength(1); column++)
                 {
-                    for (int column = 0; column < textBoxes.GetLength(1); column++)
+                    if (textBox.Equals(textBoxes[row, column]))
                     {
-                        if (textBox.Equals(textBoxes[row, column]))
-                        {
-                            UpdateLabels(row, column);
-                        }
+                        UpdateLabels(row, column);
                     }
                 }
-                
-                textBox.LastState = textBox.Text;
             }
-            else
-            {
-                if (String.IsNullOrEmpty(textBox.Text))
-                    return;
 
-                int cursor = textBox.SelectionStart-1;
-                textBox.Text = textBox.LastState;
-                textBox.SelectionStart = cursor;
-                
-            }
         }
 
         private void tbClearClick(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text.Equals("0"))
-            {
-                textBox.Text = string.Empty;
-            }
+
         }
 
         private void tbLeave(object sender, EventArgs e)
@@ -152,13 +135,7 @@ namespace ContingencyTableAnalysis
         }
     }
 
-    public class InputDataTextBox : TextBox
-    {
-        public string LastState;
-        public double MaxValue;
-        public double MinValue;
-
-    }
+    
 
 
 }

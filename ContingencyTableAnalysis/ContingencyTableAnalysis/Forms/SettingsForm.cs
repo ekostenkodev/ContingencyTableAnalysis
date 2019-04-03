@@ -28,7 +28,7 @@ namespace ContingencyTableAnalysis
             tbSetting4.MinValue = 1;
             tbSetting4.MaxValue = 50;
 
-            tbSetting1.Text = Properties.Settings.Default["Setting1"].ToString() + "%";
+            tbSetting1.Text = Properties.Settings.Default["Setting1"].ToString();
             tbSetting2.Text = Properties.Settings.Default["Setting2"].ToString();
             tbSetting3.Text = Properties.Settings.Default["Setting3"].ToString();
             tbSetting4.Text = Properties.Settings.Default["Setting4"].ToString();
@@ -41,53 +41,14 @@ namespace ContingencyTableAnalysis
         {
             InputDataTextBox textBox = (InputDataTextBox)sender;
 
-            if (String.IsNullOrEmpty(textBox.Text))
-            {
-                textBox.Text = textBox.LastState;
-                return;
-            }
-
-
-            if (Int32.TryParse(textBox.Text, out int value))
-            {
-                int max = (int)textBox.MaxValue;
-                int min = (int)textBox.MinValue;
-
-                value = value >= max ? max : value <= min ? min : value;
-                textBox.Text = value.ToString();
-
-            }
-            else
+            if (!Int32.TryParse(textBox.Text, out int value))
             {
                 textBox.Text = textBox.LastState;
                 MessageBox.Show("Введены недопустимые значения");
             }
+
         }
-        private void tbSettingValidatingDouble(object sender, CancelEventArgs e)
-        {
-            InputDataTextBox textBox = (InputDataTextBox)sender;
 
-            if (String.IsNullOrEmpty(textBox.Text))
-            {
-                textBox.Text = textBox.LastState;
-                return;
-            }
-
-
-            if (textBox.Text[textBox.Text.Length - 1] == '%')
-                textBox.Text = textBox.Text.ToString().Substring(0, textBox.Text.Length - 1);
-
-            if (Double.TryParse(textBox.Text, out double value))
-            {
-                value = value >= textBox.MaxValue ? textBox.MaxValue : value <= textBox.MinValue ? textBox.MinValue : value;
-                textBox.Text = value.ToString() + "%";
-            }
-            else
-            {
-                textBox.Text = textBox.LastState;
-                MessageBox.Show("Введены недопустимые значения");
-            }
-        }
 
         private void BackButton_Click(object sender, EventArgs e) => this.Close();
 

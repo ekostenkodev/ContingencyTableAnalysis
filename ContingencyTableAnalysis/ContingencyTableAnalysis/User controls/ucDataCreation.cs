@@ -23,7 +23,7 @@ namespace ContingencyTableAnalysis
 
         private void dc_addColumn_Click(object sender, EventArgs e)
         {
-            GridColumnWithMark column = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1) };
+            GridColumnWithMark column = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1),Name = "Признак " + (DataCreationGrid.ColumnCount + 1) };
             DataCreationGrid.Columns.Add(column);
         }
 
@@ -35,7 +35,8 @@ namespace ContingencyTableAnalysis
                     return;
                 
                 MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
-                ShowContextMenuColumn((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex], e.Location);
+                Point mouseLocation = metroGrid.PointToClient(Cursor.Position); // relative position
+                ShowContextMenuColumn((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex], mouseLocation);
                 
             }
         }
@@ -83,6 +84,7 @@ namespace ContingencyTableAnalysis
                 ChangeColumnNameForm form = new ChangeColumnNameForm(column.HeaderText);
                 if(form.ShowDialog() == DialogResult.OK)
                 {
+                    column.Name = form.ColumnNameTextBox.Text;
                     column.HeaderText = form.ColumnNameTextBox.Text;
                 }
 
@@ -110,16 +112,12 @@ namespace ContingencyTableAnalysis
             columnChangeMark.MenuItems.Add(radio_1);
             columnChangeMark.MenuItems.Add(radio_2);
 
-            _contextMenu.Show(column.DataGridView, mouseLocation);
+            _contextMenu.Show(DataCreationGrid, mouseLocation);
 
         }
 
     }
 
-    public class GridColumnWithMark : DataGridViewTextBoxColumn
-    {
-        public bool Mark = true;
-    }
 
 
 

@@ -288,12 +288,14 @@
             this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbA.Location = new System.Drawing.Point(5, 20);
             this.tbA.Margin = new System.Windows.Forms.Padding(5);
+            this.tbA.MaxValue = null;
+            this.tbA.MinValue = null;
             this.tbA.Name = "tbA";
             this.tbA.Size = new System.Drawing.Size(166, 36);
             this.tbA.TabIndex = 17;
             this.tbA.Text = "5";
             this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbA.Click += new System.EventHandler(this.tbClearClick);
+            this.tbA.Value = 5D;
             this.tbA.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbA.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -315,12 +317,14 @@
             this.tbB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbB.Location = new System.Drawing.Point(5, 20);
             this.tbB.Margin = new System.Windows.Forms.Padding(5);
+            this.tbB.MaxValue = null;
+            this.tbB.MinValue = null;
             this.tbB.Name = "tbB";
             this.tbB.Size = new System.Drawing.Size(166, 36);
             this.tbB.TabIndex = 18;
             this.tbB.Text = "10";
             this.tbB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbB.Click += new System.EventHandler(this.tbClearClick);
+            this.tbB.Value = 10D;
             this.tbB.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbB.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -342,12 +346,14 @@
             this.tbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbC.Location = new System.Drawing.Point(5, 20);
             this.tbC.Margin = new System.Windows.Forms.Padding(5);
+            this.tbC.MaxValue = null;
+            this.tbC.MinValue = null;
             this.tbC.Name = "tbC";
             this.tbC.Size = new System.Drawing.Size(166, 36);
             this.tbC.TabIndex = 19;
             this.tbC.Text = "15";
             this.tbC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbC.Click += new System.EventHandler(this.tbClearClick);
+            this.tbC.Value = 15D;
             this.tbC.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbC.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -369,12 +375,14 @@
             this.tbD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbD.Location = new System.Drawing.Point(5, 20);
             this.tbD.Margin = new System.Windows.Forms.Padding(5);
+            this.tbD.MaxValue = null;
+            this.tbD.MinValue = null;
             this.tbD.Name = "tbD";
             this.tbD.Size = new System.Drawing.Size(166, 36);
             this.tbD.TabIndex = 20;
             this.tbD.Text = "20";
             this.tbD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbD.Click += new System.EventHandler(this.tbClearClick);
+            this.tbD.Value = 20D;
             this.tbD.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbD.Leave += new System.EventHandler(this.tbLeave);
             // 

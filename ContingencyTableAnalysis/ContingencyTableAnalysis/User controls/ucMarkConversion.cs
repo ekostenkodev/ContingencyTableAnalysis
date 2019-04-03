@@ -12,7 +12,7 @@ namespace ContingencyTableAnalysis.User_controls
 {
     public partial class ucMarkConversion : UserControl
     {
-        string[,] labels = 
+        private string[,] analysisLabels = 
         {
             {"Перечень признаков (столбцов) набора данных", "Перечень строк ", "Перечень столбцов"},
             {"Перечень признаков (столбцов) набора данных", "Перечень строк ", "Перечень столбцов"},
@@ -20,8 +20,8 @@ namespace ContingencyTableAnalysis.User_controls
             {"Перечень признаков (столбцов) набора данных", "Перечень результатов методов диагностики", "Перечень фактического наличия исходов"},
             {"Перечень признаков (столбцов) набора данных", "Перечень исходов лечения", "Перечень методов лечения"},
         };
-
-        private int index;
+        private MetroFramework.Controls.MetroGrid _data;
+        private int analysisIndex;
         public ucMarkConversion()
         {
             InitializeComponent();
@@ -31,24 +31,29 @@ namespace ContingencyTableAnalysis.User_controls
         {
 
         }
-        public void SetMarkPanel(int index, MainForm mainForm)
+        public void SetMarkPanel(int analysisIndex, MainForm mainForm)
         {
-            this.index = index;
-            SetLabels(index);
-            List<string> marks = new List<string>();
             ListAllMark.Items.Clear();
             ListRows.Items.Clear();
             ListColumns.Items.Clear();
-            foreach (GridColumnWithMark item in mainForm.Data.Columns)
+
+            this.analysisIndex = analysisIndex;
+
+            _data = mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
+            foreach (GridColumnWithMark item in _data.Columns)
             {
                 ListAllMark.Items.Add(item.HeaderText);
             }
+
+            SetLabels(analysisIndex);
+
         }
+
         private void SetLabels(int index)
         {
-            LabelAll.Text = labels[index, 0];
-            LabelR.Text = labels[index, 1];
-            LabelC.Text = labels[index, 2];
+            LabelAll.Text = analysisLabels[index, 0];
+            LabelR.Text = analysisLabels[index, 1];
+            LabelC.Text = analysisLabels[index, 2];
         }
 
         private void List_mouseDown(object sender, MouseEventArgs e)
@@ -94,7 +99,6 @@ namespace ContingencyTableAnalysis.User_controls
         private void List_drawItem(object sender, DrawItemEventArgs e)
         {
             if (e.Index < 0) return;
-            //if the item state is selected them change the back color 
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                 e = new DrawItemEventArgs(e.Graphics,
                                           e.Font,
@@ -102,18 +106,69 @@ namespace ContingencyTableAnalysis.User_controls
                                           e.Index,
                                           e.State ^ DrawItemState.Selected,
                                           e.ForeColor,
-                                          Color.FromArgb(209, 17, 65));//Choose the color
+                                          Color.FromArgb(209, 17, 65));
 
-            // Draw the background of the ListBox control for each item.
             e.DrawBackground();
-            // Draw the current item text
             e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
-            // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
 
 
         }
 
 
+        private void ListAllMark_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hello");
+
+        }
+
+        private void ListAllMark_MouseClick(object sender, MouseEventArgs e)
+        {
+            ListBox listBox = (ListBox)sender;
+
+            if (listBox.Items.Count == 0)
+                return;
+            int index = listBox.IndexFromPoint(e.X, e.Y);
+
+            if (index < 0)
+                return;
+
+            //поиск выбранного столбца
+            //var list = new List<GridColumnWithMark>();
+            //list.AddRange(_data.Columns.Cast<GridColumnWithMark>());
+            //int columnIndex = list.Find(item => item.HeaderText.Equals(listBox.Items[index])).Index;
+            int columnIndex = _data.Columns[listBox.Items[index].ToString()].Index;
+            if (!((GridColumnWithMark)_data.Columns[columnIndex]).Mark)
+            {
+                List<int> columnValues = new List<int>();
+
+                for (int i = 0; i < _data.Rows.Count; i++)
+                {
+                    columnValues.Add(Int32.Parse((string)_data.Rows[i].Cells[columnIndex].Value));
+                }
+
+                int min = columnValues.Min();
+                int max = columnValues.Max();
+                int average = (max + min) / 2;
+                ValueTrackBar.Minimum = min;
+                ValueTrackBar.Maximum = max;
+                ValueTrackBar.Value = average;
+
+
+                minValueLabel.Text = min.ToString();
+                maxValueLabel.Text = max.ToString();
+            }
+
+        }
+
+        private void ValueTrackBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            ValueTextBox.Text = ((TrackBar)sender).Value.ToString();
+        }
+
+        private void ValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
