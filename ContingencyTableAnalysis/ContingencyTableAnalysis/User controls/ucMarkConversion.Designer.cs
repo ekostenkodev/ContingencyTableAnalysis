@@ -42,10 +42,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.ValueTrackBar = new MetroFramework.Controls.MetroTrackBar();
             this.PanelValue = new System.Windows.Forms.Panel();
-            this.minValueLabel = new System.Windows.Forms.Label();
             this.maxValueLabel = new System.Windows.Forms.Label();
-            this.ValueTextBox = new System.Windows.Forms.TextBox();
+            this.minValueLabel = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.ValueTextBox = new ContingencyTableAnalysis.InputDataTextBox();
+            this.ValueLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PanelValue.SuspendLayout();
@@ -115,7 +116,6 @@
             this.ListAllMark.Name = "ListAllMark";
             this.ListAllMark.Size = new System.Drawing.Size(384, 329);
             this.ListAllMark.TabIndex = 1;
-            this.ListAllMark.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListAllMark_MouseClick);
             this.ListAllMark.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.List_drawItem);
             this.ListAllMark.DragDrop += new System.Windows.Forms.DragEventHandler(this.List_dragDrop);
             this.ListAllMark.DragOver += new System.Windows.Forms.DragEventHandler(this.List_dragOver);
@@ -225,21 +225,10 @@
             this.PanelValue.Controls.Add(this.minValueLabel);
             this.PanelValue.Controls.Add(this.panel4);
             this.PanelValue.Enabled = false;
-            this.PanelValue.Location = new System.Drawing.Point(81, 441);
+            this.PanelValue.Location = new System.Drawing.Point(3, 446);
             this.PanelValue.Name = "PanelValue";
-            this.PanelValue.Size = new System.Drawing.Size(703, 49);
+            this.PanelValue.Size = new System.Drawing.Size(870, 49);
             this.PanelValue.TabIndex = 11;
-            // 
-            // minValueLabel
-            // 
-            this.minValueLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.minValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.minValueLabel.Location = new System.Drawing.Point(107, 0);
-            this.minValueLabel.Name = "minValueLabel";
-            this.minValueLabel.Size = new System.Drawing.Size(95, 49);
-            this.minValueLabel.TabIndex = 13;
-            this.minValueLabel.Text = "label4";
-            this.minValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // maxValueLabel
             // 
@@ -249,20 +238,19 @@
             this.maxValueLabel.Name = "maxValueLabel";
             this.maxValueLabel.Size = new System.Drawing.Size(95, 49);
             this.maxValueLabel.TabIndex = 14;
-            this.maxValueLabel.Text = "label4";
+            this.maxValueLabel.Text = "max";
             this.maxValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ValueTextBox
+            // minValueLabel
             // 
-            this.ValueTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ValueTextBox.Location = new System.Drawing.Point(0, 10);
-            this.ValueTextBox.Name = "ValueTextBox";
-            this.ValueTextBox.Size = new System.Drawing.Size(107, 30);
-            this.ValueTextBox.TabIndex = 15;
-            this.ValueTextBox.Text = "25";
-            this.ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ValueTextBox.TextChanged += new System.EventHandler(this.ValueTextBox_TextChanged);
+            this.minValueLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.minValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.minValueLabel.Location = new System.Drawing.Point(107, 0);
+            this.minValueLabel.Name = "minValueLabel";
+            this.minValueLabel.Size = new System.Drawing.Size(95, 49);
+            this.minValueLabel.TabIndex = 13;
+            this.minValueLabel.Text = "min";
+            this.minValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel4
             // 
@@ -274,10 +262,36 @@
             this.panel4.Size = new System.Drawing.Size(107, 49);
             this.panel4.TabIndex = 16;
             // 
+            // ValueTextBox
+            // 
+            this.ValueTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ValueTextBox.Location = new System.Drawing.Point(0, 10);
+            this.ValueTextBox.MaxValue = null;
+            this.ValueTextBox.MinValue = null;
+            this.ValueTextBox.Name = "ValueTextBox";
+            this.ValueTextBox.Size = new System.Drawing.Size(107, 30);
+            this.ValueTextBox.TabIndex = 15;
+            this.ValueTextBox.Text = "25";
+            this.ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ValueTextBox.Value = 25D;
+            this.ValueTextBox.Validated += new System.EventHandler(this.ValueTextBox_Validated);
+            // 
+            // ValueLabel
+            // 
+            this.ValueLabel.AutoSize = true;
+            this.ValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ValueLabel.Location = new System.Drawing.Point(-2, 418);
+            this.ValueLabel.Name = "ValueLabel";
+            this.ValueLabel.Size = new System.Drawing.Size(197, 25);
+            this.ValueLabel.TabIndex = 12;
+            this.ValueLabel.Text = "*Признак не выбран";
+            // 
             // ucMarkConversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ValueLabel);
             this.Controls.Add(this.PanelValue);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -291,6 +305,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -311,7 +326,8 @@
         private System.Windows.Forms.Panel PanelValue;
         private System.Windows.Forms.Label maxValueLabel;
         private System.Windows.Forms.Label minValueLabel;
-        private System.Windows.Forms.TextBox ValueTextBox;
         private System.Windows.Forms.Panel panel4;
+        private InputDataTextBox ValueTextBox;
+        private System.Windows.Forms.Label ValueLabel;
     }
 }

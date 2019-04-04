@@ -17,6 +17,16 @@ namespace ContingencyTableAnalysis
         public ucDataCreation()
         {
             InitializeComponent();
+            GridColumnWithMark column1 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
+            DataCreationGrid.Columns.Add(column1);
+            GridColumnWithMark column2 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
+            DataCreationGrid.Columns.Add(column2);
+            DataCreationGrid.Rows.Add();
+            DataCreationGrid.Rows.Add();
+            column1.DataGridView.Rows[0].Cells[column1.Index].Value = 5;
+            column1.DataGridView.Rows[1].Cells[column1.Index].Value = 25;
+            column2.DataGridView.Rows[0].Cells[column2.Index].Value = 30;
+            column2.DataGridView.Rows[1].Cells[column2.Index].Value = 60;
 
         }
 
@@ -116,6 +126,12 @@ namespace ContingencyTableAnalysis
 
         }
 
+        private void DataCreationGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
+
+            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).ValueChanged(metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+        }
     }
 
 

@@ -12,6 +12,7 @@ namespace ContingencyTableAnalysis.User_controls
 {
     public partial class ucMarkConversion : UserControl
     {
+        GridColumnWithMark selectedColumn;
         private string[,] analysisLabels = 
         {
             {"Перечень признаков (столбцов) набора данных", "Перечень строк ", "Перечень столбцов"},
@@ -25,6 +26,7 @@ namespace ContingencyTableAnalysis.User_controls
         public ucMarkConversion()
         {
             InitializeComponent();
+
         }
 
         private void StartCalcBtn_Click(object sender, EventArgs e)
@@ -42,12 +44,47 @@ namespace ContingencyTableAnalysis.User_controls
             _data = mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
             foreach (GridColumnWithMark item in _data.Columns)
             {
-                ListAllMark.Items.Add(item.HeaderText);
+                ListAllMark.Items.Add(item.GetName(false));
             }
 
             SetLabels(analysisIndex);
 
         }
+        /*
+        public void UpdateAllListBox()
+        {
+            List<string> listAll = new List<string>();
+            List<string> listR = new List<string>();
+            List<string> listC = new List<string>();
+
+            foreach (string item in ListAllMark.Items)
+            {
+                listAll.Add(item);
+            }
+            foreach (string item in ListRows.Items)
+            {
+                listR.Add(item);
+            }
+            foreach (string item in ListColumns.Items)
+            {
+                listC.Add(item);
+            }
+
+            ListAllMark.Items.Clear();
+            ListRows.Items.Clear();
+            ListColumns.Items.Clear();
+
+            foreach (GridColumnWithMark item in _data.Columns)
+            {
+                if(listR.Contains(item.Name))
+                    ListRows.Items.Add(item.GetName(false));
+                else if(listC.Contains(item.Name))
+                    ListColumns.Items.Add(item.GetName(false));
+                else
+                    ListAllMark.Items.Add(item.GetName(false));
+            }
+        }
+        */
 
         private void SetLabels(int index)
         {
@@ -55,9 +92,44 @@ namespace ContingencyTableAnalysis.User_controls
             LabelR.Text = analysisLabels[index, 1];
             LabelC.Text = analysisLabels[index, 2];
         }
+        public void EnableValuePanel()
+        {
+            PanelValue.Enabled = true;
+
+
+            //поиск выбранного столбца
+            //var list = new List<GridColumnWithMark>();
+            //list.AddRange(_data.Columns.Cast<GridColumnWithMark>());
+            //int columnIndex = list.Find(item => item.HeaderText.Equals(markName)).Index;
+
+
+
+            if (!selectedColumn.Mark)
+            {
+
+                int min = selectedColumn.Items.Min(e=>int.Parse(e.ToString()));
+                int max = selectedColumn.Items.Max(e=>int.Parse(e.ToString()));
+
+                ValueTrackBar.Minimum = ValueTrackBar.Minimum = 0; // нужно, ибо возникает ошибка : Minimal value is greather than maximal one
+                ValueTrackBar.Maximum = max;
+                ValueTrackBar.Minimum = min;
+                ValueTrackBar.Value = selectedColumn.Border;
+                ValueTextBox.MinValue = min;
+                ValueTextBox.MaxValue = max;
+                ValueTextBox.Text = ValueTrackBar.Value.ToString();
+
+
+                minValueLabel.Text = min.ToString();
+                maxValueLabel.Text = max.ToString();
+            }
+
+            UpdateValueLabel();
+
+        }
 
         private void List_mouseDown(object sender, MouseEventArgs e)
         {
+
             ListBox listBox = (ListBox)sender;
 
             if (listBox.Items.Count == 0)
@@ -67,9 +139,15 @@ namespace ContingencyTableAnalysis.User_controls
             if (index < 0)
                 return;
 
-            string s = listBox.Items[index].ToString();
-            DragDropEffects dde1 = DoDragDrop(s,
+
+            string markName = listBox.Items[index].ToString();
+            selectedColumn = (GridColumnWithMark)_data.Columns[markName];
+
+            DragDropEffects dde1 = DoDragDrop(selectedColumn.GetName(false),
                 DragDropEffects.All);
+
+            EnableValuePanel();
+
 
             if (dde1 == DragDropEffects.All)
             {
@@ -116,58 +194,23 @@ namespace ContingencyTableAnalysis.User_controls
         }
 
 
-        private void ListAllMark_SelectedValueChanged(object sender, EventArgs e)
+        public void UpdateValueLabel()
         {
-            Console.WriteLine("Hello");
-
-        }
-
-        private void ListAllMark_MouseClick(object sender, MouseEventArgs e)
-        {
-            ListBox listBox = (ListBox)sender;
-
-            if (listBox.Items.Count == 0)
-                return;
-            int index = listBox.IndexFromPoint(e.X, e.Y);
-
-            if (index < 0)
-                return;
-
-            //поиск выбранного столбца
-            //var list = new List<GridColumnWithMark>();
-            //list.AddRange(_data.Columns.Cast<GridColumnWithMark>());
-            //int columnIndex = list.Find(item => item.HeaderText.Equals(listBox.Items[index])).Index;
-            int columnIndex = _data.Columns[listBox.Items[index].ToString()].Index;
-            if (!((GridColumnWithMark)_data.Columns[columnIndex]).Mark)
-            {
-                List<int> columnValues = new List<int>();
-
-                for (int i = 0; i < _data.Rows.Count; i++)
-                {
-                    columnValues.Add(Int32.Parse((string)_data.Rows[i].Cells[columnIndex].Value));
-                }
-
-                int min = columnValues.Min();
-                int max = columnValues.Max();
-                int average = (max + min) / 2;
-                ValueTrackBar.Minimum = min;
-                ValueTrackBar.Maximum = max;
-                ValueTrackBar.Value = average;
-
-
-                minValueLabel.Text = min.ToString();
-                maxValueLabel.Text = max.ToString();
-            }
-
+            ValueLabel.Text = selectedColumn.GetName(true);
         }
 
         private void ValueTrackBar_Scroll(object sender, ScrollEventArgs e)
         {
-            ValueTextBox.Text = ((TrackBar)sender).Value.ToString();
+            ValueTextBox.Text = ValueTrackBar.Value.ToString();
+            selectedColumn.Border = ValueTrackBar.Value;
+            UpdateValueLabel();
         }
 
-        private void ValueTextBox_TextChanged(object sender, EventArgs e)
+        private void ValueTextBox_Validated(object sender, EventArgs e)
         {
+            int value = Int32.Parse(ValueTextBox.Text);
+            ValueTrackBar.Value = selectedColumn.Border = value; // todo ошибка на больше меньше
+            UpdateValueLabel();
 
         }
     }

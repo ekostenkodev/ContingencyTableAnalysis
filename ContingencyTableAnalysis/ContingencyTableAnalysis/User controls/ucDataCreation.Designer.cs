@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dc_addColumn = new System.Windows.Forms.Button();
             this.DataCreationGrid = new MetroFramework.Controls.MetroGrid();
-            this.Column1 = new ContingencyTableAnalysis.GridColumnWithMark();
+            this.gridColumnWithMark1 = new ContingencyTableAnalysis.GridColumnWithMark();
             ((System.ComponentModel.ISupportInitialize)(this.DataCreationGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,8 +69,6 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataCreationGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataCreationGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -100,11 +98,12 @@
             this.DataCreationGrid.Style = MetroFramework.MetroColorStyle.Red;
             this.DataCreationGrid.TabIndex = 6;
             this.DataCreationGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataCreationGrid_CellMouseClick);
+            this.DataCreationGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataCreationGrid_CellValueChanged);
             // 
-            // Column1
+            // gridColumnWithMark1
             // 
-            this.Column1.HeaderText = "Признак 1";
-            this.Column1.Name = "Column1";
+            this.gridColumnWithMark1.HeaderText = "Признак 1";
+            this.gridColumnWithMark1.Name = "gridColumnWithMark1";
             // 
             // ucDataCreation
             // 
@@ -123,6 +122,6 @@
         #endregion
         private System.Windows.Forms.Button dc_addColumn;
         public MetroFramework.Controls.MetroGrid DataCreationGrid;
-        private GridColumnWithMark Column1;
+        private GridColumnWithMark gridColumnWithMark1;
     }
 }
