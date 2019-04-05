@@ -45,8 +45,8 @@
             this.maxValueLabel = new System.Windows.Forms.Label();
             this.minValueLabel = new System.Windows.Forms.Label();
             this.PanelValueTextBox = new System.Windows.Forms.Panel();
-            this.ValueLabel = new System.Windows.Forms.Label();
             this.ValueTextBox = new ContingencyTableAnalysis.InputDataTextBox();
+            this.ValueLabel = new System.Windows.Forms.Label();
             this.PanelRowColumnList.SuspendLayout();
             this.PanelListAll.SuspendLayout();
             this.PanelValue.SuspendLayout();
@@ -262,20 +262,11 @@
             this.PanelValueTextBox.Size = new System.Drawing.Size(107, 49);
             this.PanelValueTextBox.TabIndex = 16;
             // 
-            // ValueLabel
-            // 
-            this.ValueLabel.AutoSize = true;
-            this.ValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ValueLabel.Location = new System.Drawing.Point(-2, 418);
-            this.ValueLabel.Name = "ValueLabel";
-            this.ValueLabel.Size = new System.Drawing.Size(197, 25);
-            this.ValueLabel.TabIndex = 12;
-            this.ValueLabel.Text = "*Признак не выбран";
-            // 
             // ValueTextBox
             // 
             this.ValueTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ValueTextBox.IntValidate = true;
             this.ValueTextBox.Location = new System.Drawing.Point(0, 10);
             this.ValueTextBox.MaxValue = null;
             this.ValueTextBox.MinValue = null;
@@ -286,6 +277,16 @@
             this.ValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ValueTextBox.Value = 25D;
             this.ValueTextBox.Validated += new System.EventHandler(this.ValueTextBox_Validated);
+            // 
+            // ValueLabel
+            // 
+            this.ValueLabel.AutoSize = true;
+            this.ValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ValueLabel.Location = new System.Drawing.Point(-2, 418);
+            this.ValueLabel.Name = "ValueLabel";
+            this.ValueLabel.Size = new System.Drawing.Size(197, 25);
+            this.ValueLabel.TabIndex = 12;
+            this.ValueLabel.Text = "*Признак не выбран";
             // 
             // ucMarkConversion
             // 

@@ -9,12 +9,14 @@ namespace ContingencyTableAnalysis
         public double Value { get; set; }
         public double? MaxValue { get; set; }
         public double? MinValue { get; set; }
+        public bool IntValidate { get; set; }
 
         public InputDataTextBox()
         {
             TextChanged += TextChangedCustom;
             Leave += TextLeave;
             Click += TextClearClick;
+            Validated += TextValidateCustom;
         }
 
         public void TextLeave(object sender, EventArgs e)
@@ -35,11 +37,12 @@ namespace ContingencyTableAnalysis
             }
         }
 
-        private void TextChangedCustom(object sender, EventArgs e)
+        private void TextValidateCustom(object sender, EventArgs e)
         {
+            // метод нужен только для того, чтобы была возможность вводить значения double(ибо ввести ',' невозможно в процессе, ее глушит парсер, а исправлять это муторно)
+            // интовые значения проверяются в TextChangeCustom 
             if (Double.TryParse(this.Text, out double value))
             {
-
                 if (MaxValue.HasValue && value > MaxValue)
                 {
                     MessageBox.Show("Значение слишком велико");
@@ -60,18 +63,38 @@ namespace ContingencyTableAnalysis
             }
             else
             {
-                if (String.IsNullOrEmpty(this.Text))
-                {
-                    Value = 0;
-                    LastState = "";
-                    return;
-                }
-
-                int cursor = this.SelectionStart - 1;
-                this.Text = this.LastState;
-                this.SelectionStart = cursor;
-
+                MessageBox.Show("Введены недопустимые символы");
+                Value = MinValue.Value;
+                Text = MinValue.Value.ToString();
+                LastState = Text;
             }
+        }
+
+        private void TextChangedCustom(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(this.Text))
+            {
+                Value = 0;
+                LastState = "";
+                return;
+            }
+            if (IntValidate)
+            {
+                if (int.TryParse(this.Text, out int value))
+                {
+                    Value = value;
+                    Text = Value.ToString();
+                    LastState = Value.ToString();
+                }
+                else
+                {
+                    int cursor = this.SelectionStart - 1;
+                    this.Text = this.LastState;
+                    this.SelectionStart = cursor;
+                }
+            }
+
+            
         }
 
 

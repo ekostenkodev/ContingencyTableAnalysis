@@ -66,9 +66,8 @@ namespace ContingencyTableAnalysis.User_controls
             {
                 PanelValue.Enabled = true;
 
-
-                int min = selectedColumn.Items.Min(e=>int.Parse(e.ToString()));
-                int max = selectedColumn.Items.Max(e=>int.Parse(e.ToString()));
+                int min = selectedColumn.Min.Value;
+                int max = selectedColumn.Max.Value;
 
                 ValueTrackBar.Minimum = ValueTrackBar.Minimum = 0; // нужно, ибо возникает ошибка : Minimal value is greather than maximal one
                 ValueTrackBar.Maximum = max;

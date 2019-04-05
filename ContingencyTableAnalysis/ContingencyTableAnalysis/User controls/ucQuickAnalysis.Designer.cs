@@ -286,6 +286,7 @@
             // 
             this.tbA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbA.IntValidate = true;
             this.tbA.Location = new System.Drawing.Point(5, 20);
             this.tbA.Margin = new System.Windows.Forms.Padding(5);
             this.tbA.MaxValue = null;
@@ -315,6 +316,7 @@
             // 
             this.tbB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbB.IntValidate = true;
             this.tbB.Location = new System.Drawing.Point(5, 20);
             this.tbB.Margin = new System.Windows.Forms.Padding(5);
             this.tbB.MaxValue = null;
@@ -344,6 +346,7 @@
             // 
             this.tbC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbC.IntValidate = true;
             this.tbC.Location = new System.Drawing.Point(5, 20);
             this.tbC.Margin = new System.Windows.Forms.Padding(5);
             this.tbC.MaxValue = null;
@@ -373,6 +376,7 @@
             // 
             this.tbD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbD.IntValidate = true;
             this.tbD.Location = new System.Drawing.Point(5, 20);
             this.tbD.Margin = new System.Windows.Forms.Padding(5);
             this.tbD.MaxValue = null;

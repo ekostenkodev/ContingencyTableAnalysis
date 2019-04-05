@@ -47,7 +47,7 @@
             // 
             this.SaveButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.SaveButton.Location = new System.Drawing.Point(31, 610);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(4);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(267, 49);
             this.SaveButton.TabIndex = 0;
@@ -59,7 +59,7 @@
             // 
             this.BackButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.BackButton.Location = new System.Drawing.Point(311, 610);
-            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(267, 49);
             this.BackButton.TabIndex = 1;
@@ -140,6 +140,7 @@
             // tbSetting4
             // 
             this.tbSetting4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSetting4.IntValidate = true;
             this.tbSetting4.Location = new System.Drawing.Point(31, 468);
             this.tbSetting4.Margin = new System.Windows.Forms.Padding(4);
             this.tbSetting4.MaxValue = null;
@@ -155,6 +156,7 @@
             // tbSetting3
             // 
             this.tbSetting3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSetting3.IntValidate = true;
             this.tbSetting3.Location = new System.Drawing.Point(31, 357);
             this.tbSetting3.Margin = new System.Windows.Forms.Padding(4);
             this.tbSetting3.MaxValue = null;
@@ -170,6 +172,7 @@
             // tbSetting2
             // 
             this.tbSetting2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSetting2.IntValidate = true;
             this.tbSetting2.Location = new System.Drawing.Point(31, 219);
             this.tbSetting2.Margin = new System.Windows.Forms.Padding(4);
             this.tbSetting2.MaxValue = null;
@@ -185,6 +188,7 @@
             // tbSetting1
             // 
             this.tbSetting1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSetting1.IntValidate = false;
             this.tbSetting1.Location = new System.Drawing.Point(31, 116);
             this.tbSetting1.Margin = new System.Windows.Forms.Padding(4);
             this.tbSetting1.MaxValue = null;
@@ -214,7 +218,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.SaveButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingsForm";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Style = MetroFramework.MetroColorStyle.Red;
