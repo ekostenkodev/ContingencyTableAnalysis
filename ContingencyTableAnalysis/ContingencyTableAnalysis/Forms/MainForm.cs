@@ -23,6 +23,7 @@ namespace ContingencyTableAnalysis
 
             panels.Add(PanelDataCreation);
             panels.Add(PanelQuickAnalysis);
+            panels.Add(PanelMark);
             panels.Add(PanelAnalysis);
 
             panels.ForEach(item => item.Hide());
@@ -31,6 +32,12 @@ namespace ContingencyTableAnalysis
 
         }
 
+        public void ShowPanel(Panel panel)
+        {
+            panels.ForEach(item => item.Hide());
+            panel.Show();
+            panel.BringToFront();
+        }
 
     }
 

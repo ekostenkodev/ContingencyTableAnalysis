@@ -13,6 +13,7 @@ namespace ContingencyTableAnalysis.User_controls
     public partial class ucMarkConversion : UserControl
     {
         GridColumnWithMark selectedColumn;
+        private MainForm _mainForm;
         private string[,] analysisLabels = 
         {
             {"Перечень признаков (столбцов) набора данных", "Перечень строк ", "Перечень столбцов"},
@@ -23,17 +24,21 @@ namespace ContingencyTableAnalysis.User_controls
         };
         private MetroFramework.Controls.MetroGrid _data;
         private int analysisIndex;
-        public ucMarkConversion()
+
+        public ucMarkConversion(MainForm mainForm)
         {
             InitializeComponent();
+            _mainForm = mainForm;
 
         }
 
         private void StartCalcBtn_Click(object sender, EventArgs e)
         {
-
+            _mainForm.ShowPanel(_mainForm.PanelAnalysis);
+            _mainForm.PanelAnalysis.Controls.OfType<ucMarkAnalysis>().First().SetAnalysisPanel(analysisIndex,ListRows.Items.Cast<string>().ToList(), ListColumns.Items.Cast<string>().ToList());
         }
-        public void SetMarkPanel(int analysisIndex, MainForm mainForm)
+
+        public void SetMarkPanel(int analysisIndex)
         {
             ListAllMark.Items.Clear();
             ListRows.Items.Clear();
@@ -41,7 +46,7 @@ namespace ContingencyTableAnalysis.User_controls
 
             this.analysisIndex = analysisIndex;
 
-            _data = mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
+            _data = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DataCreationGrid;
             foreach (GridColumnWithMark item in _data.Columns)
             {
                 ListAllMark.Items.Add(item.GetName(false));

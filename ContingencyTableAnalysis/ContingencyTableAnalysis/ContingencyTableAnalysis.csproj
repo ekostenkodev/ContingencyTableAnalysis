@@ -112,6 +112,12 @@
     <Compile Include="User controls\ucDataCreation.Designer.cs">
       <DependentUpon>ucDataCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="User controls\ucMarkAnalysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User controls\ucMarkAnalysis.Designer.cs">
+      <DependentUpon>ucMarkAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="User controls\ucMenuBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User controls\ucDataCreation.resx">
       <DependentUpon>ucDataCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User controls\ucMarkAnalysis.resx">
+      <DependentUpon>ucMarkAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User controls\ucMenuBar.resx">
       <DependentUpon>ucMenuBar.cs</DependentUpon>

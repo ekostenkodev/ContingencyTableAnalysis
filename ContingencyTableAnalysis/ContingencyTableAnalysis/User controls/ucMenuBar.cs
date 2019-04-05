@@ -13,21 +13,24 @@ namespace ContingencyTableAnalysis.User_controls
 {
     public partial class ucMenuBar : UserControl
     {
-        private bool isCollapsed;
+        private const int TimerValue = 10; // скорость открытия/закрытия панелей 
 
+        MainForm _mainForm;
+        IDictionary<Panel, Button> allSliderPanels = new Dictionary<Panel, Button>(); // список панелей с кнопками
+        List<Tuple<Panel, Button>> orderSliderPanels = new List<Tuple<Panel, Button>>(); // список нажатых кнопок
 
-        IDictionary<Panel, Button> panels = new Dictionary<Panel, Button>();
-        MainForm _mainForm { get { return (MainForm)this.Parent.Parent; } }
-        Tuple<Panel, Button> activePanel;
-
-        public ucMenuBar()
+        public ucMenuBar(MainForm mainForm)
         {
             InitializeComponent();
 
-            panels.Add(FilePanel, mb_File);
-            panels.Add(AnalysisPanel, mb_Analysis);
-            panels.Add(AboutPanel, mb_About);
+            _mainForm = mainForm;
 
+            allSliderPanels.Add(FilePanel, mb_File);
+            allSliderPanels.Add(AnalysisPanel, mb_Analysis);
+            allSliderPanels.Add(AboutPanel, mb_About);
+
+            // кнопки вызова панели с анализами
+            // + передается индекс анализа
             mb_Analysis_1.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 0); };
             mb_Analysis_2.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 1); };
             mb_Analysis_3.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 2); };
@@ -35,65 +38,63 @@ namespace ContingencyTableAnalysis.User_controls
             mb_Analysis_5.Click += (sender, EventArgs) => { SetAnalysisPanel(sender, EventArgs, 4); };
         }
 
-        public void SetAnalysisPanel(object sender, EventArgs e, int index)
+        public void SetAnalysisPanel(object sender, EventArgs e, int analysisIndex)
         {
-            ShowPanel(_mainForm.PanelAnalysis);
-            _mainForm.PanelAnalysis.Controls.OfType<ucMarkConversion>().First().SetMarkPanel(index,_mainForm);
+            _mainForm.ShowPanel(_mainForm.PanelMark);
+            _mainForm.PanelMark.Controls.OfType<ucMarkConversion>().First().SetMarkPanel(analysisIndex);
         }
 
         private void SlideTimer_Tick(object sender, EventArgs e)
         {
-            // todo сделать открытие панели, когда другая панель уже открыта
-            if (isCollapsed)
+            //нажатые кнопки раскрытия панелей добавляются в очередь, чтобы открываться в строгом порядке
+
+            if (orderSliderPanels.Count == 1 ) // вторая нажатая кнопка не раскроется, пока из очереди не удалится первая
             {
-                activePanel.Item1.Height += 10;
-                activePanel.Item2.Image = Resources.Collapse_Arrow_20px;
-                if (activePanel.Item1.Size == activePanel.Item1.MaximumSize)
+                orderSliderPanels.Last().Item1.Height += TimerValue;
+                orderSliderPanels.Last().Item2.Image = Resources.Collapse_Arrow_20px;
+
+                if (orderSliderPanels.Last().Item1.Size == orderSliderPanels.Last().Item1.MaximumSize)
                 {
                     SlideTimer.Stop();
-                    isCollapsed = false;
                 }
             }
             else
             {
-                foreach (var item in panels)
-                {
-                    item.Key.Height -= 10;
-                    item.Value.Image = Resources.Expand_Arrow_20px;
-                }
+                orderSliderPanels.First().Item1.Height -= TimerValue;
+                orderSliderPanels.First().Item2.Image = Resources.Expand_Arrow_20px;
 
-                if (panels.All(panel=> panel.Key.Size == panel.Key.MinimumSize))
+                if (orderSliderPanels.First().Item1.Size == orderSliderPanels.First().Item1.MinimumSize)
                 {
-                    SlideTimer.Stop();
-                    isCollapsed = true;
+                    orderSliderPanels.RemoveAll(item=>item.Equals(orderSliderPanels.First())); // убираем все вхождения, чтобы кнопка не открывалась снова
+                    if (orderSliderPanels.Count == 0)
+                    {
+                        SlideTimer.Stop();
+                    }
                 }
+                
             }
         }
+        
         private void SlideMenuBtn_Click(object sender, EventArgs e)
         {
-            var button = panels.First(b => b.Value.Equals(sender));
-            activePanel = new Tuple<Panel, Button>(button.Key, button.Value);
+            var button = allSliderPanels.First(b => b.Value.Equals(sender));
+            orderSliderPanels.Add(new Tuple<Panel, Button>(button.Key, button.Value));
             SlideTimer.Start();
         }
 
-        private void ShowPanel(Panel panel)
-        {
-            _mainForm.panels.ForEach(item => item.Hide());
-            panel.Show();
-            panel.BringToFront();
-        }
+        
 
         private void mb_File_QuickAnalysis_Click(object sender, EventArgs e)
-        {            
+        {
 
-            ShowPanel(_mainForm.PanelQuickAnalysis);
+            _mainForm.ShowPanel(_mainForm.PanelQuickAnalysis);
 
         }
 
         private void mb_File_CreateData_Click(object sender, EventArgs e)
         {
 
-            ShowPanel(_mainForm.PanelDataCreation);
+            _mainForm.ShowPanel(_mainForm.PanelDataCreation);
         }
 
 

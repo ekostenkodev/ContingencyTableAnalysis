@@ -16,8 +16,6 @@ namespace ContingencyTableAnalysis
         private Label[] labelColumns;
         private InputDataTextBox[,] textBoxes = new InputDataTextBox[2,2];
 
-        
-
         public ucQuickAnalysis()
         {
             InitializeComponent();

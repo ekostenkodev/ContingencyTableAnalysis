@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dc_addColumn = new System.Windows.Forms.Button();
             this.DataCreationGrid = new MetroFramework.Controls.MetroGrid();
-            this.gridColumnWithMark1 = new ContingencyTableAnalysis.GridColumnWithMark();
             ((System.ComponentModel.ISupportInitialize)(this.DataCreationGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,11 +99,6 @@
             this.DataCreationGrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataCreationGrid_CellMouseClick);
             this.DataCreationGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataCreationGrid_CellValueChanged);
             // 
-            // gridColumnWithMark1
-            // 
-            this.gridColumnWithMark1.HeaderText = "Признак 1";
-            this.gridColumnWithMark1.Name = "gridColumnWithMark1";
-            // 
             // ucDataCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -122,6 +116,5 @@
         #endregion
         private System.Windows.Forms.Button dc_addColumn;
         public MetroFramework.Controls.MetroGrid DataCreationGrid;
-        private GridColumnWithMark gridColumnWithMark1;
     }
 }

@@ -17,6 +17,8 @@ namespace ContingencyTableAnalysis
         public ucDataCreation()
         {
             InitializeComponent();
+
+            // todo убрать
             GridColumnWithMark column1 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
             DataCreationGrid.Columns.Add(column1);
             GridColumnWithMark column2 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
@@ -128,9 +130,19 @@ namespace ContingencyTableAnalysis
 
         private void DataCreationGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
 
-            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).ValueChanged(metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+            MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
+            if (metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
+                return;
+
+            GridColumnWithMark column = (GridColumnWithMark)metroGrid.Columns[e.ColumnIndex];
+
+            if (!metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().All(char.IsDigit) && !column.Mark) 
+            {
+                MessageBox.Show("Нельзя вводить строковые значения в количественные признаки");
+                metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+            }
+            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
         }
     }
 

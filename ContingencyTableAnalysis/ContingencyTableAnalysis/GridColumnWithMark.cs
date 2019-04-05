@@ -71,7 +71,7 @@ namespace ContingencyTableAnalysis
 
 
 
-        public void ValueChanged(object value)
+        public void CellValueChanged(object value)
         {
             Items.Add(value);
             Items.RemoveAll(e => e == null);
