@@ -33,11 +33,11 @@
             this.PanelDataCreation = new System.Windows.Forms.Panel();
             this.ucDataCreation1 = new ContingencyTableAnalysis.ucDataCreation();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.ucMenuBar1 = new ContingencyTableAnalysis.User_controls.ucMenuBar(this);
+            this.ucMenuBar1 = new ContingencyTableAnalysis.ucMenuBar(this);
             this.PanelMark = new System.Windows.Forms.Panel();
-            this.ucMarkConversion1 = new ContingencyTableAnalysis.User_controls.ucMarkConversion(this);
+            this.ucMarkConversion = new ContingencyTableAnalysis.ucMarkConversion(this);
             this.PanelAnalysis = new System.Windows.Forms.Panel();
-            this.ucMarkAnalysis1 = new ContingencyTableAnalysis.User_controls.ucMarkAnalysis(this);
+            this.ucMarkAnalysis1 = new ContingencyTableAnalysis.ucMarkAnalysis(this); 
             this.PanelQuickAnalysis.SuspendLayout();
             this.PanelDataCreation.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -107,7 +107,7 @@
             // 
             // PanelMark
             // 
-            this.PanelMark.Controls.Add(this.ucMarkConversion1);
+            this.PanelMark.Controls.Add(this.ucMarkConversion);
             this.PanelMark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMark.Location = new System.Drawing.Point(220, 74);
             this.PanelMark.Name = "PanelMark";
@@ -116,12 +116,12 @@
             // 
             // ucMarkConversion1
             // 
-            this.ucMarkConversion1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucMarkConversion1.Location = new System.Drawing.Point(0, 0);
-            this.ucMarkConversion1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucMarkConversion1.Name = "ucMarkConversion1";
-            this.ucMarkConversion1.Size = new System.Drawing.Size(1025, 770);
-            this.ucMarkConversion1.TabIndex = 0;
+            this.ucMarkConversion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucMarkConversion.Location = new System.Drawing.Point(0, 0);
+            this.ucMarkConversion.Margin = new System.Windows.Forms.Padding(4);
+            this.ucMarkConversion.Name = "ucMarkConversion";
+            this.ucMarkConversion.Size = new System.Drawing.Size(1025, 770);
+            this.ucMarkConversion.TabIndex = 0;
             // 
             // PanelAnalysis
             // 
@@ -169,13 +169,13 @@
         #endregion
         private ucQuickTabPanel ucQuickTabPanel;
         private ucDataCreation ucDataCreation1;
-        private User_controls.ucMenuBar ucMenuBar1;
+        private ucMenuBar ucMenuBar1;
         private System.Windows.Forms.Panel MenuPanel;
         public System.Windows.Forms.Panel PanelQuickAnalysis;
         public System.Windows.Forms.Panel PanelDataCreation;
         public System.Windows.Forms.Panel PanelMark;
-        private User_controls.ucMarkConversion ucMarkConversion1;
-        private User_controls.ucMarkAnalysis ucMarkAnalysis1;
+        private ucMarkConversion ucMarkConversion;
+        private ucMarkAnalysis ucMarkAnalysis1;
         public System.Windows.Forms.Panel PanelAnalysis;
     }
 }

@@ -19,7 +19,7 @@ namespace ContingencyTableAnalysis
             }
             set
             {
-                if (Mark)
+                if (Qualitative)
                 {
                     return;
                 }
@@ -31,7 +31,7 @@ namespace ContingencyTableAnalysis
         {
             get
             {
-                if (Mark)
+                if (Qualitative)
                     return null;
 
                 return Items.Min(e => int.Parse(e.ToString()));
@@ -43,7 +43,7 @@ namespace ContingencyTableAnalysis
 
             get
             {
-                if (Mark)
+                if (Qualitative)
                     return null;
 
                 return  Items.Max(e => int.Parse(e.ToString()));
@@ -51,13 +51,34 @@ namespace ContingencyTableAnalysis
             }
         }
 
-        public List<object> Items = new List<object>();
-        private bool _mark = true;
-        public bool Mark
+        public List<object> Items
+        {
+            get {
+                return getItems(); // todo колхоз, исправить заглушку
+            }
+
+
+        }
+        private List<object> getItems()
+        {
+            List<object> list = new List<object>();
+
+            for (int i = 0; i < DataGridView.Rows.Count; i++)
+            {
+                if (DataGridView.Rows[i].Cells[Index].Value == null)
+                    continue;
+                list.Add(DataGridView.Rows[i].Cells[Index].Value);
+            }
+
+            return list;
+
+        }
+        private bool _qualitative = true;
+        public bool Qualitative // качественный признак
         {
             get
             {
-                return _mark;
+                return _qualitative;
             }
             set
             {
@@ -65,18 +86,32 @@ namespace ContingencyTableAnalysis
                     Border = null;
 
 
-                _mark = value;
+                _qualitative = value;
             }
         }
 
 
 
-        public void CellValueChanged(object value)
+        public void CellValueChanged(int rowIndex,object value)
         {
-            Items.Add(value);
-            Items.RemoveAll(e => e == null);
+            /*
+            if (rowIndex < Items.Count)
+            {
+                Items.RemoveAt(rowIndex);
+                Console.WriteLine("Remove"+rowIndex);
+            }
+            Console.WriteLine("Add"+rowIndex);
+            Items.Insert(rowIndex, value);
+            Console.WriteLine("+");
+            foreach (var item in Items)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("+");
+            */
+
             if (new HashSet<object>(Items).Count > int.Parse(Properties.Resources.Setting4)) // проверка на уникальность качественных признаков в списке(нужно по тз) 
-                Mark = false;
+                Qualitative = false;
 
         }
 

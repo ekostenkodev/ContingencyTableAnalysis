@@ -50,7 +50,15 @@ namespace ContingencyTableAnalysis
 
         }
 
-        public void SetQAStrings(QAStrings values)
+        public void SetTextBoxes(int[,] values)
+        {
+            textBoxes[0, 0].Text = values[0, 0].ToString();
+            textBoxes[0, 1].Text = values[0, 1].ToString();
+            textBoxes[1, 0].Text = values[1, 0].ToString();
+            textBoxes[1, 1].Text = values[1, 1].ToString();
+        }
+
+        public void SetAnalysisStrings(AnalysisStrings values)
         {
 
             label1.Text = values.Labels[0];

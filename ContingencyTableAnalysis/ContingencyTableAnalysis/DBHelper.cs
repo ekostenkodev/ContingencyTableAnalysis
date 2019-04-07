@@ -66,7 +66,48 @@ namespace ContingencyTableAnalysis
 
 
         }
-        public static List<string>[] GetAnalysisParameters()
+
+        public static string GetAnalysisName(int index)
+        {
+            SqlConnection conn;
+
+            conn = new SqlConnection();
+            conn.ConnectionString = connectionString;
+            conn.Open();
+
+
+            string sql = "Select Name from Analysis WHERE id = "+index;
+
+            // Создать объект Command.
+            SqlCommand cmd = new SqlCommand();
+
+            // Сочетать Command с Connection.
+            cmd.Connection = conn;
+            cmd.CommandText = sql;
+
+            string name = null;
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        name = reader.GetString(0);
+
+                    }
+                }
+            }
+
+            conn.Close();
+
+            return name;
+
+
+        }
+
+        public static List<string>[] GetAnalysisParameters(int parameterIndex = -1)
         {
 
             SqlConnection conn;
@@ -75,18 +116,25 @@ namespace ContingencyTableAnalysis
             conn.ConnectionString = connectionString;
             conn.Open();
 
-            List<string>[] parameters = {
-                new List<string>(),
-                new List<string>(),
-                new List<string>(),
-                new List<string>(),
-                new List<string>()
-                }; 
+            List<string>[] parameters;
+
+
+            
 
             // todo переделать, тк все держится на индексах
             string sql = "SELECT a.AnalysisID , p.Name as p_Name FROM AnalysisDetails a INNER JOIN Parameters p ON a.ParameterID = p.Id";
 
-            
+            parameters = new List<string>[] {
+                new List<string>(),
+                new List<string>(),
+                new List<string>(),
+                new List<string>(),
+                new List<string>()};
+
+            if (parameterIndex != -1)
+            {
+                sql += " WHERE a.AnalysisID = " + parameterIndex;
+            }
 
             SqlCommand cmd = new SqlCommand();
 
@@ -99,7 +147,6 @@ namespace ContingencyTableAnalysis
                 {
                     while (reader.Read())
                     {
-
                         parameters[reader.GetInt32(0) - 1].Add(reader.GetString(1));
                     }
                 }
@@ -119,7 +166,6 @@ namespace ContingencyTableAnalysis
             conn.ConnectionString = connectionString;
             conn.Open();
             string sql = "Select Arguments, Expression from Parameters WHERE Name LIKE N\'" + parameterName + "\' OR Abbreviation LIKE N\'" + parameterName + "\' ";
-            Console.WriteLine(sql + "!!!!!!!!!!!!!!!!!!!!!");
             // Создать объект Command.
             SqlCommand cmd = new SqlCommand();
 
@@ -138,7 +184,6 @@ namespace ContingencyTableAnalysis
                     {
                         arguments =     reader.GetString(0);
                         expression =    reader.GetString(1);
-                        Console.WriteLine(arguments + "!!!!!!!!!!!!!!!!!!!!!!!" + expression + "---");
 
                     }
                 }

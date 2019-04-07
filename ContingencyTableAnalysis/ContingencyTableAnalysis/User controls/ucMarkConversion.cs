@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ContingencyTableAnalysis.User_controls
+namespace ContingencyTableAnalysis
 {
     public partial class ucMarkConversion : UserControl
     {
@@ -25,10 +25,11 @@ namespace ContingencyTableAnalysis.User_controls
         private MetroFramework.Controls.MetroGrid _data;
         private int analysisIndex;
 
-        public ucMarkConversion(MainForm mainForm)
+
+        public ucMarkConversion(MetroFramework.Forms.MetroForm mainForm)
         {
             InitializeComponent();
-            _mainForm = mainForm;
+            _mainForm = mainForm as MainForm;
 
         }
 
@@ -67,7 +68,7 @@ namespace ContingencyTableAnalysis.User_controls
         {
             this.selectedColumn = selectedColumn;
 
-            if (!selectedColumn.Mark)
+            if (!selectedColumn.Qualitative)
             {
                 PanelValue.Enabled = true;
 
@@ -166,7 +167,7 @@ namespace ContingencyTableAnalysis.User_controls
 
         public void UpdateValueLabel()
         {
-            ValueLabel.Text = selectedColumn.GetName(!selectedColumn.Mark);
+            ValueLabel.Text = selectedColumn.GetName(!selectedColumn.Qualitative);
         }
 
         private void ValueTrackBar_Scroll(object sender, ScrollEventArgs e)

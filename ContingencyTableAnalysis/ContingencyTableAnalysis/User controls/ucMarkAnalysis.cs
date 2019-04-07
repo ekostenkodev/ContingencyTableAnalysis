@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ContingencyTableAnalysis.User_controls
+namespace ContingencyTableAnalysis
 {
     public partial class ucMarkAnalysis : UserControl
     {
@@ -16,95 +16,84 @@ namespace ContingencyTableAnalysis.User_controls
         private MainForm _mainForm;
         List<GridColumnWithMark> _dataColumns;
 
-        List<Tuple<string, string>> analysisVariation;
-
-
-        public ucMarkAnalysis(MainForm mainForm)
+        public ucMarkAnalysis(MetroFramework.Forms.MetroForm mainForm)
         {
             InitializeComponent();
 
-            _mainForm = mainForm;
+            _mainForm = mainForm as MainForm;
 
         }
-        public void SetAnalysisPanel(int analysisIndex,List<string> rowNames, List<string> columnNames)
+        public void SetAnalysisPanel(int analysisIndex, List<string> rowNames, List<string> columnNames)
         {
             _dataColumns = new List<GridColumnWithMark>(_mainForm.PanelDataCreation.Controls
                                                             .OfType<ucDataCreation>()
                                                             .First()
                                                             .DataCreationGrid.Columns.Cast<GridColumnWithMark>());
-
-            var rows = GetMarkVariations(rowNames);
-            var columns = GetMarkVariations(columnNames);
-
+            
+            _analysisIndex = analysisIndex;
+            var rows = getGridColumnsByName(rowNames);
+            var columns = getGridColumnsByName(columnNames);
+            MarkVariationComboBox.ValueMember = "MarkInfo";
             MarkVariationComboBox.DataSource = getVariationStrings(rows, columns);
-            MarkVariationComboBox.DisplayMember = "Name";
-            // todo sho MarkVariationComboBox.ValueMember = "MarkInfo";
+
+            AnalysisLabel.Text = DBHelper.GetAnalysisName(_analysisIndex+1);
 
         }
 
-        private List<MarkInfoTuple> getVariationStrings(List<MarkInfo> rows, List<MarkInfo> columns)
+        private List<MarkInfoTuple> getVariationStrings(List<GridColumnWithMark> rows, List<GridColumnWithMark> columns)
         {
             var markVariations = new List<MarkInfoTuple>();
             foreach (var row in rows)
             {
-                foreach (var rowValue in row.Values)
+                foreach (var rowValue in getUniqueVariations(row.Name))
                 {
                     foreach (var column in columns)
                     {
-                        foreach (var columnValue in column.Values)
+                        foreach (var columnValue in getUniqueVariations(column.Name))
                         {
-                            markVariations.Add(new MarkInfoTuple(new MarkInfo[] { row,column}, new string []{rowValue.Key,columnValue.Key }));
+                            markVariations.Add(new MarkInfoTuple(new GridColumnWithMark[] { row, column }, new string[] { rowValue.ToString(), columnValue.ToString() }));
                         }
+
                     }
+
                 }
+
             }
 
             return markVariations;
         }
 
-        public List<MarkInfo> GetMarkVariations(List<string> markNames)
+        private List<GridColumnWithMark> getGridColumnsByName(List<string> markNames)
         {
-            List<MarkInfo> variationList = new List<MarkInfo>();
+            List<GridColumnWithMark> variationList = new List<GridColumnWithMark>();
 
             foreach (var markName in markNames)
             {
-                variationList.Add(new MarkInfo(markName, getUniqueVar(markName)));
+                variationList.Add(_dataColumns.Find(e => e.Name.Equals(markName)));
             }
 
             return variationList;
         }
 
-        private Dictionary<string,int> getUniqueVar(string columnName)
+        private List<object> getUniqueVariations(string columnName)
         {
             GridColumnWithMark column = _dataColumns.Find(e=>e.Name.Equals(columnName));
 
-            Dictionary<string, int> variationList = new Dictionary<string, int>();
+            List<object> variationList = new List<object>();
 
-            if (column.Mark)
+            if (column.Qualitative)
             {
                 var query = column.Items
                             .GroupBy(s => s.ToString())
-                            .Select(g => new { Name = g.Key, Count = g.Count() });
+                            .Select(g => new { Name = g.Key});
 
                 foreach (var item in query)
-                    variationList.Add(item.Name, item.Count);
+                    variationList.Add(item.Name);
 
             }
             else
             {
-                int count1 = column
-                    .Items
-                    .Select(e => int.Parse(e.ToString()))
-                    .Where(e => e < column.Border)
-                    .Sum(e=>e);
-                int count2 = column
-                    .Items
-                    .Select(e => int.Parse(e.ToString()))
-                    .Where(e => e >= column.Border)
-                    .Sum(e => e);
-
-                variationList.Add("<" + column.Border, count1);
-                variationList.Add(">=" + column.Border, count2);
+                variationList.Add(column.Border);
             }
 
             return variationList;
@@ -125,7 +114,7 @@ namespace ContingencyTableAnalysis.User_controls
                 e.Graphics.FillRectangle(new SolidBrush(combo.BackColor),
                                          e.Bounds);
 
-            e.Graphics.DrawString(combo.Items[e.Index].ToString(), e.Font,
+            e.Graphics.DrawString(((MarkInfoTuple)combo.Items[e.Index]).Name, e.Font,
                                   new SolidBrush(combo.ForeColor),
                                   new Point(e.Bounds.X, e.Bounds.Y));
 
@@ -135,42 +124,136 @@ namespace ContingencyTableAnalysis.User_controls
 
         private void MarkVariationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // todo
-            
+            MarkInfoTuple tuple = ((ComboBox)sender).SelectedItem as MarkInfoTuple;
+            ucQuickAnalysis analysisPanel = _mainForm.PanelAnalysis.Controls.OfType<ucMarkAnalysis>().First().Controls.OfType<ucQuickAnalysis>().First();
+            analysisPanel.SetAnalysisStrings(getAnalysisStrings(_analysisIndex, tuple));
+            analysisPanel.SetTextBoxes(GetMarkValues(tuple));
+
+
+
+
+        }
+        public int[,] GetMarkValues(MarkInfoTuple tuple)
+        {
+            int[,] values = new int[2,2];
+
+            int minLength = tuple.Columns[0].Items.Count < tuple.Columns[1].Items.Count ? tuple.Columns[0].Items.Count : tuple.Columns[1].Items.Count;
+            int row=-1, column=-1;
+            for (int i = 0; i < minLength; i++)
+            {
+                if(tuple.Columns[0].Qualitative)
+                {
+                    if (tuple.Columns[0].Items[i].Equals(tuple.Values[0]))
+                        row = 0;
+                    else
+                        row = 1;
+                }
+                else
+                {
+                    if(int.Parse(tuple.Columns[0].Items[i].ToString())<int.Parse(tuple.Values[0].ToString()))
+                        row = 0;
+                    else
+                        row = 1;
+                }
+                Console.WriteLine(tuple.Columns[0].Name + " : " + tuple.Columns[0].Items[i] + "   " + tuple.Values[0] + " | " + row);
+
+                if (tuple.Columns[1].Qualitative)
+                {
+                    if (tuple.Columns[1].Items[i].Equals(tuple.Values[1]))
+                        column = 0;
+                    else
+                        column = 1;
+                }
+                else
+                {
+
+                    if (int.Parse(tuple.Columns[1].Items[i].ToString()) < int.Parse(tuple.Values[1]))
+                        column = 0;
+                    else
+                        column = 1;
+                }
+                values[row, column]++;
+                Console.WriteLine(tuple.Columns[1].Name + " : " + tuple.Columns[1].Items[i] + "   " + tuple.Values[1] + " | " + column);
+                Console.WriteLine("-----------");
+
+            }
+
+            return values;
+
+        }
+
+        private AnalysisStrings getAnalysisStrings(int analysisIndex, MarkInfoTuple tuple)
+        {
+            var parameters = DBHelper.GetAnalysisParameters(analysisIndex+1);
+
+            string[] labels = new string[6];
+
+            labels[0] = tuple.Columns[0].Name;
+            if (tuple.Columns[0].Qualitative)
+            {
+
+                if(tuple.Columns[0].Items.Distinct().Count() > 2)
+                    labels[1] = "Другие варианты";
+                else
+                    labels[1] = tuple.Columns[0].Items.Select(e=>e.ToString()).First(e=>!e.Equals(tuple.Values[0]));
+
+                labels[2] = tuple.Values[0];
+
+
+            }
+            else
+            {
+                labels[1] = ">=" + tuple.Columns[0].Border;
+                labels[2] = "<" + tuple.Columns[0].Border;
+            }
+
+
+
+            labels[3] = tuple.Columns[1].Name;
+            if (tuple.Columns[1].Qualitative)
+            {
+                labels[4] = tuple.Values[1];
+
+                if (tuple.Columns[1].Items.Distinct().Count() > 2 || tuple.Columns[1].Items.Distinct().Count() == 1)
+                    labels[5] = "Другие варианты";
+                else
+                    labels[5] = tuple.Columns[1].Items.Select(e => e.ToString()).First(e => !e.Equals(tuple.Values[1]));
+
+            }
+            else
+            {
+                labels[4] = "<" + tuple.Columns[1].Border;
+                labels[5] = ">=" + tuple.Columns[1].Border;
+            }
+            return new AnalysisStrings() { Labels = labels, Parameters = parameters[analysisIndex] };
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            _mainForm.ShowPanel(_mainForm.PanelMark);
+            _mainForm.PanelMark.Controls.OfType<ucMarkConversion>().First().SetMarkPanel(_analysisIndex);
         }
     }
 
-    public class MarkInfo
-    {
-        public string Name;
-        public Dictionary<string, int> Values;
 
-        public MarkInfo(string name, Dictionary<string, int> values)
-        {
-            Name = name;
-            Values = values;
-        }
-
-        public Tuple<int,int> GetValueDifference(string value)
-        {
-            return new Tuple<int, int>(Values[value], Values.Select(e => e.Value).Sum() - Values[value]);
-            
-        }
-    }
 
     public class MarkInfoTuple
     {
-        public MarkInfo[] MarkInfo = new MarkInfo[2];
-        string[] values = new string[2];
-
+        public GridColumnWithMark[] Columns = new GridColumnWithMark[2];
+        public string[] Values = new string[2];
 
         public string Name
         {
             get
             {
-                Console.WriteLine("Hello:");
-                return "1";
-                //return String.Format("{0} ({1}) - {2} ({3})", MarkInfo[0].Name, values[0], MarkInfo[1].Name, values[0]);
+                string mark1 = "";
+                string mark2 = "";
+                if(!Columns[0].Qualitative)
+                    mark1 = "граница - ";
+                if (!Columns[1].Qualitative)
+                    mark2 = "граница - ";
+
+                return String.Format("{0} ({1}) - {2} ({3})", Columns[0].Name, mark1+ Values[0], Columns[1].Name, mark2+ Values[1]);
             }
             set
             {
@@ -178,10 +261,11 @@ namespace ContingencyTableAnalysis.User_controls
             }
         }
 
-        public MarkInfoTuple(MarkInfo[] markInfo, string[] values)
+        public MarkInfoTuple(GridColumnWithMark[] columns, string[] values)
         {
-            this.MarkInfo = markInfo;
-            this.values = values;
+            this.Columns = columns;
+            this.Values = values;
+
         }
     }
 }

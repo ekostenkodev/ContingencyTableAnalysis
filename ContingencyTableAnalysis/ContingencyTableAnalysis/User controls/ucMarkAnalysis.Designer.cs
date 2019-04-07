@@ -1,4 +1,4 @@
-﻿namespace ContingencyTableAnalysis.User_controls
+﻿namespace ContingencyTableAnalysis
 {
     partial class ucMarkAnalysis
     {
@@ -50,6 +50,7 @@
             this.BackBtn.Text = "Назад";
             this.BackBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.BackBtn.UseVisualStyleBackColor = false;
+            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
             // label1
             // 
@@ -67,9 +68,9 @@
             this.AnalysisLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AnalysisLabel.Location = new System.Drawing.Point(141, 18);
             this.AnalysisLabel.Name = "AnalysisLabel";
-            this.AnalysisLabel.Size = new System.Drawing.Size(107, 25);
+            this.AnalysisLabel.Size = new System.Drawing.Size(80, 25);
             this.AnalysisLabel.TabIndex = 10;
-            this.AnalysisLabel.Text = "Признаки:";
+            this.AnalysisLabel.Text = "Анализ";
             // 
             // ucQuickAnalysis1
             // 

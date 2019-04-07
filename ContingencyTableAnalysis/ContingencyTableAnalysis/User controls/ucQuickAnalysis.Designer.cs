@@ -294,9 +294,9 @@
             this.tbA.Name = "tbA";
             this.tbA.Size = new System.Drawing.Size(166, 36);
             this.tbA.TabIndex = 17;
-            this.tbA.Text = "5";
+            this.tbA.Text = "0";
             this.tbA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbA.Value = 5D;
+            this.tbA.Value = 0D;
             this.tbA.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbA.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -324,9 +324,9 @@
             this.tbB.Name = "tbB";
             this.tbB.Size = new System.Drawing.Size(166, 36);
             this.tbB.TabIndex = 18;
-            this.tbB.Text = "10";
+            this.tbB.Text = "0";
             this.tbB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbB.Value = 10D;
+            this.tbB.Value = 0D;
             this.tbB.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbB.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -354,9 +354,9 @@
             this.tbC.Name = "tbC";
             this.tbC.Size = new System.Drawing.Size(166, 36);
             this.tbC.TabIndex = 19;
-            this.tbC.Text = "15";
+            this.tbC.Text = "0";
             this.tbC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbC.Value = 15D;
+            this.tbC.Value = 0D;
             this.tbC.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbC.Leave += new System.EventHandler(this.tbLeave);
             // 
@@ -384,9 +384,9 @@
             this.tbD.Name = "tbD";
             this.tbD.Size = new System.Drawing.Size(166, 36);
             this.tbD.TabIndex = 20;
-            this.tbD.Text = "20";
+            this.tbD.Text = "0";
             this.tbD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbD.Value = 20D;
+            this.tbD.Value = 0D;
             this.tbD.TextChanged += new System.EventHandler(this.TextBoxChanged);
             this.tbD.Leave += new System.EventHandler(this.tbLeave);
             // 

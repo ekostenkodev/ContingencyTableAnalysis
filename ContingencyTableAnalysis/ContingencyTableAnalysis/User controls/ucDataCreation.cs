@@ -19,9 +19,9 @@ namespace ContingencyTableAnalysis
             InitializeComponent();
 
             // todo убрать
-            GridColumnWithMark column1 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
+            GridColumnWithMark column1 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Qualitative = false };
             DataCreationGrid.Columns.Add(column1);
-            GridColumnWithMark column2 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Mark = false };
+            GridColumnWithMark column2 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Qualitative = false };
             DataCreationGrid.Columns.Add(column2);
             DataCreationGrid.Rows.Add();
             DataCreationGrid.Rows.Add();
@@ -67,7 +67,7 @@ namespace ContingencyTableAnalysis
             radio_1.RadioCheck = true;
             radio_2.RadioCheck = true;
 
-            if (column.Mark)
+            if (column.Qualitative)
             {
                 radio_1.Checked = true;
             }
@@ -82,13 +82,13 @@ namespace ContingencyTableAnalysis
                 {
                     radio_1.Checked = true;
                     radio_2.Checked = false;
-                    column.Mark = true;
+                    column.Qualitative = true;
                 }
                 else
                 {
                     radio_1.Checked = false;
                     radio_2.Checked = true;
-                    column.Mark = false;
+                    column.Qualitative = false;
                 }
                 
             });
@@ -137,12 +137,12 @@ namespace ContingencyTableAnalysis
 
             GridColumnWithMark column = (GridColumnWithMark)metroGrid.Columns[e.ColumnIndex];
 
-            if (!metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().All(char.IsDigit) && !column.Mark) 
+            if (!metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().All(char.IsDigit) && !column.Qualitative) 
             {
                 MessageBox.Show("Нельзя вводить строковые значения в количественные признаки");
                 metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
             }
-            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(e.RowIndex,metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
         }
     }
 

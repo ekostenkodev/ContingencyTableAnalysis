@@ -1,4 +1,4 @@
-﻿namespace ContingencyTableAnalysis.User_controls
+﻿namespace ContingencyTableAnalysis
 {
     partial class ucMenuBar
     {

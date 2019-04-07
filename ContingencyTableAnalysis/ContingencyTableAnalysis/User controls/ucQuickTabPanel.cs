@@ -16,24 +16,31 @@ namespace ContingencyTableAnalysis
         /// TabControl содержащий 5 панелей с быстрым анализом
         /// </summary>
 
-        QAStrings[] QAStrings = new QAStrings[5];
+        AnalysisStrings[] AnalysisStrings;
 
         public ucQuickTabPanel()
         {
 
             InitializeComponent();
 
-            var analysisLabels = DBHelper.GetAnalysisLabels();
-            var parameters = DBHelper.GetAnalysisParameters();
-
-            for (int i = 0; i < QAStrings.Length; i++)
-            {
-                QAStrings[i].Labels = analysisLabels[i];
-                QAStrings[i].Parameters = parameters[i];
-            }
+            AnalysisStrings = getAnalysisStrings();
 
             tabControlQA.SelectTab(1); //todo если начинать с 0, то лейблы не обновляются -> надо исправить
             
+        }
+
+        private AnalysisStrings[] getAnalysisStrings()
+        {
+            AnalysisStrings[] aStrings = new AnalysisStrings[5];
+            var analysisLabels = DBHelper.GetAnalysisLabels();
+            var parameters = DBHelper.GetAnalysisParameters();
+
+            for (int i = 0; i < aStrings.Length; i++)
+            {
+                aStrings[i].Labels = analysisLabels[i];
+                aStrings[i].Parameters = parameters[i];
+            }
+            return aStrings;
         }
 
         
@@ -44,7 +51,7 @@ namespace ContingencyTableAnalysis
             
             int index = tabControlQA.SelectedIndex;
             TabPage page = (TabPage)sender;
-            page.Controls.OfType<ucQuickAnalysis>().First().SetQAStrings(QAStrings[index]); 
+            page.Controls.OfType<ucQuickAnalysis>().First().SetAnalysisStrings(AnalysisStrings[index]); 
         }
 
 

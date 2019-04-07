@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContingencyTableAnalysis
 {
-    public struct QAStrings
+    public struct AnalysisStrings
     {
         public string[] Labels;
         public List<string> Parameters;

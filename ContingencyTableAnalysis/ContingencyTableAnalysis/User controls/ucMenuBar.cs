@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContingencyTableAnalysis.Properties;
 
-namespace ContingencyTableAnalysis.User_controls
+namespace ContingencyTableAnalysis
 {
     public partial class ucMenuBar : UserControl
     {
@@ -19,11 +19,11 @@ namespace ContingencyTableAnalysis.User_controls
         IDictionary<Panel, Button> allSliderPanels = new Dictionary<Panel, Button>(); // список панелей с кнопками
         List<Tuple<Panel, Button>> orderSliderPanels = new List<Tuple<Panel, Button>>(); // список нажатых кнопок
 
-        public ucMenuBar(MainForm mainForm)
+        public ucMenuBar(MetroFramework.Forms.MetroForm mainForm)
         {
             InitializeComponent();
 
-            _mainForm = mainForm;
+            _mainForm = mainForm as MainForm; 
 
             allSliderPanels.Add(FilePanel, mb_File);
             allSliderPanels.Add(AnalysisPanel, mb_Analysis);
