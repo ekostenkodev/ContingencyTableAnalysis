@@ -20,6 +20,7 @@ namespace ContingencyTableAnalysis
             InitializeComponent();
 
             // todo убрать
+            /*
             GridColumnWithMark column1 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Qualitative = false };
             DataCreationGrid.Columns.Add(column1);
             GridColumnWithMark column2 = new GridColumnWithMark() { HeaderText = "Признак " + (DataCreationGrid.ColumnCount + 1), Name = "Признак " + (DataCreationGrid.ColumnCount + 1), Qualitative = false };
@@ -30,7 +31,7 @@ namespace ContingencyTableAnalysis
             column1.DataGridView.Rows[1].Cells[column1.Index].Value = 25;
             column2.DataGridView.Rows[0].Cells[column2.Index].Value = 30;
             column2.DataGridView.Rows[1].Cells[column2.Index].Value = 60;
-
+            */
         }
 
 

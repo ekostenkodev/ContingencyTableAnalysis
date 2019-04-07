@@ -68,7 +68,7 @@
             this.ListRows.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListRows.FormattingEnabled = true;
-            this.ListRows.ItemHeight = 25;
+            this.ListRows.ItemHeight = 35;
             this.ListRows.Location = new System.Drawing.Point(0, 50);
             this.ListRows.Name = "ListRows";
             this.ListRows.Size = new System.Drawing.Size(300, 190);
@@ -85,7 +85,7 @@
             this.ListColumns.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListColumns.FormattingEnabled = true;
-            this.ListColumns.ItemHeight = 25;
+            this.ListColumns.ItemHeight = 35;
             this.ListColumns.Location = new System.Drawing.Point(0, 50);
             this.ListColumns.Name = "ListColumns";
             this.ListColumns.Size = new System.Drawing.Size(300, 190);
@@ -119,7 +119,7 @@
             this.ListAllMark.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListAllMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListAllMark.FormattingEnabled = true;
-            this.ListAllMark.ItemHeight = 25;
+            this.ListAllMark.ItemHeight = 35;
             this.ListAllMark.Location = new System.Drawing.Point(0, 50);
             this.ListAllMark.Name = "ListAllMark";
             this.ListAllMark.Size = new System.Drawing.Size(300, 440);

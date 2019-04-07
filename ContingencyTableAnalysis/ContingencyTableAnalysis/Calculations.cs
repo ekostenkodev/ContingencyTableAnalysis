@@ -32,6 +32,9 @@ namespace ContingencyTableAnalysis
 
             foreach (var parameterName in parametersNames)
             {
+                if (parameterName.Equals("Доверительный интервал индекса потенциального вреда")) // todo
+                    continue;
+
                 List<double> parameterResults = new List<double>();
 
                 
@@ -42,6 +45,9 @@ namespace ContingencyTableAnalysis
                 var argumentString = parameterInfo.Item1;
                 var arguments = getArguments(argumentString, userArguments);
                 var functions = parameterInfo.Item2.Split('|');// на случай, если параметр имеет 2 выражения
+
+                Console.WriteLine("---------------------");
+                Console.WriteLine("Func = " + functions[0] + "       args = " + argumentString);
 
                 foreach (var function in functions) 
                 {
@@ -55,24 +61,23 @@ namespace ContingencyTableAnalysis
 
                 calculations.Add(parameterName, parameterResults);
             }
-
+            /* todo
             if(calculations.Keys.Contains("NNH (ЧПЭН) для исследований по типу «случай-контроль»"))
             {
-                List<double> temp = calculations.First(e => e.Key.Equals("")).Value;
 
                 if (getArguments("OR",userArguments)[0].getArgumentValue() > 1)
                 {
-                    temp.Remove(0);
+                    calculations.First(e => e.Key.Equals("")).Value.Remove(0);
                 }
                 else
                 {
-                    temp.Remove(1);
+                    calculations.First(e => e.Key.Equals("")).Value.Remove(1);
                 }
-            }
+            }*/
 
             return calculations;
         }
-
+        
         public static double GetCalculation(string parameterName, double[] userArguments)
         {
             
@@ -83,11 +88,13 @@ namespace ContingencyTableAnalysis
             var function = parameterInfo.Item2;
 
             string functionString = "f(" + argumentString + ") = " + function;
+
+            
             double result = new Function(functionString).calculate(arguments.ToArray());
 
             return result;
         }
-
+        
         public static List<Argument> getArguments(string argumentsString, double[] userArguments)
         {
             var argumentList = new List<Argument>();
@@ -118,6 +125,7 @@ namespace ContingencyTableAnalysis
                     case "Za":
                         argument = new Argument("Za", 12.7062);
                         break;
+                    
                     default:
                         argument = new Argument(arg, GetCalculation(arg,userArguments));
                         break;
@@ -126,16 +134,6 @@ namespace ContingencyTableAnalysis
             }
 
             return argumentList;
-        }
-        private static double getXi(double a, double b, double c, double d)
-        {
-            double aOj = ((a + c) * (a + b)) / (a + b + c + d);
-            double bOj = ((b + d) * (a + b)) / (a + b + c + d);
-            double cOj = ((a + c) * (c + d)) / (a + b + c + d);
-            double dOj = ((b + d) * (c + d)) / (a + b + c + d);
-
-            double xi = Math.Pow(a - aOj, 2) / aOj + Math.Pow(b - bOj, 2) / bOj + Math.Pow(c - cOj, 2) / cOj + Math.Pow(d - dOj, 2) / dOj;
-            return xi;
         }
 
     }
