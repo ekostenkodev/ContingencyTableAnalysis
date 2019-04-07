@@ -55,6 +55,8 @@ namespace ContingencyTableAnalysis
 
             SetLabels(analysisIndex);
 
+            AnalysisLabel.Text = DBHelper.GetAnalysisName(analysisIndex+1);
+
         }
 
 
@@ -70,7 +72,7 @@ namespace ContingencyTableAnalysis
 
             if (!selectedColumn.Qualitative)
             {
-                PanelValue.Enabled = true;
+                PanelScroll.Enabled = true;
 
                 int min = selectedColumn.Min.Value;
                 int max = selectedColumn.Max.Value;
@@ -89,7 +91,7 @@ namespace ContingencyTableAnalysis
             }
             else
             {
-                PanelValue.Enabled = false;
+                PanelScroll.Enabled = false;
                 minValueLabel.Text = "-";
                 maxValueLabel.Text = "-";
             }
@@ -110,6 +112,15 @@ namespace ContingencyTableAnalysis
             if (index < 0)
                 return;
 
+            // todo PanelValue change color
+            /*
+            int R = 209, G = 17, B = 65;
+            int d = 10;
+            int interval_R = R / d,
+                interval_G = G / d,
+                interval_B = B / d;
+
+    */
 
             string markName = listBox.Items[index].ToString();
             GridColumnWithMark selectedColumn = (GridColumnWithMark)_data.Columns[markName];
@@ -118,6 +129,7 @@ namespace ContingencyTableAnalysis
                 DragDropEffects.All);
 
             EnableValuePanel(selectedColumn);
+            
 
 
             if (dde1 == DragDropEffects.All)
@@ -185,5 +197,7 @@ namespace ContingencyTableAnalysis
             UpdateValueLabel();
 
         }
+
+
     }
 }

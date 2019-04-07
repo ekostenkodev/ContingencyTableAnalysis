@@ -56,6 +56,12 @@ namespace ContingencyTableAnalysis
             textBoxes[0, 1].Text = values[0, 1].ToString();
             textBoxes[1, 0].Text = values[1, 0].ToString();
             textBoxes[1, 1].Text = values[1, 1].ToString();
+
+            textBoxes[0, 0].Enabled = false;
+            textBoxes[0, 1].Enabled = false;
+            textBoxes[1, 0].Enabled = false;
+            textBoxes[1, 1].Enabled = false;
+
         }
 
         public void SetAnalysisStrings(AnalysisStrings values)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContingencyTableAnalysis.Forms;
+using System.Data.OleDb;
 
 namespace ContingencyTableAnalysis
 {
@@ -47,22 +48,72 @@ namespace ContingencyTableAnalysis
                     return;
                 
                 MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
-                Point mouseLocation = metroGrid.PointToClient(Cursor.Position); // relative position
+                System.Drawing.Point mouseLocation = metroGrid.PointToClient(Cursor.Position); // relative position
                 ShowContextMenuColumn((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex], mouseLocation);
                 
             }
         }
 
-        public void ShowContextMenuColumn(GridColumnWithMark column, Point mouseLocation)
+        public void DownloadData(string dataSource)
+        {
+            if (DataCreationGrid.DataSource != null) // todo проверка на сохранение
+                DataCreationGrid.DataSource = null;
+
+            OleDbConnection MyConnection;
+            DataSet DtSet;
+            OleDbDataAdapter MyCommand;
+            // C:\Users\Дарья\Desktop\MS_lab1\MS_lab1\var1.xls
+            MyConnection = new OleDbConnection(String.Format(@"provider=Microsoft.Jet.OLEDB.4.0;
+Data Source='{0}';Extended Properties=Excel 8.0;", dataSource));
+            MyCommand = new OleDbDataAdapter("select * from [База данных$]", MyConnection);
+            MyCommand.TableMappings.Add("Table", "Net");
+            DtSet = new DataSet();
+            MyCommand.Fill(DtSet);
+
+            DataCreationGrid.Rows.Clear();
+            DataCreationGrid.Columns.Clear();
+            // todo переделать
+            int index = 0;
+            foreach (var item in DtSet.Tables[0].Columns)
+            {
+                GridColumnWithMark column = new GridColumnWithMark() { HeaderText = item.ToString(), Name = item.ToString() };
+                DataCreationGrid.Columns.Add(column);
+                index++;
+            }
+            for (int i = 0; i < DtSet.Tables[0].Rows.Count; i++)
+            {
+                DataCreationGrid.Rows.Add();
+            }
+
+            for (int row = 1; row < DtSet.Tables[0].Rows.Count; row++)
+            {
+                
+                Console.WriteLine("-----");
+                for (int column = 0; column < DtSet.Tables[0].Columns.Count; column++)
+                {
+                    DataCreationGrid.Rows[row].Cells[column].Value = DtSet.Tables[0].Rows[row].ItemArray[column].ToString();
+                    Console.Write(DataCreationGrid.Rows[row].Cells[column].Value + " ");
+
+                }
+                Console.WriteLine();
+            }
+
+            
+            
+
+
+        }
+
+        public void ShowContextMenuColumn(GridColumnWithMark column, System.Drawing.Point mouseLocation)
         {
             //todo при возможности переписать, много ненужных переменных
             ContextMenu _contextMenu = new ContextMenu();
 
-            MenuItem columnChangeName = new MenuItem("Переименовать признак");
-            MenuItem columnChangeMark = new MenuItem("Вид признака");
-            MenuItem columnDelete = new MenuItem("Удалить признак");
-            MenuItem radio_1 = new MenuItem("Качественный");
-            MenuItem radio_2 = new MenuItem("Количественный");
+            var columnChangeName = new System.Windows.Forms.MenuItem("Переименовать признак");
+            var columnChangeMark = new System.Windows.Forms.MenuItem("Вид признака");
+            var columnDelete = new System.Windows.Forms.MenuItem("Удалить признак");
+            var radio_1 = new System.Windows.Forms.MenuItem("Качественный");
+            var radio_2 = new System.Windows.Forms.MenuItem("Количественный");
 
             radio_1.RadioCheck = true;
             radio_2.RadioCheck = true;

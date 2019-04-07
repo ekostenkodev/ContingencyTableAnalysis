@@ -33,37 +33,45 @@
             this.StartCalcBtn = new System.Windows.Forms.Button();
             this.ListAllMark = new System.Windows.Forms.ListBox();
             this.LabelR = new System.Windows.Forms.Label();
-            this.PanelRowColumnList = new System.Windows.Forms.Panel();
-            this.space3 = new System.Windows.Forms.Label();
-            this.LabelC = new System.Windows.Forms.Label();
-            this.space2 = new System.Windows.Forms.Label();
-            this.space1 = new System.Windows.Forms.Label();
-            this.LabelAll = new System.Windows.Forms.Label();
             this.PanelListAll = new System.Windows.Forms.Panel();
+            this.LabelAll = new System.Windows.Forms.Label();
+            this.LabelC = new System.Windows.Forms.Label();
+            this.PanelRowColumnList = new System.Windows.Forms.Panel();
+            this.PanelColumns = new System.Windows.Forms.Panel();
+            this.PanelRows = new System.Windows.Forms.Panel();
             this.ValueTrackBar = new MetroFramework.Controls.MetroTrackBar();
-            this.PanelValue = new System.Windows.Forms.Panel();
+            this.PanelScroll = new System.Windows.Forms.Panel();
             this.maxValueLabel = new System.Windows.Forms.Label();
             this.minValueLabel = new System.Windows.Forms.Label();
             this.PanelValueTextBox = new System.Windows.Forms.Panel();
             this.ValueTextBox = new ContingencyTableAnalysis.InputDataTextBox();
             this.ValueLabel = new System.Windows.Forms.Label();
-            this.PanelRowColumnList.SuspendLayout();
+            this.AnalysisLabel = new System.Windows.Forms.Label();
+            this.AnalysisNamePanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelValue = new System.Windows.Forms.Panel();
             this.PanelListAll.SuspendLayout();
-            this.PanelValue.SuspendLayout();
+            this.PanelRowColumnList.SuspendLayout();
+            this.PanelColumns.SuspendLayout();
+            this.PanelRows.SuspendLayout();
+            this.PanelScroll.SuspendLayout();
             this.PanelValueTextBox.SuspendLayout();
+            this.AnalysisNamePanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.PanelValue.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListRows
             // 
             this.ListRows.AllowDrop = true;
-            this.ListRows.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListRows.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ListRows.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListRows.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListRows.FormattingEnabled = true;
             this.ListRows.ItemHeight = 25;
-            this.ListRows.Location = new System.Drawing.Point(0, 30);
+            this.ListRows.Location = new System.Drawing.Point(0, 50);
             this.ListRows.Name = "ListRows";
-            this.ListRows.Size = new System.Drawing.Size(391, 154);
+            this.ListRows.Size = new System.Drawing.Size(300, 190);
             this.ListRows.TabIndex = 3;
             this.ListRows.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.List_drawItem);
             this.ListRows.DragDrop += new System.Windows.Forms.DragEventHandler(this.List_dragDrop);
@@ -73,14 +81,14 @@
             // ListColumns
             // 
             this.ListColumns.AllowDrop = true;
-            this.ListColumns.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListColumns.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ListColumns.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListColumns.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListColumns.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListColumns.FormattingEnabled = true;
             this.ListColumns.ItemHeight = 25;
-            this.ListColumns.Location = new System.Drawing.Point(0, 219);
+            this.ListColumns.Location = new System.Drawing.Point(0, 50);
             this.ListColumns.Name = "ListColumns";
-            this.ListColumns.Size = new System.Drawing.Size(391, 154);
+            this.ListColumns.Size = new System.Drawing.Size(300, 190);
             this.ListColumns.TabIndex = 4;
             this.ListColumns.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.List_drawItem);
             this.ListColumns.DragDrop += new System.Windows.Forms.DragEventHandler(this.List_dragDrop);
@@ -94,10 +102,10 @@
             this.StartCalcBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StartCalcBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.StartCalcBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.StartCalcBtn.Location = new System.Drawing.Point(354, 560);
+            this.StartCalcBtn.Location = new System.Drawing.Point(15, 683);
             this.StartCalcBtn.Margin = new System.Windows.Forms.Padding(4);
             this.StartCalcBtn.Name = "StartCalcBtn";
-            this.StartCalcBtn.Size = new System.Drawing.Size(200, 53);
+            this.StartCalcBtn.Size = new System.Drawing.Size(202, 53);
             this.StartCalcBtn.TabIndex = 5;
             this.StartCalcBtn.Text = "Далее";
             this.StartCalcBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -107,14 +115,14 @@
             // ListAllMark
             // 
             this.ListAllMark.AllowDrop = true;
-            this.ListAllMark.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListAllMark.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ListAllMark.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListAllMark.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.ListAllMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListAllMark.FormattingEnabled = true;
             this.ListAllMark.ItemHeight = 25;
-            this.ListAllMark.Location = new System.Drawing.Point(0, 54);
+            this.ListAllMark.Location = new System.Drawing.Point(0, 50);
             this.ListAllMark.Name = "ListAllMark";
-            this.ListAllMark.Size = new System.Drawing.Size(384, 329);
+            this.ListAllMark.Size = new System.Drawing.Size(300, 440);
             this.ListAllMark.TabIndex = 1;
             this.ListAllMark.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.List_drawItem);
             this.ListAllMark.DragDrop += new System.Windows.Forms.DragEventHandler(this.List_dragDrop);
@@ -127,65 +135,20 @@
             this.LabelR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelR.Location = new System.Drawing.Point(0, 0);
             this.LabelR.Name = "LabelR";
-            this.LabelR.Size = new System.Drawing.Size(391, 25);
+            this.LabelR.Size = new System.Drawing.Size(300, 50);
             this.LabelR.TabIndex = 6;
             this.LabelR.Text = "Строки";
             this.LabelR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PanelRowColumnList
+            // PanelListAll
             // 
-            this.PanelRowColumnList.Controls.Add(this.ListColumns);
-            this.PanelRowColumnList.Controls.Add(this.space3);
-            this.PanelRowColumnList.Controls.Add(this.LabelC);
-            this.PanelRowColumnList.Controls.Add(this.space2);
-            this.PanelRowColumnList.Controls.Add(this.ListRows);
-            this.PanelRowColumnList.Controls.Add(this.space1);
-            this.PanelRowColumnList.Controls.Add(this.LabelR);
-            this.PanelRowColumnList.Location = new System.Drawing.Point(393, 3);
-            this.PanelRowColumnList.Name = "PanelRowColumnList";
-            this.PanelRowColumnList.Size = new System.Drawing.Size(391, 403);
-            this.PanelRowColumnList.TabIndex = 7;
-            // 
-            // space3
-            // 
-            this.space3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.space3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.space3.Location = new System.Drawing.Point(0, 214);
-            this.space3.Name = "space3";
-            this.space3.Size = new System.Drawing.Size(391, 5);
-            this.space3.TabIndex = 9;
-            this.space3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LabelC
-            // 
-            this.LabelC.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LabelC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelC.Location = new System.Drawing.Point(0, 189);
-            this.LabelC.Name = "LabelC";
-            this.LabelC.Size = new System.Drawing.Size(391, 25);
-            this.LabelC.TabIndex = 8;
-            this.LabelC.Text = "Столбцы";
-            this.LabelC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // space2
-            // 
-            this.space2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.space2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.space2.Location = new System.Drawing.Point(0, 184);
-            this.space2.Name = "space2";
-            this.space2.Size = new System.Drawing.Size(391, 5);
-            this.space2.TabIndex = 10;
-            this.space2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // space1
-            // 
-            this.space1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.space1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.space1.Location = new System.Drawing.Point(0, 25);
-            this.space1.Name = "space1";
-            this.space1.Size = new System.Drawing.Size(391, 5);
-            this.space1.TabIndex = 11;
-            this.space1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PanelListAll.Controls.Add(this.ListAllMark);
+            this.PanelListAll.Controls.Add(this.LabelAll);
+            this.PanelListAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelListAll.Location = new System.Drawing.Point(0, 0);
+            this.PanelListAll.Name = "PanelListAll";
+            this.PanelListAll.Size = new System.Drawing.Size(300, 490);
+            this.PanelListAll.TabIndex = 7;
             // 
             // LabelAll
             // 
@@ -193,19 +156,51 @@
             this.LabelAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelAll.Location = new System.Drawing.Point(0, 0);
             this.LabelAll.Name = "LabelAll";
-            this.LabelAll.Size = new System.Drawing.Size(384, 54);
+            this.LabelAll.Size = new System.Drawing.Size(300, 50);
             this.LabelAll.TabIndex = 8;
             this.LabelAll.Text = "Перечень признаков (столбцов) набора данных\r\n";
             this.LabelAll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PanelListAll
+            // LabelC
             // 
-            this.PanelListAll.Controls.Add(this.ListAllMark);
-            this.PanelListAll.Controls.Add(this.LabelAll);
-            this.PanelListAll.Location = new System.Drawing.Point(3, 3);
-            this.PanelListAll.Name = "PanelListAll";
-            this.PanelListAll.Size = new System.Drawing.Size(384, 386);
-            this.PanelListAll.TabIndex = 9;
+            this.LabelC.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LabelC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelC.Location = new System.Drawing.Point(0, 0);
+            this.LabelC.Name = "LabelC";
+            this.LabelC.Size = new System.Drawing.Size(300, 50);
+            this.LabelC.TabIndex = 8;
+            this.LabelC.Text = "Столбцы";
+            this.LabelC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PanelRowColumnList
+            // 
+            this.PanelRowColumnList.Controls.Add(this.PanelColumns);
+            this.PanelRowColumnList.Controls.Add(this.PanelRows);
+            this.PanelRowColumnList.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelRowColumnList.Location = new System.Drawing.Point(320, 0);
+            this.PanelRowColumnList.Name = "PanelRowColumnList";
+            this.PanelRowColumnList.Size = new System.Drawing.Size(300, 490);
+            this.PanelRowColumnList.TabIndex = 9;
+            // 
+            // PanelColumns
+            // 
+            this.PanelColumns.Controls.Add(this.ListColumns);
+            this.PanelColumns.Controls.Add(this.LabelC);
+            this.PanelColumns.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelColumns.Location = new System.Drawing.Point(0, 240);
+            this.PanelColumns.Name = "PanelColumns";
+            this.PanelColumns.Size = new System.Drawing.Size(300, 240);
+            this.PanelColumns.TabIndex = 11;
+            // 
+            // PanelRows
+            // 
+            this.PanelRows.Controls.Add(this.ListRows);
+            this.PanelRows.Controls.Add(this.LabelR);
+            this.PanelRows.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelRows.Location = new System.Drawing.Point(0, 0);
+            this.PanelRows.Name = "PanelRows";
+            this.PanelRows.Size = new System.Drawing.Size(300, 240);
+            this.PanelRows.TabIndex = 10;
             // 
             // ValueTrackBar
             // 
@@ -218,17 +213,17 @@
             this.ValueTrackBar.Text = "metroTrackBar1";
             this.ValueTrackBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.ValueTrackBar_Scroll);
             // 
-            // PanelValue
+            // PanelScroll
             // 
-            this.PanelValue.Controls.Add(this.maxValueLabel);
-            this.PanelValue.Controls.Add(this.ValueTrackBar);
-            this.PanelValue.Controls.Add(this.minValueLabel);
-            this.PanelValue.Controls.Add(this.PanelValueTextBox);
-            this.PanelValue.Enabled = false;
-            this.PanelValue.Location = new System.Drawing.Point(3, 446);
-            this.PanelValue.Name = "PanelValue";
-            this.PanelValue.Size = new System.Drawing.Size(870, 49);
-            this.PanelValue.TabIndex = 11;
+            this.PanelScroll.Controls.Add(this.maxValueLabel);
+            this.PanelScroll.Controls.Add(this.ValueTrackBar);
+            this.PanelScroll.Controls.Add(this.minValueLabel);
+            this.PanelScroll.Controls.Add(this.PanelValueTextBox);
+            this.PanelScroll.Enabled = false;
+            this.PanelScroll.Location = new System.Drawing.Point(10, 39);
+            this.PanelScroll.Name = "PanelScroll";
+            this.PanelScroll.Size = new System.Drawing.Size(824, 49);
+            this.PanelScroll.TabIndex = 11;
             // 
             // maxValueLabel
             // 
@@ -282,31 +277,75 @@
             // 
             this.ValueLabel.AutoSize = true;
             this.ValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ValueLabel.Location = new System.Drawing.Point(-2, 418);
+            this.ValueLabel.Location = new System.Drawing.Point(5, 0);
             this.ValueLabel.Name = "ValueLabel";
             this.ValueLabel.Size = new System.Drawing.Size(197, 25);
             this.ValueLabel.TabIndex = 12;
             this.ValueLabel.Text = "*Признак не выбран";
             // 
+            // AnalysisLabel
+            // 
+            this.AnalysisLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AnalysisLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AnalysisLabel.Location = new System.Drawing.Point(0, 0);
+            this.AnalysisLabel.Name = "AnalysisLabel";
+            this.AnalysisLabel.Size = new System.Drawing.Size(837, 47);
+            this.AnalysisLabel.TabIndex = 13;
+            this.AnalysisLabel.Text = "Анализ";
+            this.AnalysisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // AnalysisNamePanel
+            // 
+            this.AnalysisNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(183)))), ((int)(((byte)(200)))));
+            this.AnalysisNamePanel.Controls.Add(this.AnalysisLabel);
+            this.AnalysisNamePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AnalysisNamePanel.Location = new System.Drawing.Point(0, 0);
+            this.AnalysisNamePanel.Name = "AnalysisNamePanel";
+            this.AnalysisNamePanel.Size = new System.Drawing.Size(837, 47);
+            this.AnalysisNamePanel.TabIndex = 14;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.PanelListAll);
+            this.panel1.Controls.Add(this.PanelRowColumnList);
+            this.panel1.Location = new System.Drawing.Point(5, 53);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(620, 490);
+            this.panel1.TabIndex = 15;
+            // 
+            // PanelValue
+            // 
+            this.PanelValue.BackColor = System.Drawing.Color.White;
+            this.PanelValue.Controls.Add(this.ValueLabel);
+            this.PanelValue.Controls.Add(this.PanelScroll);
+            this.PanelValue.Location = new System.Drawing.Point(5, 566);
+            this.PanelValue.Name = "PanelValue";
+            this.PanelValue.Size = new System.Drawing.Size(829, 100);
+            this.PanelValue.TabIndex = 16;
+            // 
             // ucMarkConversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ValueLabel);
             this.Controls.Add(this.PanelValue);
-            this.Controls.Add(this.PanelListAll);
-            this.Controls.Add(this.PanelRowColumnList);
             this.Controls.Add(this.StartCalcBtn);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.AnalysisNamePanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucMarkConversion";
-            this.Size = new System.Drawing.Size(925, 644);
-            this.PanelRowColumnList.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(837, 804);
             this.PanelListAll.ResumeLayout(false);
-            this.PanelValue.ResumeLayout(false);
+            this.PanelRowColumnList.ResumeLayout(false);
+            this.PanelColumns.ResumeLayout(false);
+            this.PanelRows.ResumeLayout(false);
+            this.PanelScroll.ResumeLayout(false);
             this.PanelValueTextBox.ResumeLayout(false);
             this.PanelValueTextBox.PerformLayout();
+            this.AnalysisNamePanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.PanelValue.ResumeLayout(false);
+            this.PanelValue.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -316,19 +355,22 @@
         private System.Windows.Forms.Button StartCalcBtn;
         private System.Windows.Forms.ListBox ListAllMark;
         private System.Windows.Forms.Label LabelR;
-        private System.Windows.Forms.Panel PanelRowColumnList;
+        private System.Windows.Forms.Panel PanelListAll;
         private System.Windows.Forms.Label LabelC;
         private System.Windows.Forms.Label LabelAll;
-        private System.Windows.Forms.Label space3;
-        private System.Windows.Forms.Label space2;
-        private System.Windows.Forms.Label space1;
-        private System.Windows.Forms.Panel PanelListAll;
+        private System.Windows.Forms.Panel PanelRowColumnList;
         private MetroFramework.Controls.MetroTrackBar ValueTrackBar;
-        private System.Windows.Forms.Panel PanelValue;
+        private System.Windows.Forms.Panel PanelScroll;
         private System.Windows.Forms.Label maxValueLabel;
         private System.Windows.Forms.Label minValueLabel;
         private System.Windows.Forms.Panel PanelValueTextBox;
         private InputDataTextBox ValueTextBox;
         private System.Windows.Forms.Label ValueLabel;
+        private System.Windows.Forms.Label AnalysisLabel;
+        private System.Windows.Forms.Panel AnalysisNamePanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelColumns;
+        private System.Windows.Forms.Panel PanelRows;
+        private System.Windows.Forms.Panel PanelValue;
     }
 }

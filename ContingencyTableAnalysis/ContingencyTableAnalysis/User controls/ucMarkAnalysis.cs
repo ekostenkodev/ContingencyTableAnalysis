@@ -137,29 +137,32 @@ namespace ContingencyTableAnalysis
         {
             int[,] values = new int[2,2];
 
-            int minLength = tuple.Columns[0].Items.Count < tuple.Columns[1].Items.Count ? tuple.Columns[0].Items.Count : tuple.Columns[1].Items.Count;
+            List<object> tupleList_1 = tuple.Columns[0].Items.Select(item => item).ToList();
+            List<object> tupleList_2 = tuple.Columns[1].Items.Select(item => item).ToList();
+
+            int minLength = tupleList_1.Count < tupleList_2.Count ? tupleList_1.Count : tupleList_2.Count;
             int row=-1, column=-1;
             for (int i = 0; i < minLength; i++)
             {
                 if(tuple.Columns[0].Qualitative)
                 {
-                    if (tuple.Columns[0].Items[i].Equals(tuple.Values[0]))
+                    if (tupleList_1[i].Equals(tuple.Values[0]))
                         row = 0;
                     else
                         row = 1;
                 }
                 else
                 {
-                    if(int.Parse(tuple.Columns[0].Items[i].ToString())<int.Parse(tuple.Values[0].ToString()))
+                    if(int.Parse(tupleList_1[i].ToString())<int.Parse(tuple.Values[0].ToString()))
                         row = 0;
                     else
                         row = 1;
                 }
-                Console.WriteLine(tuple.Columns[0].Name + " : " + tuple.Columns[0].Items[i] + "   " + tuple.Values[0] + " | " + row);
+
 
                 if (tuple.Columns[1].Qualitative)
                 {
-                    if (tuple.Columns[1].Items[i].Equals(tuple.Values[1]))
+                    if (tupleList_2[i].Equals(tuple.Values[1]))
                         column = 0;
                     else
                         column = 1;
@@ -167,14 +170,13 @@ namespace ContingencyTableAnalysis
                 else
                 {
 
-                    if (int.Parse(tuple.Columns[1].Items[i].ToString()) < int.Parse(tuple.Values[1]))
+                    if (int.Parse(tupleList_2[i].ToString()) < int.Parse(tuple.Values[1]))
                         column = 0;
                     else
                         column = 1;
                 }
                 values[row, column]++;
-                Console.WriteLine(tuple.Columns[1].Name + " : " + tuple.Columns[1].Items[i] + "   " + tuple.Values[1] + " | " + column);
-                Console.WriteLine("-----------");
+
 
             }
 

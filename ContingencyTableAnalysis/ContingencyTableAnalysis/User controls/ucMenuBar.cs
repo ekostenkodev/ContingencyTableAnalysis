@@ -13,7 +13,7 @@ namespace ContingencyTableAnalysis
 {
     public partial class ucMenuBar : UserControl
     {
-        private const int TimerValue = 10; // скорость открытия/закрытия панелей 
+        private const int TimerValue = 15; // скорость открытия/закрытия панелей 
 
         MainForm _mainForm;
         IDictionary<Panel, Button> allSliderPanels = new Dictionary<Panel, Button>(); // список панелей с кнопками
@@ -101,13 +101,25 @@ namespace ContingencyTableAnalysis
 
         private void mb_File_OpenData_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OPF = new OpenFileDialog();
-            OPF.Filter = "Файлы xls|*.xls|Файлы xlsx|*.xlsx|Файлы csv|*.csv|Файлы txt|*.txt";
-            if (OPF.ShowDialog() == DialogResult.OK)
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Файлы xls|*.xls|Файлы xlsx|*.xlsx|Файлы csv|*.csv|Файлы txt|*.txt";
+            
+            if (file.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(OPF.FileName);
+
+                string dataSource = file.FileName;
+
+                _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DownloadData(dataSource);
+
+                _mainForm.ShowPanel(_mainForm.PanelDataCreation);
             }
+
+            
+
         }
+
+
+
 
         private void mb_Settings_Click(object sender, EventArgs e)
         {

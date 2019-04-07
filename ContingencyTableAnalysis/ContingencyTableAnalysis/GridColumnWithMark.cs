@@ -53,6 +53,7 @@ namespace ContingencyTableAnalysis
 
         public List<object> Items
         {
+
             get {
                 return getItems(); // todo колхоз, исправить заглушку
             }
