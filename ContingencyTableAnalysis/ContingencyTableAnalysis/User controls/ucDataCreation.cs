@@ -89,14 +89,11 @@ Data Source='{0}';Extended Properties=Excel 8.0;", dataSource));
             for (int row = 1; row < DtSet.Tables[0].Rows.Count; row++)
             {
                 
-                Console.WriteLine("-----");
                 for (int column = 0; column < DtSet.Tables[0].Columns.Count; column++)
                 {
                     DataCreationGrid.Rows[row].Cells[column].Value = DtSet.Tables[0].Rows[row].ItemArray[column].ToString();
-                    Console.Write(DataCreationGrid.Rows[row].Cells[column].Value + " ");
 
                 }
-                Console.WriteLine();
             }
 
             
@@ -183,18 +180,21 @@ Data Source='{0}';Extended Properties=Excel 8.0;", dataSource));
         private void DataCreationGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
+
             MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
-            if (metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
-                return;
+
+            var value = metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
 
             GridColumnWithMark column = (GridColumnWithMark)metroGrid.Columns[e.ColumnIndex];
 
-            if (!metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().All(char.IsDigit) && !column.Qualitative) 
+            if (value != null && !metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().All(char.IsDigit) && !column.Qualitative)
             {
                 MessageBox.Show("Нельзя вводить строковые значения в количественные признаки");
                 metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
             }
-            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(e.RowIndex,metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+            ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(e.RowIndex, metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+              
         }
     }
 

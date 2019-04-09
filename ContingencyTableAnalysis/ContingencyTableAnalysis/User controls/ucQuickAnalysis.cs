@@ -138,7 +138,6 @@ namespace ContingencyTableAnalysis
                 {
                     result += results.ToString() + " ";
                 }
-                Console.WriteLine(item.Key + " = " + result);
             }
 
             ResultForm resultForm = new ResultForm(calculations);

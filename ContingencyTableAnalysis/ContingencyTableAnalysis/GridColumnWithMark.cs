@@ -46,34 +46,15 @@ namespace ContingencyTableAnalysis
                 if (Qualitative)
                     return null;
 
-                return  Items.Max(e => int.Parse(e.ToString()));
+                return Items.Max(e => int.Parse(e.ToString()));
 
             }
         }
-
-        public List<object> Items
-        {
-
-            get {
-                return getItems(); // todo колхоз, исправить заглушку
-            }
-
-
-        }
-        private List<object> getItems()
-        {
-            List<object> list = new List<object>();
-
-            for (int i = 0; i < DataGridView.Rows.Count; i++)
+        public List<object> Items { get
             {
-                if (DataGridView.Rows[i].Cells[Index].Value == null)
-                    continue;
-                list.Add(DataGridView.Rows[i].Cells[Index].Value);
-            }
-
-            return list;
-
-        }
+                return ItemsWithNull.Where(e=>e!=null).ToList();
+            } }
+        public List<object> ItemsWithNull { get; } = new List<object>();
         private bool _qualitative = true;
         public bool Qualitative // качественный признак
         {
@@ -91,26 +72,21 @@ namespace ContingencyTableAnalysis
             }
         }
 
-
+        private void fillItemListWithEmpty(int index)
+        {
+            while (index >= ItemsWithNull.Count)
+            {
+                ItemsWithNull.Add(null);
+            }
+        }
 
         public void CellValueChanged(int rowIndex,object value)
         {
-            /*
-            if (rowIndex < Items.Count)
-            {
-                Items.RemoveAt(rowIndex);
-                Console.WriteLine("Remove"+rowIndex);
-            }
-            Console.WriteLine("Add"+rowIndex);
-            Items.Insert(rowIndex, value);
-            Console.WriteLine("+");
-            foreach (var item in Items)
-            {
-                Console.WriteLine(item.ToString());
-            }
-            Console.WriteLine("+");
-            */
+            if(rowIndex>= ItemsWithNull.Count) 
+                fillItemListWithEmpty(rowIndex);// заполнение списка пустыми значениями. Нужно для удобного удаления/вставки элементов в списке.
 
+            ItemsWithNull[rowIndex] = value;
+            
             if (new HashSet<object>(Items).Count > int.Parse(Properties.Resources.Setting4)) // проверка на уникальность качественных признаков в списке(нужно по тз) 
                 Qualitative = false;
 

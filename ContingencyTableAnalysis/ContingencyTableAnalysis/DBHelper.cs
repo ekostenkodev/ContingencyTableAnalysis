@@ -10,7 +10,7 @@ namespace ContingencyTableAnalysis
 {
     class DBHelper
     {
-        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Admin\\source\\repos\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\ContingencyTableAnalysis\\AnalysisDB.mdf;Integrated Security=True;Connect Timeout=30";
+        static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\AnalysisDB.mdf;Integrated Security=True;Connect Timeout=30";
         
 
 

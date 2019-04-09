@@ -46,8 +46,6 @@ namespace ContingencyTableAnalysis
                 var arguments = getArguments(argumentString, userArguments);
                 var functions = parameterInfo.Item2.Split('|');// на случай, если параметр имеет 2 выражения
 
-                Console.WriteLine("---------------------");
-                Console.WriteLine("Func = " + functions[0] + "       args = " + argumentString);
 
                 foreach (var function in functions) 
                 {

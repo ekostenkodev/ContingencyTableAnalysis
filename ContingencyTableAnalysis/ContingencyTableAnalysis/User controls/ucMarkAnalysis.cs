@@ -51,7 +51,7 @@ namespace ContingencyTableAnalysis
                     {
                         foreach (var columnValue in getUniqueVariations(column.Name))
                         {
-                            markVariations.Add(new MarkInfoTuple(new GridColumnWithMark[] { row, column }, new string[] { rowValue.ToString(), columnValue.ToString() }));
+                            markVariations.Add(new MarkInfoTuple(row,column,rowValue.ToString(), columnValue.ToString() ));
                         }
 
                     }
@@ -137,40 +137,45 @@ namespace ContingencyTableAnalysis
         {
             int[,] values = new int[2,2];
 
-            List<object> tupleList_1 = tuple.Columns[0].Items.Select(item => item).ToList();
-            List<object> tupleList_2 = tuple.Columns[1].Items.Select(item => item).ToList();
+            List<object> tupleList_1 = tuple.RowMark.ItemsWithNull;
+            List<object> tupleList_2 = tuple.ColumnMark.ItemsWithNull;
 
-            int minLength = tupleList_1.Count < tupleList_2.Count ? tupleList_1.Count : tupleList_2.Count;
+            int maxLength = tupleList_1.Count < tupleList_2.Count ? tupleList_1.Count : tupleList_2.Count;
             int row=-1, column=-1;
-            for (int i = 0; i < minLength; i++)
+            for (int i = 0; i < maxLength; i++)
             {
-                if(tuple.Columns[0].Qualitative)
+
+                if (tupleList_1[i] == null || tupleList_2[i] == null) // пропуск, если отсутствует значение хотя бы в одном столбце
+                    continue;
+
+                if (tuple.RowMark.Qualitative)
                 {
-                    if (tupleList_1[i].Equals(tuple.Values[0]))
+                    if (tupleList_1[i].Equals(tuple.RowValue))
                         row = 0;
                     else
                         row = 1;
                 }
                 else
                 {
-                    if(int.Parse(tupleList_1[i].ToString())<int.Parse(tuple.Values[0].ToString()))
+                    if(int.Parse(tupleList_1[i].ToString())<int.Parse(tuple.RowValue.ToString()))
                         row = 0;
                     else
                         row = 1;
                 }
 
 
-                if (tuple.Columns[1].Qualitative)
+                if (tuple.ColumnMark.Qualitative)
                 {
-                    if (tupleList_2[i].Equals(tuple.Values[1]))
+                    if (tupleList_2[i].Equals(tuple.ColumnValue))
                         column = 0;
                     else
                         column = 1;
+
                 }
                 else
                 {
 
-                    if (int.Parse(tupleList_2[i].ToString()) < int.Parse(tuple.Values[1]))
+                    if (int.Parse(tupleList_2[i].ToString()) < int.Parse(tuple.ColumnValue))
                         column = 0;
                     else
                         column = 1;
@@ -190,42 +195,39 @@ namespace ContingencyTableAnalysis
 
             string[] labels = new string[6];
 
-            labels[0] = tuple.Columns[0].Name;
-            if (tuple.Columns[0].Qualitative)
+            labels[0] = tuple.RowMark.Name;
+            if (tuple.RowMark.Qualitative)
             {
-
-                if(tuple.Columns[0].Items.Distinct().Count() > 2)
+                if(tuple.RowMark.Items.Distinct().Count() == 2)
+                    labels[1] = tuple.RowMark.Items.Select(e => e.ToString()).First(e => !e.Equals(tuple.RowValue));
+                else
                     labels[1] = "Другие варианты";
-                else
-                    labels[1] = tuple.Columns[0].Items.Select(e=>e.ToString()).First(e=>!e.Equals(tuple.Values[0]));
-
-                labels[2] = tuple.Values[0];
+                labels[2] = tuple.RowValue;
 
 
             }
             else
             {
-                labels[1] = ">=" + tuple.Columns[0].Border;
-                labels[2] = "<" + tuple.Columns[0].Border;
+                labels[1] = ">=" + tuple.RowMark.Border;
+                labels[2] = "<" + tuple.RowMark.Border;
             }
 
 
 
-            labels[3] = tuple.Columns[1].Name;
-            if (tuple.Columns[1].Qualitative)
+            labels[3] = tuple.ColumnMark.Name;
+            if (tuple.ColumnMark.Qualitative)
             {
-                labels[4] = tuple.Values[1];
+                labels[4] = tuple.ColumnValue;
 
-                if (tuple.Columns[1].Items.Distinct().Count() > 2 || tuple.Columns[1].Items.Distinct().Count() == 1)
+                if (tuple.ColumnMark.Items.Distinct().Count() == 2)
+                    labels[5] = tuple.ColumnMark.Items.Select(e => e.ToString()).First(e => !e.Equals(tuple.ColumnValue));
+                else
                     labels[5] = "Другие варианты";
-                else
-                    labels[5] = tuple.Columns[1].Items.Select(e => e.ToString()).First(e => !e.Equals(tuple.Values[1]));
-
             }
             else
             {
-                labels[4] = "<" + tuple.Columns[1].Border;
-                labels[5] = ">=" + tuple.Columns[1].Border;
+                labels[4] = "<" + tuple.ColumnMark.Border;
+                labels[5] = ">=" + tuple.ColumnMark.Border;
             }
             return new AnalysisStrings() { Labels = labels, Parameters = parameters[analysisIndex] };
         }
@@ -241,33 +243,32 @@ namespace ContingencyTableAnalysis
 
     public class MarkInfoTuple
     {
-        public GridColumnWithMark[] Columns = new GridColumnWithMark[2];
-        public string[] Values = new string[2];
+        public GridColumnWithMark RowMark;
+        public GridColumnWithMark ColumnMark;
+        public string RowValue;
+        public string ColumnValue;
 
         public string Name
         {
             get
             {
-                string mark1 = "";
-                string mark2 = "";
-                if(!Columns[0].Qualitative)
-                    mark1 = "граница - ";
-                if (!Columns[1].Qualitative)
-                    mark2 = "граница - ";
+                string qual_1 = "";
+                string qual_2 = "";
+                if(!RowMark.Qualitative)
+                    qual_1 = "граница - ";
+                if (!ColumnMark.Qualitative)
+                    qual_2 = "граница - ";
 
-                return String.Format("{0} ({1}) - {2} ({3})", Columns[0].Name, mark1+ Values[0], Columns[1].Name, mark2+ Values[1]);
-            }
-            set
-            {
-
+                return String.Format("{0} ({1}) - {2} ({3})", RowMark.Name, qual_1 + RowValue, ColumnMark.Name, qual_2 + ColumnValue);
             }
         }
 
-        public MarkInfoTuple(GridColumnWithMark[] columns, string[] values)
+        public MarkInfoTuple(GridColumnWithMark row, GridColumnWithMark column, string rowValue, string columnValue)
         {
-            this.Columns = columns;
-            this.Values = values;
-
+            RowMark = row;
+            ColumnMark = column;
+            RowValue = rowValue;
+            ColumnValue = columnValue;
         }
     }
 }
