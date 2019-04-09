@@ -32,7 +32,7 @@ namespace ContingencyTableAnalysis
 
             foreach (var parameterName in parametersNames)
             {
-                if (parameterName.Equals("Доверительный интервал индекса потенциального вреда")) // todo
+                if (parameterName.Equals("Доверительный интервал индекса потенциального вреда")) // todo найти формулу
                     continue;
 
                 List<double> parameterResults = new List<double>();
@@ -59,21 +59,27 @@ namespace ContingencyTableAnalysis
 
                 calculations.Add(parameterName, parameterResults);
             }
-            /* todo
-            if(calculations.Keys.Contains("NNH (ЧПЭН) для исследований по типу «случай-контроль»"))
-            {
 
-                if (getArguments("OR",userArguments)[0].getArgumentValue() > 1)
+            CorrectCalculations(calculations, userArguments); // уточнение результато(по тз)
+
+            return calculations;
+        }
+
+        public static void CorrectCalculations(Dictionary<string, List<double>> calculations, double[] userArguments)
+        {
+            string parameter = "NNH (ЧПЭН) для исследований по типу «случай-контроль»";
+            if (calculations.Keys.Contains(parameter))
+            {
+                if (GetCalculation("OR", userArguments) > 1)
                 {
-                    calculations.First(e => e.Key.Equals("")).Value.Remove(0);
+                    calculations.First(e => e.Key.Equals(parameter)).Value.RemoveAt(0);
                 }
                 else
                 {
-                    calculations.First(e => e.Key.Equals("")).Value.Remove(1);
+                    calculations.First(e => e.Key.Equals(parameter)).Value.RemoveAt(1);
+                    
                 }
-            }*/
-
-            return calculations;
+            }
         }
         
         public static double GetCalculation(string parameterName, double[] userArguments)

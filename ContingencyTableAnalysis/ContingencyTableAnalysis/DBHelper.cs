@@ -121,7 +121,6 @@ namespace ContingencyTableAnalysis
 
             
 
-            // todo переделать, тк все держится на индексах
             string sql = "SELECT a.AnalysisID , p.Name as p_Name FROM AnalysisDetails a INNER JOIN Parameters p ON a.ParameterID = p.Id";
 
             parameters = new List<string>[] {
