@@ -3,8 +3,12 @@ using System.Windows.Forms;
 
 namespace ContingencyTableAnalysis
 {
+    public delegate void TextBoxUpdate(int[,] textBoxes);
+
     public class InputDataTextBox : TextBox
     {
+
+
         public string LastState;
         public double Value { get; set; }
         public double? MaxValue { get; set; }

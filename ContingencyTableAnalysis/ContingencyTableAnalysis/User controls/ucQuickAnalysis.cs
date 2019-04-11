@@ -16,6 +16,9 @@ namespace ContingencyTableAnalysis
         private Label[] labelColumns;
         private InputDataTextBox[,] textBoxes = new InputDataTextBox[2,2];
 
+        event TextBoxUpdate textBoxUpdate;
+
+
         public ucQuickAnalysis()
         {
             InitializeComponent();
@@ -50,17 +53,17 @@ namespace ContingencyTableAnalysis
 
         }
 
-        public void SetTextBoxes(int[,] values)
+        public void SetTextBoxes(int[,] values, bool enabled)
         {
             textBoxes[0, 0].Text = values[0, 0].ToString();
             textBoxes[0, 1].Text = values[0, 1].ToString();
             textBoxes[1, 0].Text = values[1, 0].ToString();
             textBoxes[1, 1].Text = values[1, 1].ToString();
 
-            textBoxes[0, 0].Enabled = false;
-            textBoxes[0, 1].Enabled = false;
-            textBoxes[1, 0].Enabled = false;
-            textBoxes[1, 1].Enabled = false;
+            textBoxes[0, 0].Enabled = enabled;
+            textBoxes[0, 1].Enabled = enabled;
+            textBoxes[1, 0].Enabled = enabled;
+            textBoxes[1, 1].Enabled = enabled;
 
         }
 
@@ -85,7 +88,10 @@ namespace ContingencyTableAnalysis
 
         }
 
-        
+        public void AddTextBoxSubscriber(TextBoxUpdate update)
+        {
+            textBoxUpdate += update;
+        }
 
         private void TextBoxChanged(object sender, EventArgs e)
         {
@@ -98,16 +104,21 @@ namespace ContingencyTableAnalysis
                     if (textBox.Equals(textBoxes[row, column]))
                     {
                         UpdateLabels(row, column);
+                        // todo заменить на linq
+                        int[,] textBoxValues = new int[2, 2];
+                        textBoxValues[0, 0] = (int)textBoxes[0, 0].Value;
+                        textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
+                        textBoxValues[1, 0] = (int)textBoxes[1, 0].Value;
+                        textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
+                        //
+                        textBoxUpdate(textBoxValues);
                     }
                 }
             }
 
         }
 
-        private void tbClearClick(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void tbLeave(object sender, EventArgs e)
         {

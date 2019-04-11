@@ -107,7 +107,7 @@ namespace ContingencyTableAnalysis
         {
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
 
-            if (ucData.DataCreationGrid.RowCount == 0 || ucData.DataSaved) // todo проверка на сохранение
+            if (ucData.DataCreationGrid.RowCount == 0 || ucData.DataSaved) 
                 return;
 
             DialogResult dialogResult = MessageBox.Show("Сохранить набор данных?", "Сохранение набора данных", MessageBoxButtons.YesNo);

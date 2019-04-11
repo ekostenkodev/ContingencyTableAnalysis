@@ -127,7 +127,7 @@ namespace ContingencyTableAnalysis
             MarkInfoTuple tuple = ((ComboBox)sender).SelectedItem as MarkInfoTuple;
             ucQuickAnalysis analysisPanel = _mainForm.PanelAnalysis.Controls.OfType<ucMarkAnalysis>().First().Controls.OfType<ucQuickAnalysis>().First();
             analysisPanel.SetAnalysisStrings(getAnalysisStrings(_analysisIndex, tuple));
-            analysisPanel.SetTextBoxes(GetMarkValues(tuple));
+            analysisPanel.SetTextBoxes(GetMarkValues(tuple),false);
 
 
 

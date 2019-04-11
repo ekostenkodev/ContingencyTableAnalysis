@@ -195,7 +195,7 @@ namespace ContingencyTableAnalysis
         {
             int value = Int32.Parse(ValueTextBox.Text);
             ValueTrackBar.Value = value;
-            selectedColumn.Border = value; // todo ошибка на больше меньше
+            selectedColumn.Border = value; 
             UpdateValueLabel();
 
         }
