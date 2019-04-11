@@ -22,12 +22,12 @@ namespace ContingencyTableAnalysis
         }
         public void FillResultList(IDictionary<string, List<double>> results)
         {            
-            foreach (var item in results)
+            foreach (var reuslt in results)
             {
-                ListViewItem lvitem = new ListViewItem(item.Key);
-                
-                lvitem.SubItems.Add(String.Join(",  ", item.Value));
-                ResultList.Items.Add(lvitem); //item.Value.ToString()
+                ListViewItem listItem = new ListViewItem(reuslt.Key);
+
+                listItem.SubItems.Add(String.Join(",  ", reuslt.Value));
+                ResultList.Items.Add(listItem); //item.Value.ToString()
             }
         }
 
@@ -64,9 +64,8 @@ namespace ContingencyTableAnalysis
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets[1];
 
             xlWorkSheet.StandardWidth = 20;
-            Console.WriteLine("--------------" + ResultList);
-            xlWorkSheet.Cells[1, 1] = "Параметр";
-            xlWorkSheet.Cells[1, 2] = "Значение";
+            xlWorkSheet.Cells[1, 1] = ResultList.Columns[0].Text;
+            xlWorkSheet.Cells[1, 2] = ResultList.Columns[1].Text;
 
             for (int row = 2; row < ResultList.Items.Count+1; row++) // начиная с 2, так как индексация у екселя начинается с 1 +  первая строка - header'ы
             {
@@ -92,10 +91,8 @@ namespace ContingencyTableAnalysis
             releaseObject(xlWorkBook);
             releaseObject(xlexcel);
 
-            // Clear Clipboard and DataGridView selection
             Clipboard.Clear();
 
-            // Open the newly saved excel file
 
         }
     }

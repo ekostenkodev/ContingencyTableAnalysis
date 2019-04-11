@@ -44,7 +44,7 @@ namespace ContingencyTableAnalysis
             int sum = 0;
             foreach (var item in textBoxes)
             {
-                sum += (int)item.Value;// todo int?
+                sum += (int)item.Value;
             }
             labelABCD.Text = sum.ToString();
 

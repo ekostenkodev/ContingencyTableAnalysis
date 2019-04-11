@@ -93,14 +93,35 @@ namespace ContingencyTableAnalysis
 
         private void mb_File_CreateData_Click(object sender, EventArgs e)
         {
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+
+            CheckForSave(false);
+
+            ucData.CreateData();
 
             _mainForm.ShowPanel(_mainForm.PanelDataCreation);
+
         }
 
+        public void CheckForSave(bool asNewFile)
+        {
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
 
+            if (ucData.DataCreationGrid.RowCount == 0 || ucData.DataSaved) // todo проверка на сохранение
+                return;
+
+            DialogResult dialogResult = MessageBox.Show("Сохранить набор данных?", "Сохранение набора данных", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                ucData.SaveData(asNewFile);
+            }
+        }
 
         private void mb_File_OpenData_Click(object sender, EventArgs e)
         {
+            CheckForSave(true);
+
             OpenFileDialog file = new OpenFileDialog();
             file.Filter = "Файлы xls|*.xls|Файлы xlsx|*.xlsx|Файлы csv|*.csv|Файлы txt|*.txt";
             
@@ -109,7 +130,7 @@ namespace ContingencyTableAnalysis
 
                 string dataSource = file.FileName;
 
-                _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DownloadData(dataSource);
+                _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DownloadDataFromFile(dataSource);
 
                 _mainForm.ShowPanel(_mainForm.PanelDataCreation);
             }
@@ -129,45 +150,45 @@ namespace ContingencyTableAnalysis
 
         private void mb_About_Info_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
-        }
-        private void NotReady()
-        {
             MessageBox.Show("В разработке");
-
+            //todo уточнить у заказчика
         }
 
         private void mb_About_Reference_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
+            MessageBox.Show("В разработке");
+            //todo уточнить у заказчика
         }
 
-        
+
 
         private void mb_File_CloseData_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
+            CheckForSave(true);
+
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+
+            ucData.CloseData();
+
         }
 
         private void mb_File_SaveData_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+            ucData.SaveData(false);
         }
 
         private void mb_File_SaveDataAs_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+            ucData.SaveData(true);
         }
 
         private void mb_File_Exit_Click(object sender, EventArgs e)
         {
-            NotReady();
-            //todo
+            CheckForSave(true);
+
+            ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
         }
     }
 }

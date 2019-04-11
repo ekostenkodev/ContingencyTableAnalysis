@@ -92,8 +92,10 @@ namespace ContingencyTableAnalysis
             else
             {
                 PanelScroll.Enabled = false;
+                ValueTextBox.Text = "0";
                 minValueLabel.Text = "-";
                 maxValueLabel.Text = "-";
+                ValueTrackBar.Value = ValueTrackBar.Minimum;
             }
 
             UpdateValueLabel();
