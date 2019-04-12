@@ -201,77 +201,11 @@ Data Source='{0}';Extended Properties=Excel 8.0;", FileDataSource));
             
         }
 
-        public void ShowContextMenuColumn(GridColumnWithMark column, System.Drawing.Point mouseLocation)
+        public void ShowContextMenuColumn(GridColumnWithMark column, Point mouseLocation)
         {
-            //todo при возможности переписать, много ненужных переменных
-            ContextMenu _contextMenu = new ContextMenu();
-
-            var columnChangeName = new System.Windows.Forms.MenuItem("Переименовать признак");
-            var columnChangeMark = new System.Windows.Forms.MenuItem("Вид признака");
-            var columnDelete = new System.Windows.Forms.MenuItem("Удалить признак");
-            var radio_1 = new System.Windows.Forms.MenuItem("Качественный");
-            var radio_2 = new System.Windows.Forms.MenuItem("Количественный");
-
-            radio_1.RadioCheck = true;
-            radio_2.RadioCheck = true;
-
-            if (column.Qualitative)
-            {
-                radio_1.Checked = true;
-            }
-            else
-            {
-                radio_2.Checked = true;
-            }
-
-            EventHandler radioChangeMethod = new EventHandler((sender, e) => {
-                
-                if (sender.Equals(radio_1))
-                {
-                    radio_1.Checked = true;
-                    radio_2.Checked = false;
-                    column.Qualitative = true;
-                }
-                else
-                {
-                    radio_1.Checked = false;
-                    radio_2.Checked = true;
-                    column.Qualitative = false;
-                }
-                
-            });
-            EventHandler nameChangeMethod = new EventHandler((sender, e) => {
-                ChangeColumnNameForm form = new ChangeColumnNameForm(column.HeaderText);
-                if(form.ShowDialog() == DialogResult.OK)
-                {
-                    column.Name = form.ColumnNameTextBox.Text;
-                    column.HeaderText = form.ColumnNameTextBox.Text;
-                }
-
-            });
-            EventHandler deleteColumnMethod = new EventHandler((sender, e) => {
-                DialogResult dialogResult = MessageBox.Show("Вы уверены?", "Удаление признака", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    column.DataGridView.Columns.Remove(column);
-                }
-
-            });
-
-            columnChangeName.Click += nameChangeMethod;
-            columnDelete.Click += deleteColumnMethod;
-            radio_1.Click += radioChangeMethod;
-            radio_2.Click += radioChangeMethod;
-
-            _contextMenu.MenuItems.Add(columnChangeName);
-            _contextMenu.MenuItems.Add(columnChangeMark);
-            _contextMenu.MenuItems.Add(columnDelete);
-            columnChangeMark.MenuItems.Add(radio_1);
-            columnChangeMark.MenuItems.Add(radio_2);
-
-            _contextMenu.Show(DataCreationGrid, mouseLocation);
-
+            column.ShowContextMenu(DataCreationGrid, mouseLocation);
         }
+
 
         private void DataCreationGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
