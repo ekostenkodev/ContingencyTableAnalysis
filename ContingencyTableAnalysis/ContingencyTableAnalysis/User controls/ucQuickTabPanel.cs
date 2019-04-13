@@ -26,16 +26,7 @@ namespace ContingencyTableAnalysis
 
             AnalysisStrings = getAnalysisStrings();
 
-            tabControlQA.SelectTab(1); //todo если начинать с 0, то лейблы не обновляются -> надо исправить
-            //tabControlQA.SelectTab(0);
-            //tabControlQA.SelectTab(;
-
-
-        }
-
-        public void UpdateTextBoxes()
-        {
-
+            tabControlQA.SelectTab(1);
         }
 
         private AnalysisStrings[] getAnalysisStrings()

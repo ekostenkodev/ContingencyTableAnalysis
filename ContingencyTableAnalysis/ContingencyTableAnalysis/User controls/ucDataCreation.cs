@@ -17,14 +17,13 @@ namespace ContingencyTableAnalysis
     public partial class ucDataCreation : UserControl
     {
 
-        public string FileDataSource = null;
-        public bool DataSaved = true; 
-        
+        public string FileDataSource = null; // адрес загруженного файла в grid
+        public bool DataSaved = true; // переменная, отображающая, сохранены ли данные(и нужно ли их перезаписывать)
 
+        
         public ucDataCreation()
         {
             InitializeComponent();
-
         }
 
 
@@ -38,7 +37,7 @@ namespace ContingencyTableAnalysis
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (e.ColumnIndex < 0) // нужно, ибо при нажатии на левую колонку GridView вызывается этот метод, где e.ColumnIndex == -1
+                if (e.ColumnIndex < 0) // необходимо это условие, ибо при нажатии на левую колонку GridView вызывается этот метод, где e.ColumnIndex == -1 -> приводит к ошибке
                     return;
                 
                 MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
@@ -47,28 +46,20 @@ namespace ContingencyTableAnalysis
                 
             }
         }
-
-        public void SaveData(bool asNew)
+        public void OpenDataFile()
         {
-            if (DataSaved && !asNew)
-                return;
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Файлы xls,xlsx|*.xls;*.xlsx|Файлы csv,txt|*.csv;*.txt";
 
-            string fileName;
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                DownloadDataFromFile(file.FileName);
+            }
+        }
 
-            if (asNew || FileDataSource == null)
-            {
-                SaveFileDialog showDialog = new SaveFileDialog();
-                showDialog.Filter = "Excel Documents (*.xls)|*.xls";
-                showDialog.FileName = "Набор данных.xls";
-                if (showDialog.ShowDialog() != DialogResult.OK)
-                    return;
-                fileName = showDialog.FileName;
-            }
-            else
-            {
-                fileName = FileDataSource;
-            }
-            
+        public void SaveDataToExcel(string fileName)
+        {
+            // todo сохранение неправильно работает, если изменить открытые данные, то первые значения в столбцах не сохраняются
             DataCreationGrid.SelectAll();
             DataObject dataObj = DataCreationGrid.GetClipboardContent();
             if (dataObj != null)
@@ -109,6 +100,50 @@ namespace ContingencyTableAnalysis
             // Clear Clipboard and DataGridView selection
             Clipboard.Clear();
             DataCreationGrid.ClearSelection();
+            
+        }
+        public void SaveDataToTxt(string fileName)
+        {
+            //todo savedatatotxt
+        }
+
+        public void SaveData(bool asNew)
+        {
+            if (DataSaved && !asNew)
+                return;
+
+            string fileName;
+
+            if (asNew || FileDataSource == null)
+            {
+                SaveFileDialog showDialog = new SaveFileDialog();
+                showDialog.Filter = "Файл xls|*.xls|Файл txt|*.txt";
+                showDialog.FileName = "Набор данных";
+                if (showDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                fileName = showDialog.FileName;
+            }
+            else
+            {
+                fileName = FileDataSource;
+            }
+
+            switch (System.IO.Path.GetExtension(fileName))
+            {
+                case ".xls":
+                    SaveDataToExcel(fileName);
+                    break;
+
+                case ".csv":
+                case ".txt":
+                    SaveDataToTxt(fileName);
+                    break;
+
+                default:
+                    break;
+            }
+
+
 
             DataSaved = true;
 
@@ -139,16 +174,12 @@ namespace ContingencyTableAnalysis
         {
             if (FileDataSource != null)
             {
-                CloseData();
-            }
-            else
-            {
-
+                ClearGridData();
             }
 
         }
 
-        public void CloseData()
+        public void ClearGridData()
         {
             FileDataSource = null;
 
@@ -156,43 +187,73 @@ namespace ContingencyTableAnalysis
             DataCreationGrid.Columns.Clear();
         }
 
+        private DataTable getDataFromExcel(string dataSource, string pathExtension)
+        {
+            string connectionString;
+
+            if(pathExtension == ".xls")
+                connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = '" + dataSource + "';Extended Properties=\"Excel 8.0;HDR=YES;\"";
+            else
+                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + dataSource + "';Extended Properties=\"Excel 12.0;HDR=YES;\"";
+
+            DataTable dataTable;
+            
+            using (OleDbConnection conn = new OleDbConnection(connectionString))
+            {
+                conn.Open();
+                DataTable dtSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+                var sheetName = dtSchema.Rows[0].Field<string>("TABLE_NAME");
+                OleDbDataAdapter MyCommand = new OleDbDataAdapter(String.Format("select * from [{0}]", sheetName),conn);
+                MyCommand.TableMappings.Add("Table", "Net");
+                dataTable = new DataTable();
+                MyCommand.Fill(dataTable);
+            }
+            
+            return dataTable;
+        }
+        private DataTable getDataFromTxt(string dataSource, string pathExtension)
+        {
+            return null;
+        }
 
         public void DownloadDataFromFile(string dataSource)
         {
             FileDataSource = dataSource;
 
-            OleDbConnection MyConnection;
-            DataSet DtSet;
-            OleDbDataAdapter MyCommand;
-            // C:\Users\Дарья\Desktop\MS_lab1\MS_lab1\var1.xls
-            MyConnection = new OleDbConnection(String.Format(@"provider=Microsoft.Jet.OLEDB.4.0;
-Data Source='{0}';Extended Properties=Excel 8.0;", FileDataSource));
-            MyCommand = new OleDbDataAdapter("select * from [База данных$]", MyConnection);
-            MyCommand.TableMappings.Add("Table", "Net");
-            DtSet = new DataSet();
-            MyCommand.Fill(DtSet);
+            DataTable dataTable = null;
+            string pathExtension = System.IO.Path.GetExtension(dataSource);
+            switch (pathExtension)
+            {
+                case ".xls":
+                case ".xlsx":
+                    dataTable = getDataFromExcel(dataSource, pathExtension);
+                    break;
+
+                case ".csv":
+                case ".txt":
+                    dataTable = getDataFromTxt(dataSource, pathExtension);
+                    break;
+
+                default:
+                    break;
+            }
 
             DataCreationGrid.Rows.Clear();
             DataCreationGrid.Columns.Clear();
-            // todo переделать
-            int index = 0;
-            foreach (var item in DtSet.Tables[0].Columns)
+
+            foreach (var item in dataTable.Columns)
             {
                 GridColumnWithMark column = new GridColumnWithMark() { HeaderText = item.ToString(), Name = item.ToString() };
                 DataCreationGrid.Columns.Add(column);
-                index++;
-            }
-            for (int i = 0; i < DtSet.Tables[0].Rows.Count; i++)
-            {
-                DataCreationGrid.Rows.Add();
             }
 
-            for (int row = 0; row < DtSet.Tables[0].Rows.Count; row++)
+            for (int row = 0; row < dataTable.Rows.Count; row++)
             {
-                
-                for (int column = 0; column < DtSet.Tables[0].Columns.Count; column++)
+                DataCreationGrid.Rows.Add();
+
+                for (int column = 0; column < dataTable.Columns.Count; column++)
                 {
-                    DataCreationGrid.Rows[row].Cells[column].Value = DtSet.Tables[0].Rows[row].ItemArray[column].ToString();
+                    DataCreationGrid.Rows[row].Cells[column].Value = dataTable.Rows[row].ItemArray[column].ToString();
 
                 }
             }
@@ -224,11 +285,13 @@ Data Source='{0}';Extended Properties=Excel 8.0;", FileDataSource));
             }
 
             ((GridColumnWithMark)metroGrid.Columns[e.ColumnIndex]).CellValueChanged(e.RowIndex, metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+            
+
               
         }
+
     }
-
-
 
 
 }

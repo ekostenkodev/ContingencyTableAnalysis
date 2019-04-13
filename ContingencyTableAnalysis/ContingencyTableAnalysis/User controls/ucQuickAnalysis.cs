@@ -104,12 +104,24 @@ namespace ContingencyTableAnalysis
                     if (textBox.Equals(textBoxes[row, column]))
                     {
                         UpdateLabels(row, column);
-                        // todo заменить на linq
+                        //
                         int[,] textBoxValues = new int[2, 2];
                         textBoxValues[0, 0] = (int)textBoxes[0, 0].Value;
                         textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
                         textBoxValues[1, 0] = (int)textBoxes[1, 0].Value;
                         textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
+
+                        /* в linq :
+                            
+                            int[,] textBoxValues = textBoxes.Cast<InputDataTextBox>()
+                            .Select((x, i) => new { x?.Value, i })
+                            .Aggregate(
+                              new int[textBoxes.GetLength(0), textBoxes.GetLength(1)],
+                              (accum, item) =>
+                              {
+                                  accum[item.i / textBoxes.GetLength(1), item.i % textBoxes.GetLength(1)] = (int)item.Value.GetValueOrDefault();
+                                  return accum;
+                              });*/
                         //
                         textBoxUpdate(textBoxValues);
                     }

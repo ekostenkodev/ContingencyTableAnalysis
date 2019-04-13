@@ -93,49 +93,42 @@ namespace ContingencyTableAnalysis
 
         private void mb_File_CreateData_Click(object sender, EventArgs e)
         {
+
+            if (CheckForSave(false) == DialogResult.Cancel)
+                return;
+
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
 
-            CheckForSave(false);
-
             ucData.CreateData();
-
             _mainForm.ShowPanel(_mainForm.PanelDataCreation);
 
         }
 
-        public void CheckForSave(bool asNewFile)
+        public DialogResult CheckForSave(bool asNewFile)
         {
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+            DialogResult dialogResult = DialogResult.No;
 
-            if (ucData.DataCreationGrid.RowCount == 0 || ucData.DataSaved) 
-                return;
+            if (ucData.DataSaved || ucData.DataCreationGrid.RowCount == 0) 
+                return dialogResult;
 
-            DialogResult dialogResult = MessageBox.Show("Сохранить набор данных?", "Сохранение набора данных", MessageBoxButtons.YesNo);
+            dialogResult = MessageBox.Show("Сохранить набор данных?", "Сохранение набора данных", MessageBoxButtons.YesNoCancel);
 
             if (dialogResult == DialogResult.Yes)
             {
                 ucData.SaveData(asNewFile);
             }
+
+            return dialogResult;
         }
 
         private void mb_File_OpenData_Click(object sender, EventArgs e)
         {
-            CheckForSave(true);
+            if (CheckForSave(true) == DialogResult.Cancel)
+                return;
 
-            OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "Файлы xls|*.xls|Файлы xlsx|*.xlsx|Файлы csv|*.csv|Файлы txt|*.txt";
-            
-            if (file.ShowDialog() == DialogResult.OK)
-            {
-
-                string dataSource = file.FileName;
-
-                _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().DownloadDataFromFile(dataSource);
-
-                _mainForm.ShowPanel(_mainForm.PanelDataCreation);
-            }
-
-            
+            _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First().OpenDataFile();
+            _mainForm.ShowPanel(_mainForm.PanelDataCreation);
 
         }
 
@@ -164,11 +157,12 @@ namespace ContingencyTableAnalysis
 
         private void mb_File_CloseData_Click(object sender, EventArgs e)
         {
-            CheckForSave(true);
+            if (CheckForSave(true) == DialogResult.Cancel)
+                return;
 
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
 
-            ucData.CloseData();
+            ucData.ClearGridData();
 
         }
 
@@ -186,7 +180,8 @@ namespace ContingencyTableAnalysis
 
         private void mb_File_Exit_Click(object sender, EventArgs e)
         {
-            CheckForSave(true);
+            if (CheckForSave(true) == DialogResult.Cancel)
+                return;
 
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
         }
