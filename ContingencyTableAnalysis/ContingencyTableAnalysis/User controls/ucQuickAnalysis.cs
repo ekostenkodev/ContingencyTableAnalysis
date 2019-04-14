@@ -16,7 +16,7 @@ namespace ContingencyTableAnalysis
         private Label[] labelColumns;
         private InputDataTextBox[,] textBoxes = new InputDataTextBox[2,2];
 
-        event TextBoxUpdate textBoxUpdate;
+        event TextBoxUpdate textBoxUpdate = delegate { };
 
 
         public ucQuickAnalysis()
@@ -123,7 +123,7 @@ namespace ContingencyTableAnalysis
                                   return accum;
                               });*/
                         //
-                        textBoxUpdate(textBoxValues);
+                        textBoxUpdate.Invoke(textBoxValues);
                     }
                 }
             }

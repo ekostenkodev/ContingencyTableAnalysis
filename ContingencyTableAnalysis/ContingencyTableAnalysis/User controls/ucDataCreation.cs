@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ContingencyTableAnalysis.Forms;
 using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
-
+using System.IO;
 
 namespace ContingencyTableAnalysis
 {
@@ -19,6 +19,7 @@ namespace ContingencyTableAnalysis
 
         public string FileDataSource = null; // адрес загруженного файла в grid
         public bool DataSaved = true; // переменная, отображающая, сохранены ли данные(и нужно ли их перезаписывать)
+        const char separatorTxt = '|';
 
         
         public ucDataCreation()
@@ -49,7 +50,7 @@ namespace ContingencyTableAnalysis
         public void OpenDataFile()
         {
             OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "Файлы xls,xlsx|*.xls;*.xlsx|Файлы csv,txt|*.csv;*.txt";
+            file.Filter = "Файлы xls,xlsx,csv,txt|*.xls;*.xlsx;*.csv;*.txt";
 
             if (file.ShowDialog() == DialogResult.OK)
             {
@@ -57,54 +58,45 @@ namespace ContingencyTableAnalysis
             }
         }
 
+        public void ShowData()
+        {
+            Console.WriteLine("----------------------------------");
+            for (int row = 0; row < DataCreationGrid.RowCount; row++)
+            {
+                for (int column = 0; column < DataCreationGrid.ColumnCount; column++)
+                {
+                    Console.Write(DataCreationGrid.Rows[row].Cells[column].Value+" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("----------------------------------");
+        }
+
         public void SaveDataToExcel(string fileName)
         {
             // todo сохранение неправильно работает, если изменить открытые данные, то первые значения в столбцах не сохраняются
-            DataCreationGrid.SelectAll();
-            DataObject dataObj = DataCreationGrid.GetClipboardContent();
-            if (dataObj != null)
-                Clipboard.SetDataObject(dataObj);
-
-            object misValue = System.Reflection.Missing.Value;
-            Excel.Application xlexcel = new Excel.Application();
-
-            xlexcel.DisplayAlerts = false; // Without this you will get two confirm overwrite prompts
-            Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(misValue);
-            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            // Format column D as text before pasting results, this was required for my data
-            Excel.Range rng = xlWorkSheet.get_Range("D:D").Cells;
-            rng.NumberFormat = "@";
-
-            // Paste clipboard results to worksheet range
-            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
-            CR.Select();
-            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
-
-            // For some reason column A is always blank in the worksheet. ¯\_(ツ)_/¯
-            // Delete blank column A and select cell A1
-            Excel.Range delRng = xlWorkSheet.get_Range("A:A").Cells;
-            delRng.Delete(Type.Missing);
-            xlWorkSheet.get_Range("A1").Select();
-
-            // Save the excel file under the captured location from the SaveFileDialog
-            xlWorkBook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlexcel.DisplayAlerts = true;
-            xlWorkBook.Close(true, misValue, misValue);
-            xlexcel.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlexcel);
-
-            // Clear Clipboard and DataGridView selection
-            Clipboard.Clear();
-            DataCreationGrid.ClearSelection();
             
+
         }
         public void SaveDataToTxt(string fileName)
         {
-            //todo savedatatotxt
+            TextWriter writer = new StreamWriter(fileName);
+
+            foreach (GridColumnWithMark column in DataCreationGrid.Columns)
+            {
+                writer.Write(column.Name + separatorTxt);
+            }
+            writer.WriteLine("");
+
+            for (int i = 0; i < DataCreationGrid.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < DataCreationGrid.Columns.Count; j++)
+                {
+                    writer.Write(DataCreationGrid.Rows[i].Cells[j].Value.ToString() + separatorTxt);
+                }
+                writer.WriteLine("");
+            }
+            writer.Close();
         }
 
         public void SaveData(bool asNew)
@@ -134,7 +126,6 @@ namespace ContingencyTableAnalysis
                     SaveDataToExcel(fileName);
                     break;
 
-                case ".csv":
                 case ".txt":
                     SaveDataToTxt(fileName);
                     break;
@@ -146,6 +137,7 @@ namespace ContingencyTableAnalysis
 
 
             DataSaved = true;
+            MessageBox.Show("Данные сохранены");
 
 
 
@@ -189,6 +181,7 @@ namespace ContingencyTableAnalysis
 
         private DataTable getDataFromExcel(string dataSource, string pathExtension)
         {
+
             string connectionString;
 
             if(pathExtension == ".xls")
@@ -213,7 +206,26 @@ namespace ContingencyTableAnalysis
         }
         private DataTable getDataFromTxt(string dataSource, string pathExtension)
         {
-            return null;
+            System.IO.StreamReader file = new System.IO.StreamReader(dataSource);
+            string[] columnnames = file.ReadLine().Split(separatorTxt);
+            DataTable dataTable = new DataTable();
+            foreach (string c in columnnames)
+            {
+                dataTable.Columns.Add(c);
+            }
+            string newline;
+            while ((newline = file.ReadLine()) != null)
+            {
+                DataRow dr = dataTable.NewRow();
+                string[] values = newline.Split(separatorTxt);
+                for (int i = 0; i < values.Length; i++)
+                {
+                    dr[i] = values[i];
+                }
+                dataTable.Rows.Add(dr);
+            }
+            file.Close();
+            return dataTable;
         }
 
         public void DownloadDataFromFile(string dataSource)
