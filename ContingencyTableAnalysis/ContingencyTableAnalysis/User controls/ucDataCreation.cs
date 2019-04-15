@@ -74,8 +74,42 @@ namespace ContingencyTableAnalysis
 
         public void SaveDataToExcel(string fileName)
         {
-            // todo сохранение неправильно работает, если изменить открытые данные, то первые значения в столбцах не сохраняются
-            
+
+            DataCreationGrid.SelectAll();
+            DataObject dataObj = DataCreationGrid.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+
+            object misValue = System.Reflection.Missing.Value;
+            Excel.Application xlexcel = new Excel.Application();
+
+            xlexcel.DisplayAlerts = false;
+            Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            Excel.Range rng = xlWorkSheet.get_Range("D:D").Cells;
+            rng.NumberFormat = "@";
+
+            Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
+
+            // Delete blank column A and select cell A1
+            Excel.Range delRng = xlWorkSheet.get_Range("A:A").Cells;
+            delRng.Delete(Type.Missing);
+            xlWorkSheet.get_Range("A1").Select();
+
+            xlWorkBook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookDefault, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlexcel.DisplayAlerts = true;
+            xlWorkBook.Close(true, misValue, misValue);
+            xlexcel.Quit();
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlexcel);
+
+            Clipboard.Clear();
+            DataCreationGrid.ClearSelection();
 
         }
         public void SaveDataToTxt(string fileName)
@@ -109,7 +143,7 @@ namespace ContingencyTableAnalysis
             if (asNew || FileDataSource == null)
             {
                 SaveFileDialog showDialog = new SaveFileDialog();
-                showDialog.Filter = "Файл xls|*.xls|Файл txt|*.txt";
+                showDialog.Filter = "Файл xlsx|*.xlsx|Файл txt|*.txt";
                 showDialog.FileName = "Набор данных";
                 if (showDialog.ShowDialog() != DialogResult.OK)
                     return;
@@ -122,7 +156,7 @@ namespace ContingencyTableAnalysis
 
             switch (System.IO.Path.GetExtension(fileName))
             {
-                case ".xls":
+                case ".xlsx":
                     SaveDataToExcel(fileName);
                     break;
 
@@ -179,15 +213,15 @@ namespace ContingencyTableAnalysis
             DataCreationGrid.Columns.Clear();
         }
 
-        private DataTable getDataFromExcel(string dataSource, string pathExtension)
+        public DataTable GetDataFromExcel(string dataSource, string pathExtension)
         {
 
             string connectionString;
 
             if(pathExtension == ".xls")
-                connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = '" + dataSource + "';Extended Properties=\"Excel 8.0;HDR=YES;\"";
+                connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = '" + dataSource + "';Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1;\"";
             else
-                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + dataSource + "';Extended Properties=\"Excel 12.0;HDR=YES;\"";
+                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + dataSource + "';Extended Properties=\"Excel 12.0;HDR=YES;IMEX=1;\"";
 
             DataTable dataTable;
             
@@ -204,7 +238,7 @@ namespace ContingencyTableAnalysis
             
             return dataTable;
         }
-        private DataTable getDataFromTxt(string dataSource, string pathExtension)
+        public DataTable GetDataFromTxt(string dataSource, string pathExtension)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(dataSource);
             string[] columnnames = file.ReadLine().Split(separatorTxt);
@@ -238,12 +272,12 @@ namespace ContingencyTableAnalysis
             {
                 case ".xls":
                 case ".xlsx":
-                    dataTable = getDataFromExcel(dataSource, pathExtension);
+                    dataTable = GetDataFromExcel(dataSource, pathExtension);
                     break;
 
                 case ".csv":
                 case ".txt":
-                    dataTable = getDataFromTxt(dataSource, pathExtension);
+                    dataTable = GetDataFromTxt(dataSource, pathExtension);
                     break;
 
                 default:
