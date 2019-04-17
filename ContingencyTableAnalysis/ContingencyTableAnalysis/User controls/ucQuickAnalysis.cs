@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContingencyTableAnalysis
@@ -109,7 +108,7 @@ namespace ContingencyTableAnalysis
                         textBoxValues[0, 0] = (int)textBoxes[0, 0].Value;
                         textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
                         textBoxValues[1, 0] = (int)textBoxes[1, 0].Value;
-                        textBoxValues[0, 1] = (int)textBoxes[0, 1].Value;
+                        textBoxValues[1, 1] = (int)textBoxes[1, 1].Value;
 
                         /* в linq :
                             

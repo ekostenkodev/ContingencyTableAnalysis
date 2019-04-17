@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ContingencyTableAnalysis
 {
@@ -32,7 +31,7 @@ namespace ContingencyTableAnalysis
 
             foreach (var parameterName in parametersNames)
             {
-                if (parameterName.Equals("Доверительный интервал индекса потенциального вреда")) // todo найти формулу
+                if (parameterName.Equals("Доверительный интервал индекса потенциального вреда")) // todo уточнить у заказчика
                     continue;
 
                 List<double> parameterResults = new List<double>();
@@ -43,8 +42,8 @@ namespace ContingencyTableAnalysis
 
 
                 var argumentString = parameterInfo.Item1;
-                var arguments = getArguments(argumentString, userArguments);
-                var functions = parameterInfo.Item2.Split('|');// на случай, если параметр имеет 2 выражения
+                var arguments = GetArguments(argumentString, userArguments);
+                string[] functions = parameterInfo.Item2.Split('|');// на случай, если параметр имеет 2 выражения
 
 
                 foreach (var function in functions) 
@@ -88,7 +87,7 @@ namespace ContingencyTableAnalysis
             var parameterInfo = DBHelper.GetParameterInfo(parameterName); // Arguments, Expression 
 
             var argumentString = parameterInfo.Item1;
-            var arguments = getArguments(argumentString, userArguments);
+            var arguments = GetArguments(argumentString, userArguments);
             var function = parameterInfo.Item2;
 
             string functionString = "f(" + argumentString + ") = " + function;
@@ -99,7 +98,7 @@ namespace ContingencyTableAnalysis
             return result;
         }
         
-        public static List<Argument> getArguments(string argumentsString, double[] userArguments)
+        public static List<Argument> GetArguments(string argumentsString, double[] userArguments)
         {
             var argumentList = new List<Argument>();
 

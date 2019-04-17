@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -22,11 +21,15 @@ namespace ContingencyTableAnalysis
         }
         public void FillResultList(IDictionary<string, List<double>> results)
         {            
-            foreach (var reuslt in results)
+            foreach (var result in results)
             {
-                ListViewItem listItem = new ListViewItem(reuslt.Key);
-
-                listItem.SubItems.Add(String.Join(",  ", reuslt.Value));
+                ListViewItem listItem = new ListViewItem(result.Key);
+                string[] values = new string[result.Value.Count];
+                for (int i = 0; i < values.Length; i++)
+                {
+                    values[i] = result.Value[i].ToString();
+                }
+                listItem.SubItems.Add(String.Join(",  ", values));
                 ResultList.Items.Add(listItem); //item.Value.ToString()
             }
         }

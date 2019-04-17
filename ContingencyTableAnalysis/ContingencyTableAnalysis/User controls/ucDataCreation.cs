@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContingencyTableAnalysis.Forms;
 using System.Data.OleDb;
@@ -72,26 +71,38 @@ namespace ContingencyTableAnalysis
             Console.WriteLine("----------------------------------");
         }
 
+        private void copyGridtoClipboard()
+        {
+            Clipboard.Clear();
+            if (DataCreationGrid.GetClipboardContent() != null)
+            {
+                DataCreationGrid.SelectAll();
+                Clipboard.SetDataObject(DataCreationGrid.GetClipboardContent());
+                Clipboard.GetData(DataFormats.Text);
+                IDataObject dt = Clipboard.GetDataObject();
+                if (dt.GetDataPresent(typeof(string)))
+                {
+                    string tb = (string)(dt.GetData(typeof(string)));
+                    Encoding encoding = Encoding.GetEncoding(1251);
+                    byte[] dataStr = encoding.GetBytes(tb);
+                    Clipboard.SetDataObject(encoding.GetString(dataStr));
+                }
+            }
+        }
+
         public void SaveDataToExcel(string fileName)
         {
-
-            DataCreationGrid.SelectAll();
-            DataObject dataObj = DataCreationGrid.GetClipboardContent();
-            if (dataObj != null)
-                Clipboard.SetDataObject(dataObj);
+            copyGridtoClipboard();
 
             object misValue = System.Reflection.Missing.Value;
             Excel.Application xlexcel = new Excel.Application();
-
-            xlexcel.DisplayAlerts = false;
             Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(misValue);
-            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            Excel.Range rng = xlWorkSheet.get_Range("D:D").Cells;
-            rng.NumberFormat = "@";
-
+            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.ActiveSheet;
+            xlexcel.Visible = false;
+            xlexcel.DisplayAlerts = false;
             Excel.Range CR = (Excel.Range)xlWorkSheet.Cells[1, 1];
             CR.Select();
+
             xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
 
             // Delete blank column A and select cell A1
@@ -99,8 +110,9 @@ namespace ContingencyTableAnalysis
             delRng.Delete(Type.Missing);
             xlWorkSheet.get_Range("A1").Select();
 
-            xlWorkBook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookDefault, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlexcel.DisplayAlerts = true;
+
+            xlWorkBook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+
             xlWorkBook.Close(true, misValue, misValue);
             xlexcel.Quit();
 
@@ -110,6 +122,50 @@ namespace ContingencyTableAnalysis
 
             Clipboard.Clear();
             DataCreationGrid.ClearSelection();
+
+            /*
+            try
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = true;
+                Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+                Microsoft.Office.Interop.Excel.Worksheet sheet1 = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets[1];
+                int StartCol = 1;
+                int StartRow = 1;
+
+                //Write Headers
+                for (int col = 0; col < DataCreationGrid.Columns.Count; col++)
+                {
+                    Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow, StartCol + col];
+                    myRange.Value2 = DataCreationGrid.Columns[col].HeaderText;
+                }
+
+                StartRow++;
+
+                //Write datagridview content
+                for (int row = 0; row < DataCreationGrid.Rows.Count; row++)
+                {
+                    for (int col = 0; col < DataCreationGrid.Columns.Count; col++)
+                    {
+                        try
+                        {
+                            Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[StartRow + row, StartCol + col];
+                            myRange.Value2 = DataCreationGrid[col, row].Value == null ? "" : DataCreationGrid[col, row].Value;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+            
+            */
 
         }
         public void SaveDataToTxt(string fileName)
@@ -143,7 +199,7 @@ namespace ContingencyTableAnalysis
             if (asNew || FileDataSource == null)
             {
                 SaveFileDialog showDialog = new SaveFileDialog();
-                showDialog.Filter = "Файл xlsx|*.xlsx|Файл txt|*.txt";
+                showDialog.Filter = "Файл xls|*.xls|Файл txt|*.txt";
                 showDialog.FileName = "Набор данных";
                 if (showDialog.ShowDialog() != DialogResult.OK)
                     return;
@@ -156,7 +212,7 @@ namespace ContingencyTableAnalysis
 
             switch (System.IO.Path.GetExtension(fileName))
             {
-                case ".xlsx":
+                case ".xls":
                     SaveDataToExcel(fileName);
                     break;
 

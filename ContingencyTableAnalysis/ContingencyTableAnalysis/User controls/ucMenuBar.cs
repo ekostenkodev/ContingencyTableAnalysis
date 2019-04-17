@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ContingencyTableAnalysis.Properties;
 
@@ -62,10 +61,9 @@ namespace ContingencyTableAnalysis
             {
                 orderSliderPanels.First().Item1.Height -= TimerValue;
                 orderSliderPanels.First().Item2.Image = Resources.Expand_Arrow_20px;
-
                 if (orderSliderPanels.First().Item1.Size == orderSliderPanels.First().Item1.MinimumSize)
                 {
-                    orderSliderPanels.RemoveAll(item=>item.Equals(orderSliderPanels.First())); // убираем все вхождения, чтобы кнопка не открывалась снова
+                    orderSliderPanels.RemoveAll(item=>item.Item1.Equals(orderSliderPanels.First().Item1)); // убираем все вхождения, чтобы кнопка не открывалась снова
                     if (orderSliderPanels.Count == 0)
                     {
                         SlideTimer.Stop();
@@ -184,6 +182,17 @@ namespace ContingencyTableAnalysis
                 return;
 
             ucDataCreation ucData = _mainForm.PanelDataCreation.Controls.OfType<ucDataCreation>().First();
+        }
+    }
+
+    public class Tuple<T1, T2>
+    {
+        public T1 Item1 { get; private set; }
+        public T2 Item2 { get; private set; }
+        internal Tuple(T1 item1, T2 item2)
+        {
+            Item1 = item1;
+            Item2 = item2;
         }
     }
 }
