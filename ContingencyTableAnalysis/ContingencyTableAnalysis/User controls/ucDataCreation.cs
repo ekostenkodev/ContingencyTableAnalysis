@@ -376,6 +376,8 @@ namespace ContingencyTableAnalysis
             DataSaved = false;
             MetroFramework.Controls.MetroGrid metroGrid = (MetroFramework.Controls.MetroGrid)sender;
 
+            if (e.RowIndex == -1)
+                return;
             var value = metroGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
 
             GridColumnWithMark column = (GridColumnWithMark)metroGrid.Columns[e.ColumnIndex];
