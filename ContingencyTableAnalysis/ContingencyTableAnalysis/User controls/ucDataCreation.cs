@@ -274,10 +274,10 @@ namespace ContingencyTableAnalysis
 
             string connectionString;
 
-            if(pathExtension == ".xls")
-                connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = '" + dataSource + "';Extended Properties=\"Excel 8.0;HDR=YES;IMEX=1;\"";
+            if(pathExtension == ".xls" && Environment.Is64BitOperatingSystem == false)
+                connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source = '" + dataSource + "';Extended Properties=\"Excel 8.0;HDR=YES;IMEX=2;\"";
             else
-                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + dataSource + "';Extended Properties=\"Excel 12.0;HDR=YES;IMEX=1;\"";
+                connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + dataSource + "';Extended Properties=\"Excel 12.0;HDR=YES;IMEX=2;\"";
 
             DataTable dataTable;
             
