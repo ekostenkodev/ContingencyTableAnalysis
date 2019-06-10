@@ -152,7 +152,7 @@ namespace ContingencyTableAnalysis
                                 .Select(tb => Double.Parse(tb.Text))
                                 .ToArray();
             
-            var calculations = Calculations.GetCalculations(checkedParameters, userArguments);
+            var calculations = Calculations.GetResults(checkedParameters, userArguments);
             foreach (var item in calculations)
             {
                 string result = "";
