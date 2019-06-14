@@ -69,6 +69,23 @@ namespace ContingencyTableAnalysis
             }
         }
 
+        private static double getZa()
+        {
+            double Za = 12.7062;// default
+            double P = int.Parse(Properties.Resources.Setting1);
+            double[] zaArray = { 0.1584,   0.3249,  0.5095  ,0.7265  ,1.0000  ,1.3764  ,1.9626  ,3.0777  ,6.3138  ,12.7062 ,31.8205 ,63.657  ,127.32  ,318.31  ,636.62 };
+            double[] pArray = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98, 0.99, 0.995, 0.998, 0.999 ,1};
+
+            for (int i = 0; i < pArray.Length-1; i++)
+            {
+                if(P> pArray[i] && P < pArray[i + 1])
+                {
+                    Za = zaArray[i];
+                    break;
+                }
+            }
+            return Za;
+        }
 
         private static List<Argument> getArguments(string argumentsString, double[] userArguments)
         {
@@ -98,7 +115,7 @@ namespace ContingencyTableAnalysis
                         argument = new Argument("d", d);
                         break;
                     case "Za":
-                        argument = new Argument("Za", 12.7062);
+                        argument = new Argument("Za", getZa());
                         break;
                     
                     default:
