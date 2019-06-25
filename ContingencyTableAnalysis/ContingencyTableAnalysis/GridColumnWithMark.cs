@@ -161,6 +161,9 @@ namespace ContingencyTableAnalysis
 
         public void CellValueChanged(int rowIndex,object value)
         {
+            if (value.Equals(""))
+                return;
+
             if(rowIndex>= ItemsWithNull.Count) 
                 fillItemListWithEmpty(rowIndex);// заполнение списка пустыми значениями. Нужно для удобного удаления/вставки элементов в списке.
 

@@ -59,21 +59,22 @@ namespace ContingencyTableAnalysis
 
         private void SaveResultBtn_Click(object sender, EventArgs e)
         {
-
-
-            Microsoft.Office.Interop.Excel.Application xlexcel = new Microsoft.Office.Interop.Excel.Application();
+            Excel.Application xlexcel = new Excel.Application();
             xlexcel.Visible = true;
-            Microsoft.Office.Interop.Excel.Workbook xlWorkBook = xlexcel.Workbooks.Add(1);
-            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets[1];
+            xlexcel.UserControl = true;
+            Excel.Workbooks xlWorkBook = xlexcel.Workbooks;
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
+            xlWorkBook.GetType().InvokeMember("Add", System.Reflection.BindingFlags.InvokeMethod, null, xlWorkBook, null, ci);
+            Excel.Worksheet xlWorkSheet = (Excel.Worksheet)xlWorkBook.get_Item(1).ActiveSheet;
 
-            xlWorkSheet.StandardWidth = 20;
-            xlWorkSheet.Cells[1, 1] = ResultList.Columns[0].Text;
-            xlWorkSheet.Cells[1, 2] = ResultList.Columns[1].Text;
+
+            xlWorkSheet.Cells[1, 1].Value2 = ResultList.Columns[0].Text;
+            xlWorkSheet.Cells[1, 2].Value2 = ResultList.Columns[1].Text;
 
             for (int row = 2; row < ResultList.Items.Count+1; row++) // начиная с 2, так как индексация у екселя начинается с 1 +  первая строка - header'ы
             {
-                xlWorkSheet.Cells[row, 1] = ResultList.Items[row - 1].SubItems[0].Text; // имя параметра
-                xlWorkSheet.Cells[row, 2] = ResultList.Items[row - 1].SubItems[1].Text;
+                xlWorkSheet.Cells[row, 1].Value2 = ResultList.Items[row - 1].SubItems[0].Text; // имя параметра
+                xlWorkSheet.Cells[row, 2].Value2 = ResultList.Items[row - 1].SubItems[1].Text;
 
                 /* если потребуется разделять значения по клеткам экселя
                 var resultList = ResultList.Items[row].SubItems[1].Text.Split(',');
